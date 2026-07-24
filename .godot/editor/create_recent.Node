@@ -1,0 +1,10 @@
+HBoxContainer
+VBoxContainer
+PanelContainer
+ColorRect
+Sprite2D
+CanvasModulate
+Label
+RichTextLabel
+TextureRect
+Node

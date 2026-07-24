@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://dv1mc17yeqcbq"]
+
+[ext_resource type="Script" uid="uid://q5suynu18b52" path="res://entities/world/world.gd" id="1_plka4"]
+[ext_resource type="PackedScene" uid="uid://drcy8cj4545v7" path="res://entities/encounter/encounter.tscn" id="2_tytc4"]
+
+[node name="World" type="Node" unique_id=548530271]
+script = ExtResource("1_plka4")
+
+[node name="Encounter" parent="." unique_id=1945640152 instance=ExtResource("2_tytc4")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4

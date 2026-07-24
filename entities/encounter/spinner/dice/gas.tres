@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="DiceData" format=3 uid="uid://df263hcdbk2l6"]
+
+[ext_resource type="Script" uid="uid://bfepb8svabqlm" path="res://entities/encounter/spinner/dice/dice_data.gd" id="1_wc7qd"]
+
+[resource]
+script = ExtResource("1_wc7qd")
+values = Array[int]([0, 1, 2, 5, 4, 3])
