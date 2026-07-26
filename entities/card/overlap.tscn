@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://cfe1p2qnaebxk"]
+
+[ext_resource type="Script" uid="uid://sagwuyjgg51m" path="res://entities/card/overlap.gd" id="1_3rbpf"]
+[ext_resource type="PackedScene" uid="uid://cbet0tqjycopk" path="res://entities/card/card.tscn" id="2_8nrsj"]
+
+[node name="CardOverlap" type="Control" unique_id=11887563 node_paths=PackedStringArray("card")]
+custom_minimum_size = Vector2(160, 288)
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 2
+script = ExtResource("1_3rbpf")
+card = NodePath("Card")
+
+[node name="Card" parent="." unique_id=853658833 instance=ExtResource("2_8nrsj")]
+unique_name_in_owner = true
+layout_mode = 0

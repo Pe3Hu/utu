@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bjhy3yicxjme3"]
+
+[ext_resource type="Script" uid="uid://vji3ugl3n83g" path="res://entities/drag drop/grid/grid.gd" id="1_qpuoe"]
+
+[node name="Grid" type="GridContainer" unique_id=781120503]
+script = ExtResource("1_qpuoe")

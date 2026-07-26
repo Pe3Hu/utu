@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://ddqqetmqeecl1"]
+
+[ext_resource type="Script" uid="uid://c6ltuuyncvun7" path="res://entities/dice/net/net.gd" id="1_j3jrs"]
+[ext_resource type="Shader" uid="uid://c2js6oct8ufdg" path="res://entities/dice/net/net.gdshader" id="1_uhpku"]
+[ext_resource type="Texture2D" uid="uid://bc5p2otv5ik4f" path="res://entities/dice/images/0.png" id="2_limb2"]
+[ext_resource type="Texture2D" uid="uid://bcbhtkat612er" path="res://entities/dice/images/1.png" id="3_h51w4"]
+[ext_resource type="Texture2D" uid="uid://d01e2vnow4a64" path="res://entities/dice/images/2.png" id="4_mjg1b"]
+[ext_resource type="Texture2D" uid="uid://l33v8egpk708" path="res://entities/dice/images/3.png" id="5_0s8eg"]
+[ext_resource type="Texture2D" uid="uid://b7il2bmeaxm01" path="res://entities/dice/images/4.png" id="6_g4vdg"]
+[ext_resource type="Texture2D" uid="uid://clsqeoqwua702" path="res://entities/dice/images/5.png" id="7_wig84"]
+[ext_resource type="PackedScene" uid="uid://decosthg7r0la" path="res://entities/drag drop/cell/cell.tscn" id="9_limb2"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j3jrs"]
+resource_local_to_scene = true
+shader = ExtResource("1_uhpku")
+shader_parameter/textures = Array[Texture2D]([ExtResource("2_limb2"), ExtResource("3_h51w4"), ExtResource("4_mjg1b"), ExtResource("5_0s8eg"), ExtResource("6_g4vdg"), ExtResource("7_wig84")])
+shader_parameter/current_index = 6
+
+[node name="Net" type="ColorRect" unique_id=1161365259 node_paths=PackedStringArray("cell")]
+material = SubResource("ShaderMaterial_j3jrs")
+custom_minimum_size = Vector2(64, 96)
+script = ExtResource("1_j3jrs")
+cell = NodePath("Cell")
+
+[node name="Cell" parent="." unique_id=732709285 instance=ExtResource("9_limb2")]
+visible = false
+layout_mode = 1
+offset_right = 32.0
+offset_bottom = 32.0

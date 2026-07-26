@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="MatterDiceData" format=3 uid="uid://df263hcdbk2l6"]
+
+[ext_resource type="Script" uid="uid://bfepb8svabqlm" path="res://entities/dice/datas/matter/matter_data.gd" id="1_wc7qd"]
+
+[resource]
+script = ExtResource("1_wc7qd")
+matter = 1
+values = Array[int]([0, 1, 2, 3, 4, 5])

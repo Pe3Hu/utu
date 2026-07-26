@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://dhna1ov4fxgaj"]
 
 [ext_resource type="Shader" uid="uid://dh5ujqbbrsxkc" path="res://entities/encounter/spinner/slot.gdshader" id="2_2rtmo"]
-[ext_resource type="Texture2D" uid="uid://bc5p2otv5ik4f" path="res://entities/encounter/spinner/images/0.png" id="3_0kse1"]
-[ext_resource type="Texture2D" uid="uid://bcbhtkat612er" path="res://entities/encounter/spinner/images/1.png" id="4_hebls"]
-[ext_resource type="Texture2D" uid="uid://b7il2bmeaxm01" path="res://entities/encounter/spinner/images/4.png" id="7_7dj5e"]
-[ext_resource type="Resource" uid="uid://btee8fhtxypmf" path="res://entities/encounter/spinner/dice/liquid.tres" id="7_541ei"]
-[ext_resource type="Texture2D" uid="uid://l33v8egpk708" path="res://entities/encounter/spinner/images/3.png" id="8_a8bh2"]
+[ext_resource type="Texture2D" uid="uid://bc5p2otv5ik4f" path="res://entities/dice/images/0.png" id="3_0kse1"]
+[ext_resource type="Texture2D" uid="uid://bcbhtkat612er" path="res://entities/dice/images/1.png" id="4_hebls"]
+[ext_resource type="Texture2D" uid="uid://b7il2bmeaxm01" path="res://entities/dice/images/4.png" id="7_7dj5e"]
+[ext_resource type="Resource" uid="uid://btee8fhtxypmf" path="res://entities/dice/datas/matter/liquid.tres" id="7_541ei"]
+[ext_resource type="Texture2D" uid="uid://l33v8egpk708" path="res://entities/dice/images/3.png" id="8_a8bh2"]
 [ext_resource type="Script" uid="uid://derrff2pi0236" path="res://entities/encounter/spinner/spinner.gd" id="8_xx85c"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lxk3t"]
