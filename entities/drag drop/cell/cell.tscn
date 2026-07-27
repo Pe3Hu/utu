@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://decosthg7r0la"]
 
 [ext_resource type="Script" uid="uid://cq8x3i532e7v0" path="res://entities/drag drop/cell/cell.gd" id="1_d5ehj"]
-[ext_resource type="Texture2D" uid="uid://bc5p2otv5ik4f" path="res://entities/dice/images/0.png" id="1_jh2ba"]
+[ext_resource type="Texture2D" uid="uid://dy7ypb045s8vj" path="res://entities/dice/images/-1.png" id="1_ygxg2"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jh2ba"]
 
@@ -20,5 +20,5 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_82sw6")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_51exs")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_0kegv")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_jkk6i")
-icon = ExtResource("1_jh2ba")
+icon = ExtResource("1_ygxg2")
 script = ExtResource("1_d5ehj")

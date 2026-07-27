@@ -2,6 +2,7 @@ shader_type canvas_item;
 
 uniform sampler2D textures[6];
 uniform int current_index = -1;
+uniform bool show_all = true;
 
 void fragment() {
 	vec2 uv = UV;
@@ -16,11 +17,9 @@ void fragment() {
 	
 	int tex_index = row + col * 3;
 	
-	if (current_index >= 0 && current_index <= 5) {
-		COLOR = (tex_index == current_index) ? 
-			texture(textures[tex_index], cell_uv) : 
-			vec4(0.0);
-	} else {
+	if (show_all || tex_index == current_index) {
 		COLOR = texture(textures[tex_index], cell_uv);
+	} else {
+		COLOR = vec4(0.0);
 	}
 }

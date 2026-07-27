@@ -6,23 +6,36 @@ enum Matter {
 	GAS = 1,
 	LIQUID = 2,
 	SOLID = 3
-} 
+}
+
+enum Tune {
+	NONE = 0,
+	INTRO = 4,
+	VERSE = 5,
+	OUTRO = 6,
+	HOOK = 7,
+	CHORUS = 8,
+	BRIDGE = 9,
+}
 
 
 #region string
 enum Type {
 	NONE = 0,
 	MATTER = -1,
+	TUNE = -2,
 }
 
 const type_to_index = {
 	Type.NONE: 0,
 	Type.MATTER: 1,
-	#54
+	Type.TUNE: 4,
+	#9
 }
 
 const type_to_enum = {
 	Type.MATTER: Bozo.Matter,
+	Type.TUNE: Bozo.Tune,
 }
 
 func enum_to_string(type_: Variant, value_: int) -> String:

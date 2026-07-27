@@ -1,0 +1,75 @@
+[gd_scene format=3 uid="uid://c454my22m3ygi"]
+
+[ext_resource type="Script" uid="uid://bbslbqqh4cf1" path="res://entities/card/outro/outro.gd" id="1_xidsw"]
+[ext_resource type="PackedScene" uid="uid://decosthg7r0la" path="res://entities/drag drop/cell/cell.tscn" id="2_e3y6l"]
+[ext_resource type="Shader" uid="uid://ddkhl762uaocm" path="res://entities/card/outro/outro.gdshader" id="2_hg73c"]
+[ext_resource type="Texture2D" uid="uid://bc5p2otv5ik4f" path="res://entities/dice/images/0.png" id="3_2xxmt"]
+[ext_resource type="Texture2D" uid="uid://bcbhtkat612er" path="res://entities/dice/images/1.png" id="4_15erd"]
+[ext_resource type="Texture2D" uid="uid://d01e2vnow4a64" path="res://entities/dice/images/2.png" id="5_oa12m"]
+[ext_resource type="Texture2D" uid="uid://l33v8egpk708" path="res://entities/dice/images/3.png" id="6_tvvxl"]
+[ext_resource type="Texture2D" uid="uid://b7il2bmeaxm01" path="res://entities/dice/images/4.png" id="7_qhbmv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_15erd"]
+resource_local_to_scene = true
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_top = 4
+border_color = Color(0, 0.7529412, 0.47058824, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hg73c"]
+resource_local_to_scene = true
+shader = ExtResource("2_hg73c")
+shader_parameter/textures = Array[Texture2D]([ExtResource("3_2xxmt"), ExtResource("4_15erd"), ExtResource("5_oa12m"), ExtResource("6_tvvxl"), ExtResource("7_qhbmv")])
+shader_parameter/indexs = PackedInt32Array(1, 1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2xxmt"]
+resource_local_to_scene = true
+bg_color = Color(0, 0.7529412, 0.47058824, 1)
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+corner_detail = 12
+
+[node name="Outro" type="PanelContainer" unique_id=1383665192 node_paths=PackedStringArray("cell")]
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 1
+mouse_default_cursor_shape = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_15erd")
+script = ExtResource("1_xidsw")
+cell = NodePath("VBoxContainer/Bottom/Cell")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=831186446]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Bases" type="ColorRect" parent="VBoxContainer" unique_id=1493546695]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_hg73c")
+custom_minimum_size = Vector2(160, 32)
+layout_mode = 2
+mouse_filter = 1
+mouse_default_cursor_shape = 2
+
+[node name="Bottom" type="Panel" parent="VBoxContainer" unique_id=1422226280]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(160, 32)
+layout_mode = 2
+mouse_filter = 1
+mouse_default_cursor_shape = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_2xxmt")
+
+[node name="Cell" parent="VBoxContainer/Bottom" unique_id=732709285 instance=ExtResource("2_e3y6l")]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -16.0
+offset_top = -32.0
+offset_right = 16.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+mouse_filter = 1
+mouse_default_cursor_shape = 6

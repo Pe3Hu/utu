@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cv2q6hpdlqkrp"
-path="res://.godot/imported/verse.png-2191ed498d87e1707d5a9a9b274fcc85.ctex"
+path="res://.godot/imported/verse.png-45df8715bf4ac876660fcf87c9c820a1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://entities/dice/datas/images/verse.png"
-dest_files=["res://.godot/imported/verse.png-2191ed498d87e1707d5a9a9b274fcc85.ctex"]
+source_file="res://entities/canto/tune/images/verse.png"
+dest_files=["res://.godot/imported/verse.png-45df8715bf4ac876660fcf87c9c820a1.ctex"]
 
 [params]
 

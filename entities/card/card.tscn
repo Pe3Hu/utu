@@ -2,13 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bkptlyetypcjw" path="res://entities/card/card.gd" id="1_nwofj"]
 [ext_resource type="PackedScene" uid="uid://ddqqetmqeecl1" path="res://entities/dice/net/net.tscn" id="2_4bbms"]
-[ext_resource type="Shader" uid="uid://c2js6oct8ufdg" path="res://entities/dice/net/net.gdshader" id="3_apraf"]
-[ext_resource type="Texture2D" uid="uid://bc5p2otv5ik4f" path="res://entities/dice/images/0.png" id="4_as75h"]
-[ext_resource type="Texture2D" uid="uid://bcbhtkat612er" path="res://entities/dice/images/1.png" id="5_di33i"]
-[ext_resource type="Texture2D" uid="uid://d01e2vnow4a64" path="res://entities/dice/images/2.png" id="6_sww4o"]
-[ext_resource type="Texture2D" uid="uid://l33v8egpk708" path="res://entities/dice/images/3.png" id="7_kloqj"]
-[ext_resource type="Texture2D" uid="uid://b7il2bmeaxm01" path="res://entities/dice/images/4.png" id="8_6312e"]
-[ext_resource type="Texture2D" uid="uid://clsqeoqwua702" path="res://entities/dice/images/5.png" id="9_0xww0"]
+[ext_resource type="PackedScene" uid="uid://c454my22m3ygi" path="res://entities/card/outro/outro.tscn" id="10_as75h"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j6d1l"]
 bg_color = Color(0.21230483, 0.21230483, 0.21230483, 1)
@@ -18,40 +12,37 @@ corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
 corner_detail = 12
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ifnqu"]
-bg_color = Color(0, 0.7529412, 0.47058824, 1)
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_detail = 12
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4bbms"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_apraf"]
-resource_local_to_scene = true
-shader = ExtResource("3_apraf")
-shader_parameter/textures = Array[Texture2D]([ExtResource("4_as75h"), ExtResource("5_di33i"), ExtResource("6_sww4o"), ExtResource("7_kloqj"), ExtResource("8_6312e"), ExtResource("9_0xww0")])
-shader_parameter/current_index = 6
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_as75h"]
-resource_local_to_scene = true
-shader = ExtResource("3_apraf")
-shader_parameter/textures = Array[Texture2D]([ExtResource("4_as75h"), ExtResource("5_di33i"), ExtResource("6_sww4o"), ExtResource("7_kloqj"), ExtResource("8_6312e"), ExtResource("9_0xww0")])
-shader_parameter/current_index = 6
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nwofj"]
+resource_local_to_scene = true
 bg_color = Color(0.6, 0.6, 0.6, 0)
 border_width_left = 4
 border_width_top = 4
 border_width_right = 4
 border_width_bottom = 4
 border_color = Color(0, 0.7529412, 0.47058824, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+corner_detail = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ifnqu"]
+resource_local_to_scene = true
+bg_color = Color(0, 0.7529412, 0.47058824, 1)
 corner_radius_top_left = 12
 corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
 corner_detail = 12
 
-[node name="Card" type="PanelContainer" unique_id=1990971153 node_paths=PackedStringArray("border", "intro", "verse")]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2xxmt"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4bbms"]
+resource_local_to_scene = true
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_top = 4
+border_color = Color(0, 0.7529412, 0.47058824, 1)
+
+[node name="Card" type="PanelContainer" unique_id=1990971153 node_paths=PackedStringArray("border", "intro", "verse", "outro", "nets")]
+custom_minimum_size = Vector2(160, 0)
 offset_right = 160.0
 offset_bottom = 288.0
 offset_transform_enabled = true
@@ -59,16 +50,30 @@ offset_transform_visual_only = false
 mouse_default_cursor_shape = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_j6d1l")
 script = ExtResource("1_nwofj")
-border = NodePath("Border")
-intro = NodePath("VBoxContainer/Bottom/IntroNet")
-verse = NodePath("VBoxContainer/Bottom/VerseNet")
+border = NodePath("MarginContainer/Border")
+intro = NodePath("VBoxContainer/Bottom/HBoxContainer/Intro")
+verse = NodePath("VBoxContainer/Bottom/HBoxContainer/Verse")
+outro = NodePath("VBoxContainer/Bottom/Outro")
+nets = [NodePath("VBoxContainer/Bottom/HBoxContainer/Intro"), NodePath("VBoxContainer/Bottom/HBoxContainer/Verse")]
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1487644318]
+layout_mode = 2
+theme_override_constants/margin_left = -4
+theme_override_constants/margin_top = -4
+theme_override_constants/margin_right = -4
+theme_override_constants/margin_bottom = -4
+
+[node name="Border" type="Panel" parent="MarginContainer" unique_id=860642714]
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_nwofj")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=531177120]
 layout_mode = 2
-mouse_filter = 2
 theme_override_constants/separation = 0
 
 [node name="Top" type="Panel" parent="VBoxContainer" unique_id=2031217003]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(160, 32)
 layout_mode = 2
 mouse_filter = 2
@@ -91,40 +96,33 @@ autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Bottom" type="Panel" parent="VBoxContainer" unique_id=1046522663]
+[node name="Bottom" type="VBoxContainer" parent="VBoxContainer" unique_id=2030578234]
 custom_minimum_size = Vector2(160, 256)
 layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_4bbms")
+theme_override_constants/separation = 32
 
-[node name="IntroNet" parent="VBoxContainer/Bottom" unique_id=1161365259 instance=ExtResource("2_4bbms")]
-material = SubResource("ShaderMaterial_apraf")
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -48.0
-offset_right = 64.0
-offset_bottom = 48.0
-grow_vertical = 2
-
-[node name="VerseNet" parent="VBoxContainer/Bottom" unique_id=1759854737 instance=ExtResource("2_4bbms")]
-material = SubResource("ShaderMaterial_as75h")
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -64.0
-offset_top = -48.0
-offset_bottom = 48.0
-grow_horizontal = 0
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="Border" type="Panel" parent="." unique_id=860642714]
+[node name="Temp" type="PanelContainer" parent="VBoxContainer/Bottom" unique_id=1811278231]
+custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
-mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_nwofj")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_2xxmt")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Bottom" unique_id=1566978561]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="Intro" parent="VBoxContainer/Bottom/HBoxContainer" unique_id=468789252 node_paths=PackedStringArray("card") instance=ExtResource("2_4bbms")]
+layout_mode = 2
+card = NodePath("../../../..")
+tune = 4
+
+[node name="Verse" parent="VBoxContainer/Bottom/HBoxContainer" unique_id=477697374 node_paths=PackedStringArray("card") instance=ExtResource("2_4bbms")]
+layout_mode = 2
+card = NodePath("../../../..")
+tune = 5
+
+[node name="Outro" parent="VBoxContainer/Bottom" unique_id=1383665192 node_paths=PackedStringArray("card") instance=ExtResource("10_as75h")]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4bbms")
+card = NodePath("../../..")

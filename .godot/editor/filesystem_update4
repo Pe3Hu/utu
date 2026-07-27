@@ -1,26 +1,20 @@
-res://entities/card/atheneum.tscn
-res://entities/dice/net/net.gdshader
-res://entities/encounter/spinner/slot.gdshader
-res://entities/drag drop/cell/cell.tscn
-res://entities/drag drop/cell/cell.gd
 res://entities/card/card.tscn
-res://entities/card/overlap.tscn
-res://entities/card/overlap.gd
-res://entities/card/atheneum.gd
-res://entities/card/card.gd
-res://entities/dice/datas/dice_data.gd
-res://entities/dice/datas/matter/matter_data.gd
-res://entities/dice/datas/matter/liquid.tres
-res://entities/dice/datas/matter/gas.tres
-res://entities/dice/datas/matter/solid.tres
-res://entities/dice/datas/intro/intro_data.gd
-res://entities/dice/datas/intro/20_2.tres
-res://entities/dice/datas/intro/20_4.tres
-res://entities/dice/datas/intro/20_3.tres
+res://entities/dice/net/net.gdshader
+res://entities/card/outro/outro.gdshader
+res://entities/canto/tune/tune.gdshader
 res://entities/dice/net/net.tscn
 res://entities/dice/net/net.gd
-res://entities/dice/datas/verse/verse_data.gd
-res://entities/dice/datas/verse/34.tres
-res://entities/dice/datas/verse/35.tres
-res://entities/dice/datas/verse/36.tres
+res://entities/drag drop/cell/cell.gd
+res://entities/card/card.gd
+res://entities/card/outro/outro.tscn
+res://entities/card/outro/outro.gd
+res://entities/pulse/pulse.tscn
+res://entities/canto/pulse/pulse.tscn
+res://entities/canto/canto.tscn
+res://entities/canto/canto.gd
+res://entities/canto/pulse/pulse.gd
+res://entities/drag drop/cell/cell.tscn
 res://global/Catalog.gd
+res://entities/canto/tune/tune.tscn
+res://entities/canto/tune/tune.gd
+res://entities/card/atheneum.gd

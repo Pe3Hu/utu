@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://e6gah0coxvi1"
-path="res://.godot/imported/outro.png-619845e372f87d626038f1bf5d421547.ctex"
+uid="uid://dy66egrks3x4h"
+path="res://.godot/imported/intro.png-06dbf56a5dd6d2aeb0065c180a22a686.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://entities/dice/datas/images/outro.png"
-dest_files=["res://.godot/imported/outro.png-619845e372f87d626038f1bf5d421547.ctex"]
+source_file="res://entities/canto/tune/images/intro.png"
+dest_files=["res://.godot/imported/intro.png-06dbf56a5dd6d2aeb0065c180a22a686.ctex"]
 
 [params]
 

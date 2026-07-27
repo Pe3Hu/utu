@@ -5,10 +5,15 @@ extends Control
 @export var atheneum: Atheneum
 @export var card: Card
 
-@export var angle_min: float = -15.0
-@export var angle_max: float = 15.0
-@export var min_size_x_default: float = 100.0
-@export var min_size_x_hover: float = 200.0
+@export var angle_min: float = -0.0
+@export var angle_max: float = 0.0
+
+@export var min_size_x_default: float:
+	get:
+		return card.size.x
+@export var min_size_x_hover: float:
+	get:
+		return card.size.x * 1.2
 
 var tween: Tween
 var tween_appear: Tween
@@ -25,7 +30,11 @@ func _ready() -> void:
 	)
 	
 	card.mouse_entered.connect(hover)
-	card.mouse_exited.connect(hold_unhover)
+	card.mouse_exited.connect(
+		func() -> void:
+			if !card.get_global_rect().has_point(get_global_mouse_position()):
+				unhover()
+	)
 	
 	card.border.self_modulate.a = 0.0
 	pivot_offset_ratio = Vector2(0.5, 0.5)
@@ -82,15 +91,14 @@ func destroy() -> void:
 	tween_appear.parallel().tween_property(card, "offset_transform_position_ratio:y", 1.0, 0.2)
 	tween_appear.tween_callback(queue_free)
 
-func reverse_z_index(is_default: bool = false) -> void:
-	if is_default:
-		z_index = 0
-		return
-	
-	var child_count: int = get_parent().get_child_count()
-	z_index = child_count - get_index() 
 
-func hold_unhover() -> void:
-	await get_tree().create_timer(0.5).timeout
-	if atheneum.current_overlap == self:
-		unhover()
+func get_default_width() -> float:
+	var parent = get_parent()
+	if parent == null or parent.get_child_count() == 0:
+		return min_size_x_default
+
+	var overlap = parent.get_child(0) as CardOverlap
+	if overlap == null:
+		return min_size_x_default
+
+	return overlap.card.size.x

@@ -4,9 +4,9 @@
 [ext_resource type="Shader" uid="uid://bpow5b1ec5tvg" path="res://entities/home/checkerboard.gdshader" id="2_cf82a"]
 [ext_resource type="PackedScene" uid="uid://cvxj1ovefesgh" path="res://entities/button/button.tscn" id="3_8pavy"]
 [ext_resource type="Script" uid="uid://gmp1wxiwy1n8" path="res://entities/home/go_home.gd" id="4_psn6m"]
+[ext_resource type="PackedScene" uid="uid://cos2ewexmv4cg" path="res://entities/canto/canto.tscn" id="5_cf82a"]
 [ext_resource type="PackedScene" uid="uid://decosthg7r0la" path="res://entities/drag drop/cell/cell.tscn" id="6_hl5sm"]
-[ext_resource type="Texture2D" uid="uid://bcn2au2ll6o8j" path="res://entities/dice/images/7.png" id="7_l4drq"]
-[ext_resource type="Texture2D" uid="uid://bcbhtkat612er" path="res://entities/dice/images/1.png" id="8_cf82a"]
+[ext_resource type="Texture2D" uid="uid://bc5p2otv5ik4f" path="res://entities/dice/images/0.png" id="7_hq1vn"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_od30j"]
 shader = ExtResource("2_cf82a")
@@ -72,6 +72,20 @@ autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Canto" parent="." unique_id=2120647071 instance=ExtResource("5_cf82a")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -38.0
+offset_top = -74.0
+offset_right = 38.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="Overlaps" type="HBoxContainer" parent="." unique_id=1655002082]
 unique_name_in_owner = true
 layout_mode = 1
@@ -85,9 +99,13 @@ offset_top = -233.0
 offset_right = 468.0
 grow_horizontal = 2
 grow_vertical = 0
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, -48)
+offset_transform_visual_only = false
 alignment = 1
 
 [node name="ActionBtns" type="HBoxContainer" parent="." unique_id=1575240006]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -104,11 +122,13 @@ theme_override_constants/separation = 15
 
 [node name="Cell" parent="ActionBtns" unique_id=732709285 instance=ExtResource("6_hl5sm")]
 layout_mode = 2
-icon = ExtResource("7_l4drq")
+icon = ExtResource("7_hq1vn")
+value = 0
 
 [node name="Cell2" parent="ActionBtns" unique_id=1573099591 instance=ExtResource("6_hl5sm")]
 layout_mode = 2
-icon = ExtResource("8_cf82a")
+icon = ExtResource("7_hq1vn")
+value = 0
 
 [connection signal="child_entered_tree" from="Overlaps" to="." method="_on_cards_container_child_entered_tree"]
 [connection signal="child_exiting_tree" from="Overlaps" to="." method="_on_cards_container_child_exiting_tree"]
