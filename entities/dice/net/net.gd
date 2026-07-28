@@ -13,7 +13,6 @@ var dice: DiceData:
 
 @export var tune: Bozo.Tune
 
-var roll_duration: float = 1.0
 var is_rolling: bool = false
 var shift_sequence: Array[int]
 
@@ -74,7 +73,7 @@ func start_roll() -> void:
 
 	for i in total:
 		var t = float(i) / float(total - 1)
-		var delay = lerp(0.03, 0.15, t * t) * roll_duration
+		var delay = lerp(0.03, 0.15, t * t) * Gear.net_rolls[Gear.tempo]
 
 		var index = shift_sequence[i]
 

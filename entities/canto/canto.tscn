@@ -25,15 +25,18 @@ layout_mode = 2
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="IntroTune" parent="VBoxContainer/HBoxContainer" unique_id=4534137 instance=ExtResource("2_qochn")]
+[node name="IntroTune" parent="VBoxContainer/HBoxContainer" unique_id=4534137 node_paths=PackedStringArray("canto") instance=ExtResource("2_qochn")]
 layout_mode = 2
+canto = NodePath("../../..")
 
-[node name="VerseTune" parent="VBoxContainer/HBoxContainer" unique_id=1268224524 instance=ExtResource("2_qochn")]
+[node name="VerseTune" parent="VBoxContainer/HBoxContainer" unique_id=1268224524 node_paths=PackedStringArray("canto") instance=ExtResource("2_qochn")]
 layout_mode = 2
+canto = NodePath("../../..")
 type = 5
 
-[node name="OutroTune" parent="VBoxContainer" unique_id=1450829476 instance=ExtResource("2_qochn")]
+[node name="OutroTune" parent="VBoxContainer" unique_id=1450829476 node_paths=PackedStringArray("canto") instance=ExtResource("2_qochn")]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+canto = NodePath("../..")
 type = 6

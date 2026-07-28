@@ -1,8 +1,9 @@
 extends Node
 class_name GameManager
 
+
 signal round_started(round_number: int)
-signal phase_changed(phase_name: String)
+signal phase_changed(phase: Bozo.Phase)
 signal game_round_completed
 
 var current_round: int = 0
@@ -14,9 +15,7 @@ var current_phase: Phase
 func _ready():
 	# Инициализация фаз в нужном порядке
 	phases = [
-		#$PhaseMove,
-		#$PhaseAttack,
-		#$PhaseDefend
+		CantoPhase.new()
 	]
 	
 	start_new_round()
@@ -25,6 +24,7 @@ func start_new_round():
 	current_round += 1
 	current_phase_index = 0
 	round_started.emit(current_round)
+	start_next_phase()
 
 func start_next_phase():
 	if current_phase_index >= phases.size():
@@ -33,11 +33,11 @@ func start_next_phase():
 		start_new_round()
 		return
 	
-	if current_phase:
+	if not current_phase:
 		current_phase = phases[current_phase_index]
 		current_phase.enter_phase()
 		current_phase.phase_completed.connect(_on_phase_completed)
-		phase_changed.emit(current_phase.name)
+		phase_changed.emit(current_phase.type)
 
 func _on_phase_completed():
 	current_phase.phase_completed.disconnect(_on_phase_completed)
@@ -45,9 +45,9 @@ func _on_phase_completed():
 	current_phase_index += 1
 	start_next_phase()
 
-func execute_player_action(action_name: String) -> bool:
-	if current_phase.try_execute_action(action_name):
+func execute_player_action(action_: Bozo.Action) -> bool:
+	if current_phase.try_execute_action(action_):
 		return true
 	else:
-		print("Действие '%s' недоступно в текущей фазе" % action_name)
+		print("Действие '%s' недоступно в текущей фазе" % action_)
 		return false

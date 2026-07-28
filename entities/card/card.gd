@@ -20,6 +20,8 @@ extends PanelContainer
 
 @export var nets: Array[DiceNet]
 
+var is_used: bool = false
+
 
 #region init
 func init_hovers() -> void:

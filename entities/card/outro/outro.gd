@@ -6,6 +6,7 @@ extends PanelContainer
 
 @export var cell: DragDropCell
 
+@export var bases: Array[int]
 
 
 func apply_matter() -> void:
@@ -30,10 +31,12 @@ func update_bases() -> void:
 		if _i in ranks:
 			var options = Catalog.outro_to_matter_to_values[_i][card.matter]
 			value = options.pick_random()
+			bases.append(value)
 		
 		var texture = load("res://entities/dice/images/%d.png" % value)
 		textures.append(texture)
 		indexs.append(value > 0)
+		bases.append(value)
 	
 	%Bases.material.set_shader_parameter("textures", textures)
 	%Bases.material.set_shader_parameter("indexs", indexs)

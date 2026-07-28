@@ -130,5 +130,8 @@ layout_mode = 2
 icon = ExtResource("7_hq1vn")
 value = 0
 
+[node name="Scenarios" type="Node" parent="." unique_id=780069909]
+unique_name_in_owner = true
+
 [connection signal="child_entered_tree" from="Overlaps" to="." method="_on_cards_container_child_entered_tree"]
 [connection signal="child_exiting_tree" from="Overlaps" to="." method="_on_cards_container_child_exiting_tree"]

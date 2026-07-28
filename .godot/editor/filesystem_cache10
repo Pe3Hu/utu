@@ -1,32 +1,40 @@
 78098b89c88a74ebe8c20117b8754620
-::res://::1785135330
-::res://entities/::1785130943
+::res://::1785226410
+::res://entities/::1785136809
 ::res://entities/button/::1784955525
 button.gd::GDScript::5702632235251211706::1784950012::0::1::::<>Button<><>0<>0<><>::
 button.tscn::PackedScene::6294881423661078859::1784955525::0::1::::<><><>0<>0<><>::uid://cninrw3idbd8u::::res://entities/button/button.gd
-::res://entities/canto/::1785134896
-canto.gd::GDScript::624639254685922820::1785131293::0::1::::Canto<>PanelContainer<><>0<>1<><>::
-canto.tscn::PackedScene::5794291642626876166::1785134896::0::1::::<><><>0<>0<><>::uid://i5tynflme317::::res://entities/canto/canto.gd<>uid://b0rrpj5bjfot0::::res://entities/canto/tune/tune.tscn
-::res://entities/canto/tune/::1785135371
-tune.gd::GDScript::20222133753896227::1785134244::0::1::::Tune<>PanelContainer<><>0<>1<><>::
-tune.gdshader::Shader::8784133465152052121::1785135371::0::1::::<><><>0<>0<><>::
-tune.tscn::PackedScene::4177295691360489775::1785134854::0::1::::<><><>0<>0<><>::uid://j2b5i33fltj::::res://entities/canto/tune/tune.gd<>uid://dxfdnom7hulob::::res://entities/canto/tune/tune.gdshader<>uid://decosthg7r0la::::res://entities/drag drop/cell/cell.tscn<>uid://di5dauopk6qyf::::res://entities/canto/tune/images/passive.png<>uid://uxnm2s04x50y::::res://entities/canto/tune/images/active.png
+::res://entities/canto/::1785224125
+canto.gd::GDScript::624639254685922820::1785136907::0::1::::Canto<>PanelContainer<><>0<>1<><>::
+canto.tscn::PackedScene::5794291642626876166::1785224125::0::1::::<><><>0<>0<><>::uid://i5tynflme317::::res://entities/canto/canto.gd<>uid://budert8pgb7eo::::res://entities/canto/pulse/pulse.tscn<>uid://b0rrpj5bjfot0::::res://entities/canto/tune/tune.tscn
+::res://entities/canto/data/::1785222308
+card_data.gd::GDScript::8668244502209581685::1785142654::0::1::::CardData<>Resource<><>0<>0<><>::
+::res://entities/canto/pulse/::1785226781
+pulse.gd::GDScript::5057901610553825599::1785225200::0::1::::Pulse<>PanelContainer<><>0<>0<><>::
+pulse.tscn::PackedScene::3796664965795201438::1785226805::0::1::::<><><>0<>0<><>::uid://bc5p2otv5ik4f::::res://entities/dice/images/0.png<>uid://cecc5vbq64dtv::::res://entities/canto/pulse/pulse.gd
+::res://entities/canto/scenario/::1785223701
+scenario.gd::GDScript::695135014021772730::1785223701::0::1::::Scenario<>Node<><>0<>0<><>::
+scenario.tscn::PackedScene::9090446587800576653::1785223701::0::1::::<><><>0<>0<><>::uid://j5y1itolwrpy::::res://entities/canto/scenario/scenario.gd
+::res://entities/canto/tune/::1785226505
+tune.gd::GDScript::20222133753896227::1785225180::0::1::::Tune<>PanelContainer<><>0<>1<><>::
+tune.gdshader::Shader::8784133465152052121::1785226505::0::1::::<><><>0<>0<><>::
+tune.tscn::PackedScene::4177295691360489775::1785142354::0::1::::<><><>0<>0<><>::uid://j2b5i33fltj::::res://entities/canto/tune/tune.gd<>uid://dxfdnom7hulob::::res://entities/canto/tune/tune.gdshader<>uid://decosthg7r0la::::res://entities/drag drop/cell/cell.tscn<>uid://di5dauopk6qyf::::res://entities/canto/tune/images/passive.png<>uid://uxnm2s04x50y::::res://entities/canto/tune/images/active.png
 ::res://entities/canto/tune/images/::1785134809
 active.png::CompressedTexture2D::1452069758649357578::1785134808::1785134809::1::::<><><>0<>0<>6fb9530807436061a1ac3acdbdc19654<>res://.godot/imported/active.png-e73fd8df8c16fc5a789105e000624ed3.ctex::
 intro.png::CompressedTexture2D::8909679720600625725::1785064973::1785131504::1::::<><><>0<>0<>90ee9ed30378c32c4d1ea0b00a337171<>res://.godot/imported/intro.png-06dbf56a5dd6d2aeb0065c180a22a686.ctex::
 outro.png::CompressedTexture2D::345115793278650902::1785064973::1785131504::1::::<><><>0<>0<>4d00b36b2690a95687a65c77da3c5240<>res://.godot/imported/outro.png-a8fb6f910ed558d74e29d633a6d64fe9.ctex::
 passive.png::CompressedTexture2D::7782887356574052077::1785134808::1785134809::1::::<><><>0<>0<>45eb9dd13b43641a6607660d8aa94d3f<>res://.godot/imported/passive.png-5af2c82a8c37d7fd7cda5ca32d56d3d1.ctex::
 verse.png::CompressedTexture2D::6303572505626975561::1785064973::1785131504::1::::<><><>0<>0<>65a4322d0fb951e201914870877abcf4<>res://.godot/imported/verse.png-45df8715bf4ac876660fcf87c9c820a1.ctex::
-::res://entities/card/::1785136732
-atheneum.gd::GDScript::6111386610283634586::1785132562::0::1::::Atheneum<>Control<><>0<>0<><>::
-atheneum.tscn::PackedScene::2901697951661934560::1785134913::0::1::::<><><>0<>0<><>::uid://ctcnv6e3kcvpy::::res://entities/card/atheneum.gd<>uid://bpow5b1ec5tvg::::res://entities/home/checkerboard.gdshader<>uid://cvxj1ovefesgh::::res://entities/button/button.tscn<>uid://gmp1wxiwy1n8::::res://entities/home/go_home.gd<>uid://cos2ewexmv4cg::::res://entities/canto/canto.tscn<>uid://decosthg7r0la::::res://entities/drag drop/cell/cell.tscn<>uid://bc5p2otv5ik4f::::res://entities/dice/images/0.png
-card.gd::GDScript::3120449320615396648::1785135854::0::1::::Card<>PanelContainer<><>0<>0<><>::
-card.tscn::PackedScene::4852487012852268400::1785136732::0::1::::<><><>0<>0<><>::uid://bkptlyetypcjw::::res://entities/card/card.gd<>uid://ddqqetmqeecl1::::res://entities/dice/net/net.tscn<>uid://c454my22m3ygi::::res://entities/card/outro/outro.tscn
-overlap.gd::GDScript::1263803862866606504::1785119251::0::1::::CardOverlap<>Control<><>0<>0<><>::
+::res://entities/card/::1785224039
+atheneum.gd::GDScript::6111386610283634586::1785223759::0::1::::Atheneum<>Control<><>0<>0<><>::
+atheneum.tscn::PackedScene::2901697951661934560::1785224039::0::1::::<><><>0<>0<><>::uid://ctcnv6e3kcvpy::::res://entities/card/atheneum.gd<>uid://bpow5b1ec5tvg::::res://entities/home/checkerboard.gdshader<>uid://cvxj1ovefesgh::::res://entities/button/button.tscn<>uid://gmp1wxiwy1n8::::res://entities/home/go_home.gd<>uid://cos2ewexmv4cg::::res://entities/canto/canto.tscn<>uid://decosthg7r0la::::res://entities/drag drop/cell/cell.tscn<>uid://bc5p2otv5ik4f::::res://entities/dice/images/0.png
+card.gd::GDScript::3120449320615396648::1785224039::0::1::::Card<>PanelContainer<><>0<>0<><>::
+card.tscn::PackedScene::4852487012852268400::1785139841::0::1::::<><><>0<>0<><>::uid://bkptlyetypcjw::::res://entities/card/card.gd<>uid://ddqqetmqeecl1::::res://entities/dice/net/net.tscn<>uid://c454my22m3ygi::::res://entities/card/outro/outro.tscn
+overlap.gd::GDScript::1263803862866606504::1785218921::0::1::::CardOverlap<>Control<><>0<>0<><>::
 overlap.tscn::PackedScene::5133649968751248860::1785118502::0::1::::<><><>0<>0<><>::uid://sagwuyjgg51m::::res://entities/card/overlap.gd<>uid://cbet0tqjycopk::::res://entities/card/card.tscn
-::res://entities/card/outro/::1785136690
-outro.gd::GDScript::73365848972526628::1785136690::0::1::::Outro<>PanelContainer<><>0<>0<><>::
-outro.gdshader::Shader::7390918752105958120::1785135371::0::1::::<><><>0<>0<><>::
+::res://entities/card/outro/::1785226505
+outro.gd::GDScript::73365848972526628::1785223117::0::1::::Outro<>PanelContainer<><>0<>0<><>::
+outro.gdshader::Shader::7390918752105958120::1785226505::0::1::::<><><>0<>0<><>::
 outro.tscn::PackedScene::6872032691342064372::1785136690::0::1::::<><><>0<>0<><>::uid://bbslbqqh4cf1::::res://entities/card/outro/outro.gd<>uid://decosthg7r0la::::res://entities/drag drop/cell/cell.tscn<>uid://ddkhl762uaocm::::res://entities/card/outro/outro.gdshader<>uid://bc5p2otv5ik4f::::res://entities/dice/images/0.png<>uid://bcbhtkat612er::::res://entities/dice/images/1.png<>uid://d01e2vnow4a64::::res://entities/dice/images/2.png<>uid://l33v8egpk708::::res://entities/dice/images/3.png<>uid://b7il2bmeaxm01::::res://entities/dice/images/4.png
 ::res://entities/dice/::1785039850
 ::res://entities/dice/datas/::1785131492
@@ -131,14 +139,14 @@ verse_data.gd::GDScript::8616751901211413209::1785063908::0::1::::VerseDiceData<
 97.png::CompressedTexture2D::2500120771963146601::1785039405::1785039406::1::::<><><>0<>0<>4c8e754459a0c7be56a7eaa61042d88c<>res://.godot/imported/97.png-d21792ea580bafa861d23f1f4021af87.ctex::
 100.png::CompressedTexture2D::8737008096211532596::1785039405::1785039406::1::::<><><>0<>0<>404fa2687fd01baf6514a1906db20791<>res://.godot/imported/100.png-0649b331be429b678ef7f81978651d31.ctex::
 -1.png::CompressedTexture2D::8911338473758886055::1785134595::1785134596::1::::<><><>0<>0<>76d8871527b02df55450a4c87ef83c32<>res://.godot/imported/-1.png-495bc353ded8b62cd5e6ab40b5502887.ctex::
-::res://entities/dice/net/::1785136377
-net.gd::GDScript::6972594102337015314::1785136115::0::1::::DiceNet<>PanelContainer<><>0<>0<><>::
-net.gdshader::Shader::6687668550205137552::1785135371::0::1::::<><><>0<>0<><>::
-net.tscn::PackedScene::7403838258332017528::1785136377::0::1::::<><><>0<>0<><>::uid://c6ltuuyncvun7::::res://entities/dice/net/net.gd<>uid://c2js6oct8ufdg::::res://entities/dice/net/net.gdshader<>uid://bc5p2otv5ik4f::::res://entities/dice/images/0.png<>uid://bcbhtkat612er::::res://entities/dice/images/1.png<>uid://d01e2vnow4a64::::res://entities/dice/images/2.png<>uid://l33v8egpk708::::res://entities/dice/images/3.png<>uid://b7il2bmeaxm01::::res://entities/dice/images/4.png<>uid://clsqeoqwua702::::res://entities/dice/images/5.png<>uid://decosthg7r0la::::res://entities/drag drop/cell/cell.tscn
+::res://entities/dice/net/::1785226505
+net.gd::GDScript::6972594102337015314::1785142379::0::1::::DiceNet<>PanelContainer<><>0<>0<><>::
+net.gdshader::Shader::6687668550205137552::1785226505::0::1::::<><><>0<>0<><>::
+net.tscn::PackedScene::7403838258332017528::1785142654::0::1::::<><><>0<>0<><>::uid://c6ltuuyncvun7::::res://entities/dice/net/net.gd<>uid://c2js6oct8ufdg::::res://entities/dice/net/net.gdshader<>uid://bc5p2otv5ik4f::::res://entities/dice/images/0.png<>uid://bcbhtkat612er::::res://entities/dice/images/1.png<>uid://d01e2vnow4a64::::res://entities/dice/images/2.png<>uid://l33v8egpk708::::res://entities/dice/images/3.png<>uid://b7il2bmeaxm01::::res://entities/dice/images/4.png<>uid://clsqeoqwua702::::res://entities/dice/images/5.png<>uid://decosthg7r0la::::res://entities/drag drop/cell/cell.tscn
 ::res://entities/drag drop/::1785039618
-::res://entities/drag drop/cell/::1785135810
-cell.gd::GDScript::5965434292381060147::1785135810::0::1::::DragDropCell<>Button<><>0<>1<><>::
-cell.tscn::PackedScene::7445029372401927266::1785134809::0::1::::<><><>0<>0<><>::uid://cq8x3i532e7v0::::res://entities/drag drop/cell/cell.gd<>uid://dy7ypb045s8vj::::res://entities/dice/images/-1.png
+::res://entities/drag drop/cell/::1785140865
+cell.gd::GDScript::5965434292381060147::1785140865::0::1::::DragDropCell<>Button<><>0<>1<><>::
+cell.tscn::PackedScene::7445029372401927266::1785140239::0::1::::<><><>0<>0<><>::uid://cq8x3i532e7v0::::res://entities/drag drop/cell/cell.gd<>uid://dy7ypb045s8vj::::res://entities/dice/images/-1.png
 ::res://entities/drag drop/grid/::1785039653
 grid.gd::GDScript::1493081914630273354::1785039653::0::1::::DragDropGrid<>GridContainer<><>0<>0<><>::
 grid.tscn::PackedScene::3034079403810356300::1785039653::0::1::::<><><>0<>0<><>::uid://vji3ugl3n83g::::res://entities/drag drop/grid/grid.gd
@@ -157,20 +165,20 @@ checkerboard.gdshader::Shader::3469544067352313900::1784949182::0::1::::<><><>0<
 go_home.gd::GDScript::446863971847997219::1784952569::0::1::::GoHome<>Node<><>0<>0<><>::
 home.gd::GDScript::6282128597535695536::1785040099::0::1::::Home<>Control<><>0<>0<><>::
 home.tscn::PackedScene::3430173726489050937::1784955803::0::1::::<><><>0<>0<><>::uid://cvrd0fvxcn4au::::res://entities/home/home.gd<>uid://bpow5b1ec5tvg::::res://entities/home/checkerboard.gdshader<>uid://cvxj1ovefesgh::::res://entities/button/button.tscn
-::res://entities/pulse/::1785136775
 ::res://entities/world/::1785119805
 world.gd::GDScript::1186082734165819011::1785119805::0::1::::World<>Node<><>0<>0<><>::
 world.tscn::PackedScene::8687635180721816570::1784955763::0::1::::<><><>0<>0<><>::uid://q5suynu18b52::::res://entities/world/world.gd<>uid://bo4upv5t0rv02::::res://entities/home/home.tscn
-::res://global/::1785133923
-Bozo.gd::GDScript::7266829781729311716::1785131380::0::1::::<>Node<><>0<>0<><>::
-Catalog.gd::GDScript::3495370124140258623::1785133923::0::1::::<>Node<><>0<>0<><>::
+::res://global/::1785226399
+Bozo.gd::GDScript::7266829781729311716::1785225547::0::1::::<>Node<><>0<>0<><>::
+Catalog.gd::GDScript::3495370124140258623::1785139320::0::1::::<>Node<><>0<>0<><>::
 Digest.gd::GDScript::3495288910934536794::1782402152::0::1::::<>Node<><>0<>0<><>::
-Helper.gd::GDScript::2099051315008643958::1782402188::0::1::::<>Node<><>0<>0<><>::
-::res://global/arbitrator/::1785059319
-arbitrator.gd::GDScript::5723239069120212359::1785059319::0::1::::GameManager<>Node<><>0<>0<><>::
-::res://global/arbitrator/phase/::1785059147
-phase a.gd::GDScript::4823379408743977198::1785059147::0::1::::APhase<>Phase<><>0<>0<><>::
-phase.gd::GDScript::4508030566847630803::1785059147::0::1::::Phase<>Node<><>0<>0<><>::
+Gear.gd::GDScript::4929632050575132711::1785142354::0::1::::<>Node<><>0<>0<><>::
+Helper.gd::GDScript::2099051315008643958::1785223832::0::1::::<>Node<><>0<>0<><>::
+::res://global/arbitrator/::1785226550
+Arbitrator.gd::GDScript::5723239069120212359::1785226550::0::1::::GameManager<>Node<><>0<>0<><>::
+::res://global/arbitrator/phase/::1785226518
+phase.gd::GDScript::4508030566847630803::1785226508::0::1::::Phase<>Resource<><>0<>0<><>::
+phase canto.gd::GDScript::4823379408743977198::1785226518::0::1::::CantoPhase<>Phase<><>0<>0<><>::
 ::res://shared/::1784955185
 icon.svg::CompressedTexture2D::5994948088208690775::1765022965::1784950230::1::::<><><>0<>0<>f797fd4d11b13ed41e3619dbc0878357<>res://.godot/imported/icon.svg-15d3800ccf4d79e8448d6a9e6e94212a.ctex::
 ::res://shared/fonts/::1784955185

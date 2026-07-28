@@ -2,8 +2,8 @@ class_name Atheneum
 extends Control
 
 
-@export var card_scene = preload("uid://cbet0tqjycopk")
 @export var card_overlap_scene = preload("uid://cfe1p2qnaebxk")
+@export var scenario_scene = preload("uid://d2rqlehdldi5j")
 
 @export var overlaps: Array[CardOverlap]
 
@@ -54,7 +54,46 @@ func remove_card() -> void:
 func init_rolls() -> void:
 	for overlap in overlaps:
 		overlap.card.roll_nets()
-
+	
+	await get_tree().create_timer(0.2).timeout
+	calc_all_combos()
 
 func calc_all_combos() -> void:
-	pass
+	var permutations = Helper.generate_permutations(overlaps)
+	
+	for permutation in permutations:
+		if Helper.get_scenario_result(permutation) > 0:
+			var scenario = scenario_scene.instantiate()
+			%Scenarios.add_child(scenario)
+			scenario.apply_permutation(permutation)
+	
+	var arrangements = Helper.generate_arrangements_fixed_size(overlaps, 2)
+	
+	for arrangement in arrangements:
+		var options = [
+			arrangement.duplicate(),
+			arrangement.duplicate()
+		]
+		
+		options[0].insert(1, null)
+		options[1].insert(2, null)
+		
+		for option in options:
+			if Helper.get_scenario_result(option) > 0:
+				var scenario = scenario_scene.instantiate()
+				%Scenarios.add_child(scenario)
+				scenario.apply_permutation(option)
+	
+	for overlap in overlaps:
+		var permutation = [overlap, null, null]
+		
+		if Helper.get_scenario_result(permutation) > 0:
+			var scenario = scenario_scene.instantiate()
+			%Scenarios.add_child(scenario)
+			scenario.apply_permutation(permutation)
+	
+	var scenarios = %Scenarios.get_children()
+	scenarios.sort_custom(func (a, b): return a.result > b.result)
+	
+	for scenario in scenarios:
+		scenario.print_result()

@@ -3,6 +3,7 @@ class_name Tune
 extends PanelContainer
 
 
+@export var canto: Canto
 @export var cell: DragDropCell
 
 @export var type: Bozo.Tune:
@@ -26,3 +27,11 @@ func update_icons() -> void:
 func apply_value() -> void:
 	%PassiveIcon.visible = cell.value < 0
 	%ActiveIcon.visible = cell.value < 0
+	
+	match type:
+		Bozo.Tune.INTRO:
+			canto.pulse.value += cell.value
+		Bozo.Tune.VERSE:
+			canto.pulse.value += cell.value
+		Bozo.Tune.OUTRO:
+			canto.pulse.value *= cell.value
