@@ -2,8 +2,9 @@ res://entities/canto/pulse/pulse.tscn
 res://entities/dice/net/net.gdshader
 res://entities/card/outro/outro.gdshader
 res://entities/canto/tune/tune.gdshader
-res://global/arbitrator/Arbitrator.gd
-res://global/arbitrator/phase/phase.gd
-res://global/arbitrator/phase/canto phase.gd
-res://global/arbitrator/phase/phase canto.gd
+res://global/Catalog.gd
+res://global/Digest.gd
 res://global/Bozo.gd
+res://global/Helper.gd
+res://entities/card/atheneum.tscn
+res://entities/hull/module/module.tres

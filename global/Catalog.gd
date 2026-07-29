@@ -106,3 +106,23 @@ var axis_to_anchor = {
 	Vector2i(1, 1): Control.PRESET_RIGHT_WIDE,    # 4
 	Vector2i(1, 2): Control.PRESET_BOTTOM_RIGHT,  # 5
 }
+
+
+const letters = ["f", "i", "l", "n", "p", "t", "u", "v", "w", "x", "y", "z"]
+
+const shapes = [
+	Bozo.Shape.F,
+	Bozo.Shape.I,
+	Bozo.Shape.L,
+	Bozo.Shape.N,
+	Bozo.Shape.P,
+	Bozo.Shape.T,
+	Bozo.Shape.U,
+	Bozo.Shape.V,
+	Bozo.Shape.W,
+	Bozo.Shape.X,
+	Bozo.Shape.Y,
+	Bozo.Shape.Z
+]
+
+const BOARD_SIZE = Vector2i(8, 8)

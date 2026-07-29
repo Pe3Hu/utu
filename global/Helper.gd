@@ -116,5 +116,14 @@ func generate_arrangements(available_: Array, current_: Array, target_size_: int
 		generate_arrangements(new_available, current_, target_size_, result_)
 		current_.pop_back()
 #endregion
-	
-	
+
+
+func apply_flip(coord_: Vector2i, is_flipped_: bool) -> Vector2i:
+	if not is_flipped_: return coord_
+	return Vector2i(-coord_.x, coord_.y)
+
+func apply_twist(coord_: Vector2i, twist_: int) -> Vector2i:
+	if twist_ == 0: return coord_
+	var angle = PI / 2 * twist_
+	var rotated_coord = Vector2(coord_).rotated(angle).round()
+	return Vector2i(rotated_coord)

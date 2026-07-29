@@ -29,6 +29,38 @@ enum Phase {
 	NONE = 0,
 	CANTO = 200,
 }
+enum Shape {
+	NONE = 0,
+	F = 1,
+	I = 2,
+	L = 3,
+	N = 4,
+	P = 5,
+	T = 6,
+	U = 7,
+	V = 8,
+	W = 9,
+	X = 10,
+	Y = 11,
+	Z = 12
+}
+
+
+const shape_to_string = {
+	Shape.F: "f",
+	Shape.I: "i",
+	Shape.L: "l",
+	Shape.N: "n",
+	Shape.P: "p",
+	Shape.T: "t",
+	Shape.U: "u",
+	Shape.V: "v",
+	Shape.W: "w",
+	Shape.X: "x",
+	Shape.Y: "y",
+	Shape.Z: "z"
+}
+
 
 #region string
 enum Type {
