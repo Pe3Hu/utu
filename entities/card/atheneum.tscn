@@ -9,12 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://bc5p2otv5ik4f" path="res://entities/dice/images/0.png" id="7_hq1vn"]
 [ext_resource type="PackedScene" uid="uid://c4kju7nsoxlr5" path="res://entities/hull/hull.tscn" id="8_cf82a"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_od30j"]
-shader = ExtResource("2_cf82a")
-shader_parameter/size = 45.00000209
-shader_parameter/color1 = Color(0.19434983, 0.19434905, 0.19434923, 1)
-shader_parameter/color2 = Color(0.12591085, 0.12591085, 0.12591082, 1)
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n7mxt"]
 bg_color = Color(0, 0.39215687, 0.92156863, 1)
 corner_radius_top_left = 8
@@ -22,6 +16,12 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 corner_detail = 12
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_od30j"]
+shader = ExtResource("2_cf82a")
+shader_parameter/size = 45.00000209
+shader_parameter/color1 = Color(0.19434983, 0.19434905, 0.19434923, 1)
+shader_parameter/color2 = Color(0.12591085, 0.12591085, 0.12591082, 1)
 
 [node name="Atheneum" type="Control" unique_id=1469181342]
 layout_mode = 3
@@ -31,15 +31,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_hq1vn")
-
-[node name="BG" type="ColorRect" parent="." unique_id=81403246]
-material = SubResource("ShaderMaterial_od30j")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 
 [node name="HomeBtn" parent="." unique_id=1483590883 instance=ExtResource("3_8pavy")]
 layout_mode = 0
@@ -133,6 +124,15 @@ value = 0
 
 [node name="Scenarios" type="Node" parent="." unique_id=780069909]
 unique_name_in_owner = true
+
+[node name="BG" type="ColorRect" parent="." unique_id=81403246]
+material = SubResource("ShaderMaterial_od30j")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Hull" parent="." unique_id=256053366 instance=ExtResource("8_cf82a")]
 

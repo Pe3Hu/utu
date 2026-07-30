@@ -108,6 +108,7 @@ var axis_to_anchor = {
 }
 
 
+#region shape
 const letters = ["f", "i", "l", "n", "p", "t", "u", "v", "w", "x", "y", "z"]
 
 const shapes = [
@@ -124,5 +125,21 @@ const shapes = [
 	Bozo.Shape.Y,
 	Bozo.Shape.Z
 ]
+#endregion
 
 const BOARD_SIZE = Vector2i(8, 8)
+
+
+var corners = [
+	Vector2i(0, 0),
+	Vector2i(1, 0),
+	Vector2i(0, 1),
+	Vector2i(1, 1),
+]
+
+const directions = [
+	Vector2i.UP,
+	Vector2i.RIGHT,
+	Vector2i.DOWN,
+	Vector2i.LEFT,
+]

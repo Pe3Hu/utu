@@ -127,3 +127,15 @@ func apply_twist(coord_: Vector2i, twist_: int) -> Vector2i:
 	var angle = PI / 2 * twist_
 	var rotated_coord = Vector2(coord_).rotated(angle).round()
 	return Vector2i(rotated_coord)
+
+
+func apply_acnhor_twist(coord_: Vector2i, twist_: int) -> Vector2i:
+	if twist_ == 0: return coord_
+	var a = Vector2i(coord_)
+	var b = Vector2i(coord_)
+	
+	for _i in twist_:
+		b = Vector2i(Catalog.BOARD_SIZE.y - 1 - a.y, a.x)
+		a = Vector2i(b)
+	
+	return b

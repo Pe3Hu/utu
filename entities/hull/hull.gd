@@ -6,35 +6,51 @@ extends Node2D
 
 var compositions: Array[CompositionData]
 
-var composition_index: int = 0
+var composition_indexs: Array[int]
+
+var realm = RealmData.new()
+
+var domain_to_module: Dictionary
+var current_domain: DomainData
 
 
+#region init
 func _ready() -> void:
-	var board_size = Catalog.BOARD_SIZE * 64 * 0.5
-	position = Vector2(get_viewport().size / 2) - board_size
-	load_compositions()
-	init_composition()
+	var board_size = (Catalog.BOARD_SIZE * 2  * 0.5 + Vector2.ONE * 0.5) * 64
+	position = Vector2(get_viewport().size / 2) - (board_size) * scale
+	init_modules(Bozo.Domain.EARLDOM)
 
-func load_compositions() -> void:
-	var loader = CompositionLoader.new()
-	compositions = loader.load_compositions("res://entities/hull/composition/compositions.json")
-	print("compositions:", compositions.size())
-
-func init_composition() -> void:
+func init_modules(type_: Bozo.Domain) -> void:
 	Helper.clear_children(%Modules)
-	if compositions.is_empty(): return
+	var domains = realm.get_domains(type_)
 	
-	for allocation in compositions[composition_index].allocations:
-		add_module(allocation)
+	for earldom in domains:
+		add_module(earldom)
 
-func add_module(allocation: AllocationData) -> void:
+func add_module(domain_: DomainData) -> void:
 	var module = module_scene.instantiate()
 	%Modules.add_child(module)
-	module.allocation = allocation
+	module.domain = domain_
+	domain_to_module[domain_] = module
+#endregion
+
+func highlight_domain() -> void:
+	current_domain = realm.earldoms[0]
+	domain_to_module[current_domain].recolor(Color.GAINSBORO)
+	
+	for neighbour_domain in current_domain.neighbours:
+		domain_to_module[neighbour_domain].recolor(Color.DIM_GRAY)
 
 func _input(event) -> void:
 	if event is InputEventKey and not event.is_echo() and event.is_pressed():
 		match event.keycode:
+			KEY_1:
+				init_modules(Bozo.Domain.FIEFDOM)
+			KEY_2:
+				init_modules(Bozo.Domain.EARLDOM)
+			KEY_3:
+				init_modules(Bozo.Domain.DUKEDOM)
+			KEY_4:
+				init_modules(Bozo.Domain.KINGDOM)
 			KEY_SPACE:
-				composition_index = (composition_index + 1) % compositions.size()
-				init_composition()
+				highlight_domain()

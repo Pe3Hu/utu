@@ -18,6 +18,30 @@ enum Tune {
 	BRIDGE = 9,
 }
 
+enum Shape {
+	NONE = 0,
+	F = 10,
+	I = 11,
+	L = 12,
+	N = 13,
+	P = 14,
+	T = 15,
+	U = 16,
+	V = 17,
+	W = 18,
+	X = 19,
+	Y = 20,
+	Z = 21
+}
+
+enum Domain {
+	NONE = 0,
+	FIEFDOM = 22,
+	EARLDOM = 23,
+	DUKEDOM = 24,
+	KINGDOM = 25
+}
+
 enum Action {
 	NONE = 0,
 	SELECT_INTRO = 104,
@@ -29,37 +53,6 @@ enum Phase {
 	NONE = 0,
 	CANTO = 200,
 }
-enum Shape {
-	NONE = 0,
-	F = 1,
-	I = 2,
-	L = 3,
-	N = 4,
-	P = 5,
-	T = 6,
-	U = 7,
-	V = 8,
-	W = 9,
-	X = 10,
-	Y = 11,
-	Z = 12
-}
-
-
-const shape_to_string = {
-	Shape.F: "f",
-	Shape.I: "i",
-	Shape.L: "l",
-	Shape.N: "n",
-	Shape.P: "p",
-	Shape.T: "t",
-	Shape.U: "u",
-	Shape.V: "v",
-	Shape.W: "w",
-	Shape.X: "x",
-	Shape.Y: "y",
-	Shape.Z: "z"
-}
 
 
 #region string
@@ -67,6 +60,8 @@ enum Type {
 	NONE = 0,
 	MATTER = -1,
 	TUNE = -2,
+	SHAPE = -3,
+	DOMAIN = -4,
 	ACTION = -100,
 	PHASE = -200,
 }
@@ -75,6 +70,8 @@ const type_to_index = {
 	Type.NONE: 0,
 	Type.MATTER: 1,
 	Type.TUNE: 4,
+	Type.SHAPE: 10,
+	Type.DOMAIN: 22,
 	Type.ACTION: 104,
 	Type.PHASE: 200,
 	#9
@@ -83,6 +80,10 @@ const type_to_index = {
 const type_to_enum = {
 	Type.MATTER: Bozo.Matter,
 	Type.TUNE: Bozo.Tune,
+	Type.SHAPE: Bozo.Shape,
+	Type.DOMAIN: Bozo.Domain,
+	
+	
 	Type.ACTION: Bozo.Action,
 	Type.PHASE: Bozo.Phase,
 }
