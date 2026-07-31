@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://d2rqlehdldi5j"]
+
+[ext_resource type="Script" uid="uid://j5y1itolwrpy" path="res://entities/isle/atheneum/canto/scenario/scenario.gd" id="1_pt2yq"]
+
+[node name="Scenario" type="Node" unique_id=2069795086]
+script = ExtResource("1_pt2yq")

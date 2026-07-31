@@ -29,7 +29,7 @@ func update_textures() -> void:
 	icons.material.set_shader_parameter("textures", textures)
 
 func update_border() -> void:
-	var color = Catalog.matter_to_color[card.matter]
+	var color = Catalog.matter_to_color[card.data.matter]
 	%Border.get_theme_stylebox("panel").border_color = color
 	
 	match tune:
@@ -87,17 +87,19 @@ func start_roll() -> void:
 
 func end_roll() -> void:
 	is_rolling = false
+	set_result(shift_sequence.back())
+#endregion
 
+func set_result(index_: int) -> void:
 	icons.material.set_shader_parameter(
 		"current_index",
-		shift_sequence.back()
+		index_
 	)
 	
 	icons.visible = false
 	cell.visible = true
-	cell.value = dice.values[shift_sequence.back()]
-	cell.grid = Catalog.axis_to_anchor.keys()[shift_sequence.back()]
-#endregion
+	cell.value = dice.values[index_]
+	cell.grid = Catalog.axis_to_anchor.keys()[index_]
 
 func _input(event) -> void:
 	if event is InputEventKey and event.pressed and not event.echo:

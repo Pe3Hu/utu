@@ -21,10 +21,10 @@ config/icon="uid://crn86ir408gcd"
 
 [autoload]
 
-Catalog="*res://global/Catalog.gd"
 Bozo="*res://global/Bozo.gd"
-Digest="*uid://bp2e5r0aesguk"
+Catalog="*res://global/Catalog.gd"
 Helper="*uid://452clfwigx8i"
+Digest="*uid://bp2e5r0aesguk"
 Arbitrator="*uid://cnsm58ppi8y5d"
 Gear="*uid://cch7k4rk0hd7t"
 
@@ -32,6 +32,13 @@ Gear="*uid://cch7k4rk0hd7t"
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
+
+[file_customization]
+
+folder_colors={
+"res://entities/isle/atheneum/": "teal",
+"res://entities/isle/realm/": "orange"
+}
 
 [gui]
 

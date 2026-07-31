@@ -1,8 +1,0 @@
-[gd_scene format=3 uid="uid://cjgtra88saw87"]
-
-[ext_resource type="TileSet" uid="uid://c2a51w2etkimm" path="res://entities/hull/module/module.tres" id="1_dgcmh"]
-[ext_resource type="Script" uid="uid://cpojm7np8umwt" path="res://entities/hull/module/module.gd" id="1_insvj"]
-
-[node name="Module" type="TileMapLayer" unique_id=1547115102]
-tile_set = ExtResource("1_dgcmh")
-script = ExtResource("1_insvj")

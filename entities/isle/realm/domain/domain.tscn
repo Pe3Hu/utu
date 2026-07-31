@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://cjgtra88saw87"]
+
+[ext_resource type="TileSet" uid="uid://c2a51w2etkimm" path="res://entities/isle/realm/domain/domain.tres" id="1_61hth"]
+[ext_resource type="Script" uid="uid://cpojm7np8umwt" path="res://entities/isle/realm/domain/domain.gd" id="2_61hth"]
+
+[node name="Domain" type="TileMapLayer" unique_id=1547115102]
+tile_set = ExtResource("1_61hth")
+script = ExtResource("2_61hth")

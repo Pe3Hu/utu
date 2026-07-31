@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="IntroDiceData" format=3 uid="uid://c3nt8p5m6obgk"]
+
+[ext_resource type="Script" uid="uid://dymn30ddrseds" path="res://entities/dice/datas/intro/intro_data.gd" id="1_l4fpr"]
+
+[resource]
+script = ExtResource("1_l4fpr")
+grade = 40
+index = 22
+values = Array[int]([0, 5, 5, 5, 5, 20])
+metadata/_custom_type_script = "uid://dymn30ddrseds"

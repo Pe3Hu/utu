@@ -61,33 +61,33 @@ func permute(arr_: Array, start_: int, result_: Array) -> void:
 #endregion
 
 func get_scenario_result(permutation_: Array) -> int:
-	var intro: Card
-	var verse: Card
-	var outro: Card
+	var intro: CardData
+	var verse: CardData
+	var outro: CardData
 	
-	intro = permutation_[0].card
+	intro = permutation_[0]
 	
 	if permutation_[1]:
-		verse = permutation_[1].card
+		verse = permutation_[1]
 	
 	if permutation_[2]:
-		outro = permutation_[2].card
+		outro = permutation_[2]
 	
 	var result: int = 0
 	
 	if intro:
-		result += intro.intro.cell.value
+		result += intro.intro.result
 	
 	if verse:
-		result += verse.verse.cell.value
+		result += verse.verse.result
 		
 		if !Catalog.pulse_values.has(result):
 			result = -1
 			return result
 	
 	if outro:
-		if outro.outro.bases.has(result):
-			result *= outro.outro.cell.value
+		if outro.outro_bases.has(result):
+			result *= Digest.matter_to_factor[outro.matter]
 			
 			if !Catalog.pulse_values.has(result):
 				result = -1
@@ -117,6 +117,7 @@ func generate_arrangements(available_: Array, current_: Array, target_size_: int
 		current_.pop_back()
 #endregion
 
+#region twist
 
 func apply_flip(coord_: Vector2i, is_flipped_: bool) -> Vector2i:
 	if not is_flipped_: return coord_
@@ -128,7 +129,6 @@ func apply_twist(coord_: Vector2i, twist_: int) -> Vector2i:
 	var rotated_coord = Vector2(coord_).rotated(angle).round()
 	return Vector2i(rotated_coord)
 
-
 func apply_acnhor_twist(coord_: Vector2i, twist_: int) -> Vector2i:
 	if twist_ == 0: return coord_
 	var a = Vector2i(coord_)
@@ -139,3 +139,13 @@ func apply_acnhor_twist(coord_: Vector2i, twist_: int) -> Vector2i:
 		a = Vector2i(b)
 	
 	return b
+#endregion
+
+func get_matters(value_: int) -> Array[Bozo.Matter]:
+	var matters: Array[Bozo.Matter]
+	
+	for factor in Digest.factor_to_matter:
+		if value_ % factor == 0:
+			matters.append(Digest.factor_to_matter[factor])
+	
+	return matters

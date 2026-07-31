@@ -1,0 +1,99 @@
+[gd_scene format=3 uid="uid://b4uxyqcdfn3uo"]
+
+[ext_resource type="Script" uid="uid://c0fkxw18lt6u3" path="res://entities/isle/isle.gd" id="1_kwh8c"]
+[ext_resource type="Shader" uid="uid://bpow5b1ec5tvg" path="res://entities/home/checkerboard.gdshader" id="2_5o34a"]
+[ext_resource type="PackedScene" uid="uid://cvxj1ovefesgh" path="res://entities/button/button.tscn" id="3_dc2yg"]
+[ext_resource type="Script" uid="uid://gmp1wxiwy1n8" path="res://entities/home/go_home.gd" id="4_yl3e5"]
+[ext_resource type="PackedScene" uid="uid://bhlusn1ccigiy" path="res://entities/isle/atheneum/atheneum.tscn" id="5_dd0e4"]
+[ext_resource type="PackedScene" uid="uid://c4kju7nsoxlr5" path="res://entities/isle/realm/realm.tscn" id="6_y02by"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_od30j"]
+shader = ExtResource("2_5o34a")
+shader_parameter/size = 45.00000209
+shader_parameter/color1 = Color(0.19434983, 0.19434905, 0.19434923, 1)
+shader_parameter/color2 = Color(0.12591085, 0.12591085, 0.12591082, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n7mxt"]
+bg_color = Color(0, 0.39215687, 0.92156863, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+corner_detail = 12
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qhul4"]
+
+[node name="Isle" type="Control" unique_id=1469181342 node_paths=PackedStringArray("atheneum", "realm")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kwh8c")
+atheneum = NodePath("HBox/Atheneum")
+realm = NodePath("HBox/RealmContainer/Realm")
+
+[node name="BG" type="ColorRect" parent="." unique_id=81403246]
+material = SubResource("ShaderMaterial_od30j")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HomeBtn" parent="." unique_id=1483590883 instance=ExtResource("3_dc2yg")]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 112.0
+offset_bottom = 58.0
+text = "HOME"
+
+[node name="GoHome" type="Node" parent="HomeBtn" unique_id=1255954342]
+script = ExtResource("4_yl3e5")
+metadata/_custom_type_script = "uid://gmp1wxiwy1n8"
+
+[node name="Title" type="RichTextLabel" parent="." unique_id=882534284]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -103.0
+offset_top = 32.0
+offset_right = 103.0
+offset_bottom = 109.0
+grow_horizontal = 2
+theme_override_font_sizes/normal_font_size = 47
+theme_override_styles/normal = SubResource("StyleBoxFlat_n7mxt")
+bbcode_enabled = true
+text = "[wave]CARDS[/wave]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBox" type="HBoxContainer" parent="." unique_id=1735999487]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Atheneum" parent="HBox" unique_id=1578730 node_paths=PackedStringArray("isle") instance=ExtResource("5_dd0e4")]
+custom_minimum_size = Vector2(960, 1080)
+layout_mode = 2
+isle = NodePath("../..")
+
+[node name="RealmContainer" type="PanelContainer" parent="HBox" unique_id=1236269852]
+custom_minimum_size = Vector2(960, 1080)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_qhul4")
+
+[node name="Realm" parent="HBox/RealmContainer" unique_id=256053366 node_paths=PackedStringArray("isle") instance=ExtResource("6_y02by")]
+isle = NodePath("../../..")

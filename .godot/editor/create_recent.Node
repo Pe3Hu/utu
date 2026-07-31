@@ -1,7 +1,7 @@
-Node
-TextureRect
 PanelContainer
 HBoxContainer
+Node
+TextureRect
 VBoxContainer
 Panel
 MarginContainer
