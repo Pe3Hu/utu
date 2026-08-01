@@ -1,3 +1,7 @@
+ColorRect
+Sprite2D
+Node2D
+TileMapLayer
 PanelContainer
 HBoxContainer
 Node
@@ -5,6 +9,5 @@ TextureRect
 VBoxContainer
 Panel
 MarginContainer
-ColorRect
 GridContainer
 Button

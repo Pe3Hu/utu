@@ -149,3 +149,9 @@ func get_matters(value_: int) -> Array[Bozo.Matter]:
 			matters.append(Digest.factor_to_matter[factor])
 	
 	return matters
+
+func get_coord_based_on_value(value_: int, base_: int = 10) -> Vector2i:
+	var x = value_ % base_
+	@warning_ignore("integer_division")
+	var y = floor(value_ / base_)
+	return Vector2i(x, y)

@@ -71,12 +71,22 @@ const sum_to_index = {
 	40: 22
 }
 
-const  sum_to_grades = {
+const sum_to_grades = {
 	20: [1, 2],#[0, 1, 2],
 	30: [2, 3],#[1, 2, 3, 4],#[1, 2, 3],
 	40: [3, 4]#[2, 3, 4],
 }
 
+const flag_to_regard = {
+	true: Bozo.Regard.ALLY,
+	false: Bozo.Regard.ENEMY
+}
+
+var regard_to_color = {
+	Bozo.Regard.ALLY: Color.from_hsv(210.0 / 360.0, 1.0, 1.0),
+	Bozo.Regard.ENEMY: Color.from_hsv(340.0 / 360.0, 1.0, 1.0),
+	Bozo.Regard.WILD: Color.from_hsv(120.0 / 360.0, 1.0, 1.0),
+}
 
 func _init() -> void:
 	init_shape_colors()

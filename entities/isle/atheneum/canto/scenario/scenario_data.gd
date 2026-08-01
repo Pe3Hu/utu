@@ -7,6 +7,7 @@ var verse: CardData
 var outro: CardData
 
 var result: int = 0
+var tides: Array[int]
 
 
 func _init(permutation_: Array) -> void:
@@ -19,6 +20,7 @@ func _init(permutation_: Array) -> void:
 		outro = permutation_[2]
 	
 	calc_result()
+	calc_tides()
 
 func calc_result() -> void:
 	if intro:
@@ -48,3 +50,14 @@ func print_result() -> void:
 	var outro_str = " * %d" % Digest.matter_to_factor[outro.matter] if outro else ""
 	var result_str = " = %d" % result if verse or outro else ""
 	print("%s%s%s%s" % [intro_str, verso_str, outro_str, result_str])
+	print(tides)
+
+func calc_tides() -> void:
+	tides.clear()
+	var tmp = int(result)
+	
+	for _i in Catalog.TIDE_AMOUNT:
+		var tide = ceil(sqrt(tmp))
+		tides.append(tide)
+		tmp -= tide
+	

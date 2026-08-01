@@ -15,7 +15,7 @@ var current_overlap: CardOverlap
 
 #region init
 func _ready() -> void:
-	#init_overlaps()
+	init_overlaps()
 	#init_rolls()
 	pass
 

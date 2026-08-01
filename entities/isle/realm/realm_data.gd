@@ -1,5 +1,5 @@
 class_name RealmData
-extends Resource
+extends RefCounted
 
 var compositions: Array[CompositionData]
 var fiefdoms: Array[DomainData] = []
@@ -8,7 +8,9 @@ var dukedoms: Array[DomainData] = []
 var kingdoms: Array[DomainData] = []
 
 var coord_to_fiefdom: Dictionary = {}
-var shrines: Array[Vector2i]
+
+var bastions: Array[BastionData] = []
+var regard_to_order_to_shrines: Dictionary
 
 
 func _init() -> void:
@@ -121,9 +123,23 @@ func validate() -> void:
 #endregion
 
 func init_shrines() -> void:
-	for _i in Catalog.corners.size():
-		var corner = Catalog.corners[_i] * Catalog.BOARD_SIZE
+	regard_to_order_to_shrines.clear()
+	var regards = [Bozo.Regard.ALLY, Bozo.Regard.ENEMY]
+	
+	for regard in regards:
+		regard_to_order_to_shrines[regard] = {}
+	
+	for order in Catalog.shrines.size():
+		for regard in regards:
+			regard_to_order_to_shrines[regard][order] = []
 		
-		for shrine in Catalog.shrines:
-			var coord = corner + Helper.apply_acnhor_twist(shrine, _i)
-			shrines.append(coord)
+		for shrine in Catalog.shrines[order]:
+			for corner_index in Catalog.corners.size():
+				var is_even: bool = (order + corner_index) % 2 == 0
+				var regard = Digest.flag_to_regard[is_even]
+				
+				var corner = Catalog.corners[corner_index] * Catalog.BOARD_SIZE
+				var coord = corner + Helper.apply_acnhor_twist(shrine, corner_index)
+				regard_to_order_to_shrines[regard][order].append(coord)
+				var bastion = coord_to_fiefdom[coord].bastion
+				bastion.regard = regard

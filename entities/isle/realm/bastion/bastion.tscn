@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://dqu1hfm51no6n"]
+
+[ext_resource type="Script" uid="uid://bqxukwo0tmvf4" path="res://entities/isle/realm/bastion/bastion.gd" id="1_7vkkh"]
+[ext_resource type="Texture2D" uid="uid://dq7y50ghm1n16" path="res://entities/dice/images/numbers.png" id="1_8je1w"]
+
+[node name="Bastion" type="Sprite2D" unique_id=1205793641]
+texture = ExtResource("1_8je1w")
+offset = Vector2(24, 24)
+hframes = 10
+vframes = 11
+script = ExtResource("1_7vkkh")
+
+[node name="Background" type="ColorRect" parent="." unique_id=1481632867]
+unique_name_in_owner = true
+show_behind_parent = true
+offset_left = 6.0
+offset_top = 6.0
+offset_right = 42.0
+offset_bottom = 42.0
+color = Color(1, 0.25, 0.25, 1)

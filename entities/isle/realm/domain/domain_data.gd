@@ -1,5 +1,5 @@
 class_name DomainData
-extends Resource
+extends RefCounted
 
 
 var realm: RealmData
@@ -12,6 +12,7 @@ var suzerain: DomainData
 var neighbours: Array[DomainData]
 
 var direction_to_fiefdom: Dictionary
+var bastion: BastionData
 
 
 #region init
@@ -19,6 +20,9 @@ func _init(realm_: RealmData, type_: Bozo.Domain, coords_: Array[Vector2i]) -> v
 	realm = realm_
 	type = type_
 	coords = coords_.duplicate()
+	
+	if type_ == Bozo.Domain.FIEFDOM:
+		bastion = BastionData.new(self)
 
 func add_vassal(vassal_: DomainData) -> void:
 	vassals.append(vassal_)

@@ -1,5 +1,5 @@
 class_name AtheneumData
-extends Resource
+extends RefCounted
 
 
 var cards: Array[CardData]
@@ -10,14 +10,14 @@ var pulse_to_count: Dictionary
 
 #region init
 func _init() -> void:
-	test_pulses()
-	#init_cards()
-	#init_rolls()
+	#test_pulses()
+	init_cards()
+	init_rolls()
 
 func init_cards() -> void:
 	cards.clear()
 	var n = 3
-	var intro_sum = 30
+	var intro_sum = 20
 	
 	var matters = Catalog.matters.duplicate()
 	matters.shuffle()
@@ -71,7 +71,11 @@ func calc_all_combos() -> void:
 		if Helper.get_scenario_result(permutation) > 0:
 			var scenario = ScenarioData.new(permutation)
 			scenarios.append(scenario)
+	
+	scenarios.sort_custom(func (a, b): return a.result > b.result)
+	scenarios.front().print_result()
 
+#region test
 func test_pulses() -> void:
 	pulse_to_count.clear()
 	var total_rounds: int = 50000
@@ -92,3 +96,4 @@ func test_round() -> void:
 	calc_all_combos()
 	scenarios.sort_custom(func (a, b): return a.result > b.result)
 	pulse_to_count[scenarios.front().result] += 1
+#endregion

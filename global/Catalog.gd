@@ -150,12 +150,14 @@ const directions = [
 ]
 
 const shrines = [
-	Vector2i(1, 1),
-	Vector2i(1, 4),
-	Vector2i(4, 1),
-	Vector2i(7, 1),
-	Vector2i(3, 6),
-	Vector2i(6, 4),
-	Vector2i(5, 7)
+	[Vector2i(1, 1)],
+	[Vector2i(1, 4), Vector2i(4, 1)],
+	[Vector2i(7, 1)],
+	[Vector2i(3, 6)],
+	[Vector2i(6, 4), Vector2i(5, 7)]
 ]
 #endregion
+
+const TIDE_AMOUNT: int = 3
+const DEFAULT_RAMPART: int = 10
+const BASTION_SIZE: Vector2 = Vector2(48, 48)
