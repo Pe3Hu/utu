@@ -49,6 +49,12 @@ enum Regard {
 	WILD = 28,
 }
 
+enum Faction {
+	NONE = 0,
+	BLUE = 99,
+	RED = 98,
+}
+
 enum Action {
 	NONE = 0,
 	SELECT_INTRO = 104,

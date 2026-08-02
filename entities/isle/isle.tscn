@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://gmp1wxiwy1n8" path="res://entities/home/go_home.gd" id="4_yl3e5"]
 [ext_resource type="PackedScene" uid="uid://bhlusn1ccigiy" path="res://entities/isle/atheneum/atheneum.tscn" id="5_dd0e4"]
 [ext_resource type="PackedScene" uid="uid://c4kju7nsoxlr5" path="res://entities/isle/realm/realm.tscn" id="6_y02by"]
+[ext_resource type="PackedScene" uid="uid://da8oif1q4gcaq" path="res://entities/isle/terrain/terrain.tscn" id="7_kwh8c"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_od30j"]
 shader = ExtResource("2_5o34a")
@@ -23,7 +24,7 @@ corner_detail = 12
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qhul4"]
 
-[node name="Isle" type="Control" unique_id=1469181342 node_paths=PackedStringArray("atheneum", "realm")]
+[node name="Isle" type="Control" unique_id=1469181342 node_paths=PackedStringArray("atheneum", "realm", "terrain")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -33,6 +34,7 @@ grow_vertical = 2
 script = ExtResource("1_kwh8c")
 atheneum = NodePath("HBox/Atheneum")
 realm = NodePath("HBox/RealmContainer/Realm")
+terrain = NodePath("HBox/RealmContainer/Terrain")
 
 [node name="BG" type="ColorRect" parent="." unique_id=81403246]
 material = SubResource("ShaderMaterial_od30j")
@@ -96,4 +98,7 @@ layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_qhul4")
 
 [node name="Realm" parent="HBox/RealmContainer" unique_id=256053366 node_paths=PackedStringArray("isle") instance=ExtResource("6_y02by")]
+isle = NodePath("../../..")
+
+[node name="Terrain" parent="HBox/RealmContainer" unique_id=1189514570 node_paths=PackedStringArray("isle") instance=ExtResource("7_kwh8c")]
 isle = NodePath("../../..")

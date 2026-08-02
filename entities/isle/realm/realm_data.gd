@@ -1,6 +1,9 @@
 class_name RealmData
 extends RefCounted
 
+
+var isle: IsleData
+
 var compositions: Array[CompositionData]
 var fiefdoms: Array[DomainData] = []
 var earldoms: Array[DomainData] = []
@@ -9,23 +12,25 @@ var kingdoms: Array[DomainData] = []
 
 var coord_to_fiefdom: Dictionary = {}
 
-var bastions: Array[BastionData] = []
-var regard_to_order_to_shrines: Dictionary
 
-
-func _init() -> void:
+func _init(isle_: IsleData) -> void:
+	isle = isle_
+	
 	load_compositions()
-	init_earldoms()
-	init_groups(Bozo.Domain.DUKEDOM)
-	init_groups(Bozo.Domain.KINGDOM)
-	validate()
-	init_shrines()
+	init_domains()
 
 func load_compositions() -> void:
 	var loader = CompositionLoader.new()
 	compositions = loader.load_compositions("res://entities/isle/realm/composition/compositions.json")
 
 #region domains
+func init_domains() -> void:
+	clear_domains()
+	init_earldoms()
+	init_groups(Bozo.Domain.DUKEDOM)
+	init_groups(Bozo.Domain.KINGDOM)
+	validate()
+
 func clear_domains() -> void:
 	fiefdoms.clear()
 	earldoms.clear()
@@ -34,7 +39,6 @@ func clear_domains() -> void:
 	coord_to_fiefdom.clear()
 
 func init_earldoms() -> void:
-	clear_domains()
 	if compositions.is_empty(): return
 	
 	var options: Array = Array(range(compositions.size()))
@@ -121,25 +125,3 @@ func validate() -> void:
 	for k in kingdoms:
 		assert(k.vassals.size() == 3)
 #endregion
-
-func init_shrines() -> void:
-	regard_to_order_to_shrines.clear()
-	var regards = [Bozo.Regard.ALLY, Bozo.Regard.ENEMY]
-	
-	for regard in regards:
-		regard_to_order_to_shrines[regard] = {}
-	
-	for order in Catalog.shrines.size():
-		for regard in regards:
-			regard_to_order_to_shrines[regard][order] = []
-		
-		for shrine in Catalog.shrines[order]:
-			for corner_index in Catalog.corners.size():
-				var is_even: bool = (order + corner_index) % 2 == 0
-				var regard = Digest.flag_to_regard[is_even]
-				
-				var corner = Catalog.corners[corner_index] * Catalog.BOARD_SIZE
-				var coord = corner + Helper.apply_acnhor_twist(shrine, corner_index)
-				regard_to_order_to_shrines[regard][order].append(coord)
-				var bastion = coord_to_fiefdom[coord].bastion
-				bastion.regard = regard

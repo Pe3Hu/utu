@@ -14,6 +14,8 @@ var neighbours: Array[DomainData]
 var direction_to_fiefdom: Dictionary
 var bastion: BastionData
 
+var rampart: int
+
 
 #region init
 func _init(realm_: RealmData, type_: Bozo.Domain, coords_: Array[Vector2i]) -> void:
@@ -46,3 +48,29 @@ func add_neighbour(neighbour_: DomainData) -> void:
 		direction_to_fiefdom[direction] = neighbour_
 		neighbour_.direction_to_fiefdom[-direction] = self
 #endregion
+
+func update_rampart() -> void:
+	if type != Bozo.Domain.EARLDOM: return
+	
+	var galore_sum: float = 0
+	
+	for vassal in vassals:
+		galore_sum += vassal.bastion.galore / vassals.size()
+	
+	var factor: float = 1.0
+	
+	if galore_sum <= 0.45:
+		factor = 1.0
+	elif galore_sum <= 0.65:
+		factor = 1.5
+	else:
+		factor = 2.0
+	
+	var shifts = Array(range(vassals.size()))
+	shifts.sort_custom(func (a, b): return vassals[a].bastion.galore > vassals[b].bastion.galore)
+	rampart = ceil(factor * Catalog.DEFAULT_RAMPART)
+	
+	for _i in vassals.size():
+		var vassal = vassals[_i]
+		var shift = shifts[_i]
+		vassal.bastion.reset_ramparts(rampart + shift)

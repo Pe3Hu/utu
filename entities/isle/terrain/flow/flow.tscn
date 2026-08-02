@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://cak23pqer2rnl"]
+
+[ext_resource type="Shader" uid="uid://cduvext10ja0t" path="res://entities/isle/terrain/flow/flow.gdshader" id="1_eqmpk"]
+[ext_resource type="Script" uid="uid://vetnun4ew5ko" path="res://entities/isle/terrain/flow/flow.gd" id="2_slkm8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_60rxr"]
+resource_local_to_scene = true
+shader = ExtResource("1_eqmpk")
+shader_parameter/frequency = 2.0
+shader_parameter/speed = 6.0
+shader_parameter/direction = 1.0
+shader_parameter/color1 = Color(0.6255971, 0.6255971, 0.6255971, 1)
+shader_parameter/color2 = Color(0.31431612, 0.31431612, 0.3143161, 1)
+shader_parameter/opacity = 1.0
+
+[node name="Channel" type="Line2D" unique_id=1379380515]
+material = SubResource("ShaderMaterial_60rxr")
+width = 16.0
+texture_mode = 1
+script = ExtResource("2_slkm8")
