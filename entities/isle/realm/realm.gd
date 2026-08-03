@@ -59,4 +59,5 @@ func _input(event) -> void:
 			KEY_4:
 				init_domains(Bozo.Domain.KINGDOM)
 			KEY_SPACE:
-				highlight_domain()
+				pass
+				#highlight_domain()

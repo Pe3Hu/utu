@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://drx2g8y6cdoeg"]
+
+[ext_resource type="Texture2D" uid="uid://dq7y50ghm1n16" path="res://entities/dice/images/numbers.png" id="1_0x8nq"]
+[ext_resource type="Script" uid="uid://bovdr5qnx7ojd" path="res://entities/isle/terrain/flow/blob/blob.gd" id="1_wxuwa"]
+[ext_resource type="Texture2D" uid="uid://c1dbbsc7army1" path="res://entities/isle/terrain/flow/blob/images/circle.png" id="2_njdgq"]
+[ext_resource type="Texture2D" uid="uid://ds1xaq8tdos5m" path="res://entities/isle/terrain/flow/blob/images/plus.png" id="2_wxuwa"]
+
+[node name="Blob" type="Node2D" unique_id=1837418971]
+scale = Vector2(0.75, 0.75)
+script = ExtResource("1_wxuwa")
+
+[node name="Circle" type="Sprite2D" parent="." unique_id=76455450]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0.23529412)
+position = Vector2(12, 16)
+scale = Vector2(0.45, 0.45)
+texture = ExtResource("2_njdgq")
+
+[node name="Number" type="Sprite2D" parent="." unique_id=1419850322]
+unique_name_in_owner = true
+texture = ExtResource("1_0x8nq")
+centered = false
+hframes = 10
+vframes = 11
+frame = 1
+
+[node name="Sign" type="Sprite2D" parent="." unique_id=875266563]
+unique_name_in_owner = true
+position = Vector2(6, 16)
+texture = ExtResource("2_wxuwa")

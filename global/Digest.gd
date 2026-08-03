@@ -82,10 +82,21 @@ const flag_to_regard = {
 	false: Bozo.Regard.ENEMY
 }
 
+const flag_to_faction = {
+	true: Bozo.Faction.BLUE,
+	false: Bozo.Faction.RED
+}
+
 var regard_to_color = {
 	Bozo.Regard.ALLY: Color.from_hsv(210.0 / 360.0, 1.0, 1.0),
 	Bozo.Regard.ENEMY: Color.from_hsv(340.0 / 360.0, 1.0, 1.0),
 	Bozo.Regard.WILD: Color.from_hsv(120.0 / 360.0, 1.0, 1.0),
+}
+
+var faction_to_color = {
+	Bozo.Faction.BLUE: Color.from_hsv(210.0 / 360.0, 1.0, 1.0),
+	Bozo.Faction.RED: Color.from_hsv(340.0 / 360.0, 1.0, 1.0),
+	Bozo.Faction.GREEN: Color.from_hsv(120.0 / 360.0, 1.0, 1.0),
 }
 
 func _init() -> void:

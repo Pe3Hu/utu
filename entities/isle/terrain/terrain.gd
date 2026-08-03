@@ -4,6 +4,7 @@ extends Node2D
 
 @export var bastion_scene = preload("uid://dqu1hfm51no6n")
 @export var channel_scene = preload("uid://cak23pqer2rnl")
+@export var blob_scene = preload("uid://drx2g8y6cdoeg")
 
 @export var isle: Isle
 
@@ -13,6 +14,7 @@ var data: TerrainData:
 		
 		init_bastions()
 		init_channels()
+		init_blobs()
 
 var data_to_bastion: Dictionary
 
@@ -24,6 +26,8 @@ func _ready() -> void:
 	%Channels.position = Vector2(Catalog.BASTION_SIZE) * 0.5
 
 func init_bastions() -> void:
+	Helper.clear_children(%Bastions)
+	
 	for bastion_data in data.bastions:
 		add_bastion(bastion_data)
 
@@ -33,6 +37,8 @@ func add_bastion(bastion_data_: BastionData) -> void:
 	bastion.data = bastion_data_
 
 func init_channels() -> void:
+	Helper.clear_children(%Channels)
+	
 	for channel_data in data.channels:
 		add_channel(channel_data)
 
@@ -40,4 +46,28 @@ func add_channel(channel_data_: ChannelData) -> void:
 	var channel = channel_scene.instantiate()
 	%Channels.add_child(channel)
 	channel.data = channel_data_
+
+func init_blobs() -> void:
+	Helper.clear_children(%Blobs)
+	
+	for bastion in data.bastions:
+		if bastion.blob:
+			add_blob(bastion.blob)
+
+func add_blob(blob_data_: BlobData) -> void:
+	var blob = blob_scene.instantiate()
+	%Blobs.add_child(blob)
+	blob.data = blob_data_
 #endregion
+
+func apply_river_flow() -> void:
+	data.apply_blobs()
+	init_bastions()
+	init_blobs()
+	init_channels()
+
+func _input(event) -> void:
+	if event is InputEventKey and not event.is_echo() and event.is_pressed():
+		match event.keycode:
+			KEY_SPACE:
+				apply_river_flow()

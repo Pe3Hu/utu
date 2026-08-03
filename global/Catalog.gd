@@ -163,4 +163,4 @@ const DEFAULT_RAMPART: int = 10
 const BASTION_SIZE: Vector2 = Vector2(48, 48)
 const REALM_SIZE: Vector2i = BOARD_SIZE * 2
 
-const factions = [Bozo.Faction.BLUE, Bozo.Faction.RED]
+const factions = [Bozo.Faction.BLUE, Bozo.Faction.RED, Bozo.Faction.GREEN]

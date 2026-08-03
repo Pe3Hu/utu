@@ -53,6 +53,7 @@ enum Faction {
 	NONE = 0,
 	BLUE = 99,
 	RED = 98,
+	GREEN = 97
 }
 
 enum Action {

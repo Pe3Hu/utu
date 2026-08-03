@@ -5,7 +5,7 @@ extends Sprite2D
 var data: BastionData:
 	set(value_):
 		data = value_
-		%Background.color = Digest.regard_to_color[data.regard]
+		%Background.color = Digest.faction_to_color[data.faction]
 		#var g = data.galore
 		#%Background.color = Color.from_hsv(1.0, 0.0, 1-g)
 		#%Background.color = Color.from_hsv(g, 1.0, 1.0)
