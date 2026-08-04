@@ -5,6 +5,7 @@ extends Node2D
 @export var bastion_scene = preload("uid://dqu1hfm51no6n")
 @export var channel_scene = preload("uid://cak23pqer2rnl")
 @export var blob_scene = preload("uid://drx2g8y6cdoeg")
+@export var biome_scene = preload("uid://4xkr2nw7mdl3")
 
 @export var isle: Isle
 
@@ -15,6 +16,7 @@ var data: TerrainData:
 		init_bastions()
 		init_channels()
 		init_blobs()
+		init_biomes()
 
 var data_to_bastion: Dictionary
 
@@ -58,6 +60,18 @@ func add_blob(blob_data_: BlobData) -> void:
 	var blob = blob_scene.instantiate()
 	%Blobs.add_child(blob)
 	blob.data = blob_data_
+
+
+func init_biomes() -> void:
+	Helper.clear_children(%Biomes)
+	
+	for biome_data in data.biomes:
+		add_biome(biome_data)
+
+func add_biome(biome_data_: BiomeData) -> void:
+	var biome = biome_scene.instantiate()
+	%Biomes.add_child(biome)
+	biome.data = biome_data_
 #endregion
 
 func apply_river_flow() -> void:

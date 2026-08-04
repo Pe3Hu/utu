@@ -164,3 +164,33 @@ const BASTION_SIZE: Vector2 = Vector2(48, 48)
 const REALM_SIZE: Vector2i = BOARD_SIZE * 2
 
 const factions = [Bozo.Faction.BLUE, Bozo.Faction.RED, Bozo.Faction.GREEN]
+
+const biomes = [Bozo.Biome.PLAIN, Bozo.Biome.SWAMP, Bozo.Biome.MOUNTAIN]
+
+const region_sizes = [
+	Vector2i(5, 3),
+	Vector2i(3, 5),
+]
+
+const region_anchors = [
+	[
+		Vector2i(0, 0),
+		Vector2i(5, 0),
+		Vector2i(3, 5),
+		Vector2i(0, 3),
+	],
+	[
+		Vector2i(3, 0),
+		Vector2i(0, 0),
+		Vector2i(0, 5),
+		Vector2i(5, 3),
+	]
+]
+
+const biome_sizes = [[3, 3], [4 ,1]]
+
+const regions = [
+	Bozo.Region.CORNER,
+	Bozo.Region.SIDE,
+	Bozo.Region.CENTER
+]

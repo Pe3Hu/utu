@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://4xkr2nw7mdl3"]
+
+[ext_resource type="TileSet" uid="uid://c2a51w2etkimm" path="res://entities/isle/realm/domain/domain.tres" id="1_g8f6h"]
+[ext_resource type="Script" uid="uid://iacr16dj38af" path="res://entities/isle/terrain/biome/biome.gd" id="2_1rpmd"]
+
+[node name="Biome" type="TileMapLayer" unique_id=1547115102]
+tile_set = ExtResource("1_g8f6h")
+script = ExtResource("2_1rpmd")

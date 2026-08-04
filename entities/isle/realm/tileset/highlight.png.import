@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://mnkiqtphackf"
-path="res://.godot/imported/capsule.png-93aa0c809ae411dfa1def3b438bedbbe.ctex"
+uid="uid://c13uuest01u35"
+path="res://.godot/imported/highlight.png-5a1c98cebac8c6a0b125d2557664963a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://entities/isle/realm/capsule/capsule.png"
-dest_files=["res://.godot/imported/capsule.png-93aa0c809ae411dfa1def3b438bedbbe.ctex"]
+source_file="res://entities/isle/realm/tileset/highlight.png"
+dest_files=["res://.godot/imported/highlight.png-5a1c98cebac8c6a0b125d2557664963a.ctex"]
 
 [params]
 

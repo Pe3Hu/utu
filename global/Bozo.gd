@@ -49,6 +49,20 @@ enum Regard {
 	WILD = 28,
 }
 
+enum Region {
+	NONE = 0,
+	CORNER = 29,
+	SIDE = 30,
+	CENTER = 31,
+}
+
+enum Biome {
+	NONE = 0,
+	PLAIN = 32,
+	SWAMP = 33,
+	MOUNTAIN = 34
+}
+
 enum Faction {
 	NONE = 0,
 	BLUE = 99,
@@ -77,6 +91,8 @@ enum Type {
 	SHAPE = -3,
 	DOMAIN = -4,
 	REGARD = -5,
+	REGION = -6,
+	BIOME = -7,
 	ACTION = -100,
 	PHASE = -200,
 }
@@ -88,9 +104,11 @@ const type_to_index = {
 	Type.SHAPE: 10,
 	Type.DOMAIN: 22,
 	Type.REGARD: 26,
+	Type.REGION: 29,
+	Type.BIOME: 32,
+	
 	Type.ACTION: 104,
 	Type.PHASE: 200,
-	#9
 }
 
 const type_to_enum = {
@@ -99,7 +117,8 @@ const type_to_enum = {
 	Type.SHAPE: Bozo.Shape,
 	Type.DOMAIN: Bozo.Domain,
 	Type.REGARD: Bozo.Regard,
-	
+	Type.REGION: Bozo.Region,
+	Type.BIOME: Bozo.Biome,
 	
 	Type.ACTION: Bozo.Action,
 	Type.PHASE: Bozo.Phase,

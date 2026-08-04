@@ -99,6 +99,13 @@ var faction_to_color = {
 	Bozo.Faction.GREEN: Color.from_hsv(120.0 / 360.0, 1.0, 1.0),
 }
 
+var biome_to_color = {
+	Bozo.Biome.NONE: Color.FLORAL_WHITE,
+	Bozo.Biome.PLAIN: Color.from_hsv(260.0 / 360.0, 1.0, 1.0),
+	Bozo.Biome.SWAMP: Color.from_hsv(150.0 / 360.0, 1.0, 1.0),
+	Bozo.Biome.MOUNTAIN: Color.from_hsv(30.0 / 360.0, 1.0, 1.0),
+}
+
 func _init() -> void:
 	init_shape_colors()
 	init_intros()

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dkc56vi7h44gf"
-path="res://.godot/imported/background.png-4fd966ef6fc50fccc6359ec84673cd00.ctex"
+uid="uid://mnkiqtphackf"
+path="res://.godot/imported/tileset.png-74e5e3ac5b853b8221e19914e143fa57.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://entities/isle/realm/capsule/background.png"
-dest_files=["res://.godot/imported/background.png-4fd966ef6fc50fccc6359ec84673cd00.ctex"]
+source_file="res://entities/isle/realm/tileset/tileset.png"
+dest_files=["res://.godot/imported/tileset.png-74e5e3ac5b853b8221e19914e143fa57.ctex"]
 
 [params]
 
