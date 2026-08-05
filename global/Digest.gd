@@ -64,7 +64,7 @@ const matter_to_factor = {
 }
 #endregion
 
-
+#region grade
 const sum_to_index = {
 	20: 11,
 	30: 20,
@@ -76,6 +76,7 @@ const sum_to_grades = {
 	30: [2, 3],#[1, 2, 3, 4],#[1, 2, 3],
 	40: [3, 4]#[2, 3, 4],
 }
+#endregion
 
 const flag_to_regard = {
 	true: Bozo.Regard.ALLY,
@@ -87,6 +88,27 @@ const flag_to_faction = {
 	false: Bozo.Faction.RED
 }
 
+const direction_to_diagonal = {
+	Vector2i(0, -1): [Vector2i(-1, -1), Vector2i(1, -1)],
+	Vector2i(1, 0): [Vector2i(1, -1), Vector2i(1, 1)],
+	Vector2i(0, 1): [Vector2i(-1, 1), Vector2i(1, 1)],
+	Vector2i(-1, 0): [Vector2i(-1, -1), Vector2i(-1, 1)],
+}
+
+const tune_to_stake = {
+	Bozo.Tune.INTRO: Bozo.Stake.RIGHT,
+	Bozo.Tune.VERSE: Bozo.Stake.LEFT,
+	Bozo.Tune.OUTRO: Bozo.Stake.LEFT,
+}
+
+const tune_to_math = {
+	Bozo.Tune.VERSE: Bozo.Math.PLUS,
+	Bozo.Tune.OUTRO: Bozo.Math.MULTIPLY,
+	
+}
+
+
+#region color
 var regard_to_color = {
 	Bozo.Regard.ALLY: Color.from_hsv(210.0 / 360.0, 1.0, 1.0),
 	Bozo.Regard.ENEMY: Color.from_hsv(340.0 / 360.0, 1.0, 1.0),
@@ -105,6 +127,7 @@ var biome_to_color = {
 	Bozo.Biome.SWAMP: Color.from_hsv(150.0 / 360.0, 1.0, 1.0),
 	Bozo.Biome.MOUNTAIN: Color.from_hsv(30.0 / 360.0, 1.0, 1.0),
 }
+#endregion
 
 func _init() -> void:
 	init_shape_colors()

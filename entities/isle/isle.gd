@@ -16,8 +16,9 @@ func _ready() -> void:
 	data = IsleData.new()
 
 func connect_datas() -> void:
-	realm.data = data.realm
-	terrain.data = data.terrain
+	atheneum.data = data.atheneum
+	#realm.data = data.realm
+	#terrain.data = data.terrain
 
 
 func _input(event) -> void:

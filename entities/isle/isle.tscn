@@ -101,4 +101,5 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_qhul4")
 isle = NodePath("../../..")
 
 [node name="Terrain" parent="HBox/RealmContainer" unique_id=1189514570 node_paths=PackedStringArray("isle") instance=ExtResource("7_kwh8c")]
+visible = false
 isle = NodePath("../../..")

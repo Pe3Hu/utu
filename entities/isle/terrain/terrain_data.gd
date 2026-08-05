@@ -188,6 +188,32 @@ func init_biomes() -> void:
 	minor_biome = BiomeData.new(self, biome_type)
 	biomes.append(minor_biome)
 	minor_biome.add_region(minor_region)
+	
+	var last_check: bool = true
+	
+	for region in regions:
+		if region.biome == null:
+			last_check = false
+			break
+		else:
+			if region.biome.type == Bozo.Biome.NONE:
+				last_check = false
+				break
+	
+	if not last_check:
+		init_biomes()
+		return
+	
+	region_coords_exchange()
+
+func region_coords_exchange() -> void:
+	for region in regions:
+		for neighbour in region.neighbours:
+			if region.biome != neighbour.biome:
+				region.coords_exchange(neighbour)
+	
+	for region in biomes:
+		print(region.coords.size())
 
 func init_galores() -> void:
 	var noise := FastNoiseLite.new()

@@ -60,41 +60,41 @@ func permute(arr_: Array, start_: int, result_: Array) -> void:
 		arr_[i] = temp
 #endregion
 
-func get_scenario_result(permutation_: Array) -> int:
-	var intro: CardData
-	var verse: CardData
-	var outro: CardData
-	
-	intro = permutation_[0]
-	
-	if permutation_[1]:
-		verse = permutation_[1]
-	
-	if permutation_[2]:
-		outro = permutation_[2]
-	
-	var result: int = 0
-	
-	if intro:
-		result += intro.intro.result
-	
-	if verse:
-		result += verse.verse.result
-		
-		if !Catalog.pulse_values.has(result):
-			result = -1
-			return result
-	
-	if outro:
-		if outro.outro_bases.has(result):
-			result *= Digest.matter_to_factor[outro.matter]
-			
-			if !Catalog.pulse_values.has(result):
-				result = -1
-		else:
-			result = -1
-	
-	return result
+#func get_scenario_result(permutation_: Array) -> int:
+	#var intro: CardData
+	#var verse: CardData
+	#var outro: CardData
+	#
+	#intro = permutation_[0]
+	#
+	#if permutation_[1]:
+		#verse = permutation_[1]
+	#
+	#if permutation_[2]:
+		#outro = permutation_[2]
+	#
+	#var result: int = 0
+	#
+	#if intro:
+		#result += intro.intro.result
+	#
+	#if verse:
+		#result += verse.verse.result
+		#
+		#if !Catalog.pulse_values.has(result):
+			#result = -1
+			#return result
+	#
+	#if outro:
+		#if outro.outro_bases.has(result):
+			#result *= Digest.matter_to_factor[outro.matter]
+			#
+			#if !Catalog.pulse_values.has(result):
+				#result = -1
+		#else:
+			#result = -1
+	#
+	#return result
 
 #region arrangement
 func generate_arrangements_fixed_size(arr_: Array, size_: int) -> Array:
@@ -155,3 +155,36 @@ func get_coord_based_on_value(value_: int, base_: int = 10) -> Vector2i:
 	@warning_ignore("integer_division")
 	var y = floor(value_ / base_)
 	return Vector2i(x, y)
+
+func get_direction_from_region_centers(a_: RegionData, b_: RegionData) -> Vector2i:
+	var direction = b_.center - a_.center
+	
+	if abs(direction.x) > abs(direction.y):
+		direction.x = sign(direction.x)
+		direction.y = 0
+	else:
+		direction.x = 0
+		direction.y = sign(direction.y)
+	
+	return Vector2i(direction)
+
+
+func _is_connected(coords_array: Array[Vector2i]) -> bool:
+	if coords_array.is_empty():
+		return false
+	
+	var visited = {}
+	var stack = [coords_array[0]]
+	
+	while not stack.is_empty():
+		var current = stack.pop_back()
+		if current in visited:
+			continue
+		visited[current] = true
+		
+		for direction in Catalog.directions:
+			var neighbour = current + direction
+			if neighbour in coords_array and neighbour not in visited:
+				stack.append(neighbour)
+	
+	return visited.size() == coords_array.size()

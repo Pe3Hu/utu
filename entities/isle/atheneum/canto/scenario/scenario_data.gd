@@ -2,62 +2,45 @@ class_name ScenarioData
 extends Resource
 
 
-var intro: CardData
-var verse: CardData
-var outro: CardData
+var atheneum: AtheneumData
+var stamps: Array[StampData]
 
-var result: int = 0
-var tides: Array[int]
+var pulses: Array[int]
+var total_sum: int = 0
 
 
-func _init(permutation_: Array) -> void:
-	intro = permutation_[0]
+func _init(atheneum_: AtheneumData, stamps_: Array[StampData]) -> void:
+	atheneum = atheneum_
+	stamps.append_array(stamps_)
 	
-	if permutation_[1]:
-		verse = permutation_[1]
-	
-	if permutation_[2]:
-		outro = permutation_[2]
-	
-	calc_result()
-	calc_tides()
+	calc_pulses()
 
-func calc_result() -> void:
-	if intro:
-		result += intro.intro.result
+func calc_pulses() -> void:
+	pulses.clear()
+	total_sum = 0
 	
-	if verse:
-		result += verse.verse.result
+	for _i in stamps.size() - 1:
+		var first = stamps[_i]
+		var second = stamps[_i + 1]
 		
-		if !Catalog.pulse_values.has(result):
-			result = -1
-			return
-	
-	if outro:
-		if outro.outro_bases.has(result):
-			result *= Digest.matter_to_factor[outro.matter]
+		for joint in first.joint_to_type_to_stakes:
+			var left_stake = second.get_stake(joint, Bozo.Stake.LEFT)
 			
-			if !Catalog.pulse_values.has(result):
-				result = -1
-				return
-		else:
-			result = -1
-			return
-
-func print_result() -> void:
-	var intro_str = "(%d" % intro.intro.result
-	var verso_str = " + %d)" % verse.verse.result if verse else ")"
-	var outro_str = " * %d" % Digest.matter_to_factor[outro.matter] if outro else ""
-	var result_str = " = %d" % result if verse or outro else ""
-	print("%s%s%s%s" % [intro_str, verso_str, outro_str, result_str])
-	print(tides)
-
-func calc_tides() -> void:
-	tides.clear()
-	var tmp = int(result)
+			if left_stake:
+				var right_stake = first.get_stake(joint, Bozo.Stake.RIGHT)
+				var pulse = right_stake.value
+				
+				match left_stake.tune:
+					Bozo.Tune.VERSE:
+						pulse += left_stake.value
+					Bozo.Tune.OUTRO:
+						if second.can_outro(pulse):
+							pulse *= left_stake.value
+						else:
+							continue
+				
+				if Catalog.pulse_values.has(pulse) and pulse > 0:
+					pulses.append(pulse)
 	
-	for _i in Catalog.TIDE_AMOUNT:
-		var tide = ceil(sqrt(tmp))
-		tides.append(tide)
-		tmp -= tide
-	
+	for pulse in pulses:
+		total_sum += pulse

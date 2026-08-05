@@ -158,13 +158,16 @@ const shrines = [
 ]
 #endregion
 
+#region realm
 const TIDE_AMOUNT: int = 3
 const DEFAULT_RAMPART: int = 10
 const BASTION_SIZE: Vector2 = Vector2(48, 48)
 const REALM_SIZE: Vector2i = BOARD_SIZE * 2
 
 const factions = [Bozo.Faction.BLUE, Bozo.Faction.RED, Bozo.Faction.GREEN]
+#endregion
 
+#region biome
 const biomes = [Bozo.Biome.PLAIN, Bozo.Biome.SWAMP, Bozo.Biome.MOUNTAIN]
 
 const region_sizes = [
@@ -194,3 +197,12 @@ const regions = [
 	Bozo.Region.SIDE,
 	Bozo.Region.CENTER
 ]
+#endregion
+
+
+const JOINT_SIZE = Vector2(36, 36)
+const JOINT_OFFEST = 4
+const default_stamp_indexs = [[0],[1],[2],[3],[4],[5]]
+const GYRE_ACTUAL_STAMP_SIZE = 6#4
+
+const stakes = [Bozo.Stake.LEFT, Bozo.Stake.RIGHT]

@@ -63,6 +63,27 @@ enum Biome {
 	MOUNTAIN = 34
 }
 
+enum Stake {
+	NONE = 0,
+	LEFT = 35,
+	RIGHT = 36
+}
+
+enum Gyre {
+	NONE = 0,
+	HEREAFTER = 37,
+	ACTUAL = 38,
+	BYGONE = 39,
+}
+
+enum Math {
+	NONE = 0,
+	PLUS = 40,
+	MINUS = 41,
+	MULTIPLY = 42,
+}
+
+
 enum Faction {
 	NONE = 0,
 	BLUE = 99,
@@ -93,6 +114,9 @@ enum Type {
 	REGARD = -5,
 	REGION = -6,
 	BIOME = -7,
+	STAKE = -8,
+	GYRE = -9,
+	MATH = -10,
 	ACTION = -100,
 	PHASE = -200,
 }
@@ -106,6 +130,8 @@ const type_to_index = {
 	Type.REGARD: 26,
 	Type.REGION: 29,
 	Type.BIOME: 32,
+	Type.STAKE: 35,
+	Type.MATH: 40,
 	
 	Type.ACTION: 104,
 	Type.PHASE: 200,
@@ -119,6 +145,8 @@ const type_to_enum = {
 	Type.REGARD: Bozo.Regard,
 	Type.REGION: Bozo.Region,
 	Type.BIOME: Bozo.Biome,
+	Type.STAKE: Bozo.Stake,
+	Type.MATH: Bozo.Math,
 	
 	Type.ACTION: Bozo.Action,
 	Type.PHASE: Bozo.Phase,

@@ -1,128 +1,18 @@
-[gd_scene format=3 uid="uid://cbet0tqjycopk"]
+[gd_scene format=3 uid="uid://cfe1p2qnaebxk"]
 
-[ext_resource type="Script" uid="uid://bkptlyetypcjw" path="res://entities/isle/atheneum/card/card.gd" id="1_nwofj"]
-[ext_resource type="PackedScene" uid="uid://ddqqetmqeecl1" path="res://entities/dice/net/net.tscn" id="2_4bbms"]
-[ext_resource type="PackedScene" uid="uid://c454my22m3ygi" path="res://entities/isle/atheneum/outro/outro.tscn" id="10_as75h"]
+[ext_resource type="Script" uid="uid://sagwuyjgg51m" path="res://entities/isle/atheneum/card/card.gd" id="1_i4otp"]
+[ext_resource type="PackedScene" uid="uid://cbet0tqjycopk" path="res://entities/isle/atheneum/card/stamp/stamp.tscn" id="2_y3gem"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j6d1l"]
-bg_color = Color(0.21230483, 0.21230483, 0.21230483, 1)
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
-corner_detail = 12
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nwofj"]
-resource_local_to_scene = true
-bg_color = Color(0.6, 0.6, 0.6, 0)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color(0, 0.7529412, 0.47058824, 1)
-corner_radius_top_left = 15
-corner_radius_top_right = 15
-corner_radius_bottom_right = 15
-corner_radius_bottom_left = 15
-corner_detail = 15
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ifnqu"]
-resource_local_to_scene = true
-bg_color = Color(0, 0.7529412, 0.47058824, 1)
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_detail = 12
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2xxmt"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mxkpx"]
-resource_local_to_scene = true
-bg_color = Color(0.6, 0.6, 0.6, 0)
-border_width_top = 4
-border_color = Color(0, 0.7529412, 0.47058824, 1)
-
-[node name="Card" type="PanelContainer" unique_id=1990971153 node_paths=PackedStringArray("border", "intro", "verse", "outro", "nets")]
-custom_minimum_size = Vector2(160, 0)
-offset_right = 160.0
-offset_bottom = 288.0
-offset_transform_enabled = true
-offset_transform_visual_only = false
-mouse_default_cursor_shape = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_j6d1l")
-script = ExtResource("1_nwofj")
-border = NodePath("MarginContainer/Border")
-intro = NodePath("VBoxContainer/Bottom/HBoxContainer/Intro")
-verse = NodePath("VBoxContainer/Bottom/HBoxContainer/Verse")
-outro = NodePath("VBoxContainer/Bottom/Outro")
-nets = [NodePath("VBoxContainer/Bottom/HBoxContainer/Intro"), NodePath("VBoxContainer/Bottom/HBoxContainer/Verse")]
-
-[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1487644318]
-layout_mode = 2
-theme_override_constants/margin_left = -4
-theme_override_constants/margin_top = -4
-theme_override_constants/margin_right = -4
-theme_override_constants/margin_bottom = -4
-
-[node name="Border" type="Panel" parent="MarginContainer" unique_id=860642714]
-layout_mode = 2
+[node name="Card" type="Control" unique_id=11887563 node_paths=PackedStringArray("stamp")]
+custom_minimum_size = Vector2(160, 288)
+layout_mode = 3
+anchors_preset = 0
 mouse_filter = 1
-theme_override_styles/panel = SubResource("StyleBoxFlat_nwofj")
+script = ExtResource("1_i4otp")
+stamp = NodePath("Stamp")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=531177120]
-layout_mode = 2
-theme_override_constants/separation = 0
+[node name="Stamp" parent="." unique_id=1990971153 node_paths=PackedStringArray("card") instance=ExtResource("2_y3gem")]
+layout_mode = 0
+card = NodePath("..")
 
-[node name="Top" type="Panel" parent="VBoxContainer" unique_id=2031217003]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(160, 32)
-layout_mode = 2
-mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_ifnqu")
-
-[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/Top" unique_id=80602315]
-modulate = Color(0, 0.2627451, 0.14901961, 1)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-bbcode_enabled = true
-text = "CARD NAME"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Bottom" type="VBoxContainer" parent="VBoxContainer" unique_id=2030578234]
-custom_minimum_size = Vector2(160, 256)
-layout_mode = 2
-size_flags_vertical = 3
-mouse_filter = 2
-theme_override_constants/separation = 32
-
-[node name="Temp" type="PanelContainer" parent="VBoxContainer/Bottom" unique_id=1811278231]
-custom_minimum_size = Vector2(0, 32)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_2xxmt")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Bottom" unique_id=1566978561]
-layout_mode = 2
-theme_override_constants/separation = 32
-
-[node name="Intro" parent="VBoxContainer/Bottom/HBoxContainer" unique_id=468789252 node_paths=PackedStringArray("card") instance=ExtResource("2_4bbms")]
-layout_mode = 2
-card = NodePath("../../../..")
-tune = 4
-
-[node name="Verse" parent="VBoxContainer/Bottom/HBoxContainer" unique_id=477697374 node_paths=PackedStringArray("card") instance=ExtResource("2_4bbms")]
-layout_mode = 2
-card = NodePath("../../../..")
-tune = 5
-
-[node name="Outro" parent="VBoxContainer/Bottom" unique_id=1383665192 node_paths=PackedStringArray("card") instance=ExtResource("10_as75h")]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_mxkpx")
-card = NodePath("../../..")
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
