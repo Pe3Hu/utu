@@ -44,8 +44,8 @@ func destroy() -> void:
 	if tween_appear and tween_appear.is_running():
 		tween_appear.kill()
 	tween_appear = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
-	tween_appear.tween_property(self, "custom_minimum_size:x", 0.0, 0.2)
-	tween_appear.parallel().tween_property(stamp, "offset_transform_position_ratio:y", 1.0, 0.2)
+	#tween_appear.tween_property(self, "custom_minimum_size:x", 0.0, 0.2)
+	tween_appear.parallel().tween_property(stamp, "offset_transform_position_ratio:y", 2.0, 1.2)
 	tween_appear.tween_callback(queue_free)
 #endregion
 
@@ -82,10 +82,22 @@ func unhover() -> void:
 	tween.tween_property(stamp.border, "self_modulate:a", 0.0, 0.1)
 	tween.tween_property(self, "custom_minimum_size:x", min_size_x_default, 0.25).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 	tween.tween_property(stamp, "position:x", 0, 0.25).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+
+func spoil() -> void:
+	mouse_filter = Control.MOUSE_FILTER_IGNORE
+	stamp.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	unhover()
+	tween.tween_callback(destroy)
 #endregion
 
-func test_click() -> void:
+func process_click() -> void:
 	var local_mouse_pos = get_local_mouse_position()
+	var half_height = size.y / 2
+	
+	if local_mouse_pos.y > half_height:
+		atheneum.spoil_card(self)
+		return
+	
 	var half_width = size.x / 2
 	var shift_value = 0
 	
@@ -98,4 +110,4 @@ func test_click() -> void:
 
 func _on_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-		test_click()
+		process_click()

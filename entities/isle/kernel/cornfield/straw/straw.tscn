@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://c7bwpx4fodib7"]
+
+[ext_resource type="Script" uid="uid://c0h1lasp3j7t7" path="res://entities/isle/kernel/cornfield/straw/straw.gd" id="1_2o6og"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bhtm1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bhtm1"]
+resource_local_to_scene = true
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0.7529412, 0.47058824, 1)
+
+[node name="Straw" type="PanelContainer" unique_id=1513653524]
+custom_minimum_size = Vector2(36, 36)
+theme_override_styles/panel = SubResource("StyleBoxEmpty_bhtm1")
+script = ExtResource("1_2o6og")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=2091626658]
+layout_mode = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+
+[node name="Border" type="Panel" parent="MarginContainer" unique_id=1139583002]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_bhtm1")
+
+[node name="Amount" type="Label" parent="." unique_id=247741437]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 24
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1

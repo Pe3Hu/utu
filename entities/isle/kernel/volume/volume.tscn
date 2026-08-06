@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://dpvkcodr3cjop"]
+
+[ext_resource type="Script" uid="uid://buakepgejh564" path="res://entities/isle/kernel/volume/volume.gd" id="1_eblym"]
+[ext_resource type="Texture2D" uid="uid://dq7y50ghm1n16" path="res://entities/dice/images/numbers.png" id="2_nvx50"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lxk3t"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_limb2"]
+resource_local_to_scene = true
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 1)
+
+[node name="Volume" type="PanelContainer" unique_id=468789252 node_paths=PackedStringArray("number_node")]
+custom_minimum_size = Vector2(36, 36)
+custom_maximum_size = Vector2(36, 36)
+offset_right = 36.0
+offset_bottom = 36.0
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxEmpty_lxk3t")
+script = ExtResource("1_eblym")
+number_node = NodePath("NumberNode")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=731944889]
+layout_mode = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+
+[node name="Border" type="Panel" parent="MarginContainer" unique_id=1249372101]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_limb2")
+
+[node name="NumberNode" type="Control" parent="." unique_id=1499007020]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+
+[node name="Number" type="Sprite2D" parent="NumberNode" unique_id=1254406328]
+unique_name_in_owner = true
+texture = ExtResource("2_nvx50")
+hframes = 10
+vframes = 11

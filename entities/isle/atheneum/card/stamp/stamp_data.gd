@@ -5,6 +5,7 @@ extends RefCounted
 var origin: OriginData
 var intro_value: int
 var verse_value: int
+var spoil_value: int = 1
 
 var type_to_stakes: Dictionary
 var joint_to_type_to_stakes: Dictionary

@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://c48c8eef8a3vf"]
+
+[ext_resource type="Script" uid="uid://o8kggg82dd7x" path="res://entities/isle/kernel/fleet/fleet.gd" id="1_i1k51"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bsmag"]
+
+[node name="Fleet" type="PanelContainer" unique_id=846630898]
+custom_minimum_size = Vector2(148, 36)
+theme_override_styles/panel = SubResource("StyleBoxEmpty_bsmag")
+script = ExtResource("1_i1k51")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=95881893]
+layout_mode = 2
+theme_override_constants/margin_top = 96
+
+[node name="Arks" type="VBoxContainer" parent="MarginContainer" unique_id=597813743]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 1

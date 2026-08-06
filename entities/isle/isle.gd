@@ -7,6 +7,7 @@ var data: IsleData:
 		data = value_
 		connect_datas()
 
+@export var kernel: Kernel
 @export var atheneum: Atheneum
 @export var realm: Realm
 @export var terrain: Terrain
@@ -16,6 +17,7 @@ func _ready() -> void:
 	data = IsleData.new()
 
 func connect_datas() -> void:
+	kernel.data = data.kernel
 	atheneum.data = data.atheneum
 	#realm.data = data.realm
 	#terrain.data = data.terrain

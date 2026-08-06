@@ -2,8 +2,9 @@
 
 [ext_resource type="Script" uid="uid://c0fkxw18lt6u3" path="res://entities/isle/isle.gd" id="1_kwh8c"]
 [ext_resource type="Shader" uid="uid://bpow5b1ec5tvg" path="res://entities/home/checkerboard.gdshader" id="2_5o34a"]
-[ext_resource type="PackedScene" uid="uid://cvxj1ovefesgh" path="res://entities/button/button.tscn" id="3_dc2yg"]
-[ext_resource type="Script" uid="uid://gmp1wxiwy1n8" path="res://entities/home/go_home.gd" id="4_yl3e5"]
+[ext_resource type="PackedScene" uid="uid://cvxj1ovefesgh" path="res://entities/home/button/button.tscn" id="3_dc2yg"]
+[ext_resource type="Script" uid="uid://gmp1wxiwy1n8" path="res://entities/home/button/go_home.gd" id="4_yl3e5"]
+[ext_resource type="PackedScene" uid="uid://daklpvjfjxxr0" path="res://entities/isle/kernel/kernel.tscn" id="5_48ffl"]
 [ext_resource type="PackedScene" uid="uid://bhlusn1ccigiy" path="res://entities/isle/atheneum/atheneum.tscn" id="5_dd0e4"]
 [ext_resource type="PackedScene" uid="uid://c4kju7nsoxlr5" path="res://entities/isle/realm/realm.tscn" id="6_y02by"]
 [ext_resource type="PackedScene" uid="uid://da8oif1q4gcaq" path="res://entities/isle/terrain/terrain.tscn" id="7_kwh8c"]
@@ -22,17 +23,21 @@ corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 corner_detail = 12
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kwh8c"]
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qhul4"]
 
-[node name="Isle" type="Control" unique_id=1469181342 node_paths=PackedStringArray("atheneum", "realm", "terrain")]
+[node name="Isle" type="Control" unique_id=1469181342 node_paths=PackedStringArray("kernel", "atheneum", "realm", "terrain")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 script = ExtResource("1_kwh8c")
-atheneum = NodePath("HBox/Atheneum")
+kernel = NodePath("HBox/CardContainer/MarginContainer/Kernel")
+atheneum = NodePath("HBox/CardContainer/MarginContainer/Atheneum")
 realm = NodePath("HBox/RealmContainer/Realm")
 terrain = NodePath("HBox/RealmContainer/Terrain")
 
@@ -44,6 +49,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 
 [node name="HomeBtn" parent="." unique_id=1483590883 instance=ExtResource("3_dc2yg")]
 layout_mode = 0
@@ -85,16 +91,37 @@ anchor_right = 1.0
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 alignment = 1
 
-[node name="Atheneum" parent="HBox" unique_id=1578730 node_paths=PackedStringArray("isle") instance=ExtResource("5_dd0e4")]
+[node name="CardContainer" type="PanelContainer" parent="HBox" unique_id=874406166]
 custom_minimum_size = Vector2(960, 1080)
 layout_mode = 2
-isle = NodePath("../..")
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_kwh8c")
+
+[node name="MarginContainer" type="MarginContainer" parent="HBox/CardContainer" unique_id=326275716]
+layout_mode = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 128
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 64
+
+[node name="Kernel" parent="HBox/CardContainer/MarginContainer" unique_id=601409116 instance=ExtResource("5_48ffl")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="Atheneum" parent="HBox/CardContainer/MarginContainer" unique_id=1578730 node_paths=PackedStringArray("isle") instance=ExtResource("5_dd0e4")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+isle = NodePath("../../../..")
 
 [node name="RealmContainer" type="PanelContainer" parent="HBox" unique_id=1236269852]
 custom_minimum_size = Vector2(960, 1080)
 layout_mode = 2
+mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxEmpty_qhul4")
 
 [node name="Realm" parent="HBox/RealmContainer" unique_id=256053366 node_paths=PackedStringArray("isle") instance=ExtResource("6_y02by")]

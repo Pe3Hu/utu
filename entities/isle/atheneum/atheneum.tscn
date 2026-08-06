@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://bhlusn1ccigiy"]
 
 [ext_resource type="Script" uid="uid://ctcnv6e3kcvpy" path="res://entities/isle/atheneum/atheneum.gd" id="1_6sg17"]
-[ext_resource type="PackedScene" uid="uid://cos2ewexmv4cg" path="res://entities/isle/atheneum/canto/canto.tscn" id="2_6hryb"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q3odo"]
 
@@ -11,13 +10,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_q3odo")
 script = ExtResource("1_6sg17")
-
-[node name="Canto" parent="." unique_id=2120647071 instance=ExtResource("2_6hryb")]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
 
 [node name="Cards" type="HBoxContainer" parent="." unique_id=1655002082]
 unique_name_in_owner = true
@@ -28,6 +23,3 @@ offset_transform_enabled = true
 offset_transform_position = Vector2(0, -48)
 offset_transform_visual_only = false
 alignment = 1
-
-[node name="Scenarios" type="Node" parent="." unique_id=780069909]
-unique_name_in_owner = true

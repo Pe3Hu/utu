@@ -27,6 +27,7 @@ func _ready() -> void:
 	position = Vector2(get_parent().size / 2) - (board_size) * scale
 
 func init_domains(type_: Bozo.Domain) -> void:
+	if data == null: return
 	Helper.clear_children(%Domains)
 	var domains = data.get_domains(type_)
 	

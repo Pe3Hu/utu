@@ -10,6 +10,7 @@ var data: StampData:
 		
 		init_stakes()
 		update_colors()
+		%Spoil.texture = load("res://entities/dice/images/%d.png" % data.spoil_value)
 
 @export var border: Panel
 
@@ -39,4 +40,5 @@ func update_colors() -> void:
 	var color = Catalog.matter_to_color[data.origin.matter]
 	border.get_theme_stylebox("panel").border_color = color
 	%Top.get_theme_stylebox("panel").bg_color = color
+	%Bottom.get_theme_stylebox("panel").bg_color = color
 #endregion

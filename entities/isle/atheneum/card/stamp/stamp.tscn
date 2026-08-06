@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cbet0tqjycopk"]
 
 [ext_resource type="Script" uid="uid://bkptlyetypcjw" path="res://entities/isle/atheneum/card/stamp/stamp.gd" id="1_sx3sm"]
+[ext_resource type="Texture2D" uid="uid://bcbhtkat612er" path="res://entities/dice/images/1.png" id="2_o6mtg"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j6d1l"]
 bg_color = Color(0.21230483, 0.21230483, 0.21230483, 1)
@@ -33,10 +34,17 @@ corner_detail = 12
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lxk3t"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mk6kk"]
+resource_local_to_scene = true
+bg_color = Color(0, 0.7529412, 0.47058824, 1)
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+corner_detail = 12
+
 [node name="Stamp" type="PanelContainer" unique_id=1990971153 node_paths=PackedStringArray("border")]
-custom_minimum_size = Vector2(160, 0)
-offset_right = 160.0
-offset_bottom = 288.0
+custom_minimum_size = Vector2(144, 0)
+offset_right = 108.0
+offset_bottom = 264.0
 offset_transform_enabled = true
 offset_transform_visual_only = false
 mouse_filter = 1
@@ -63,12 +71,13 @@ theme_override_constants/separation = 0
 
 [node name="Top" type="Panel" parent="VBoxContainer" unique_id=2031217003]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(160, 32)
+custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_ifnqu")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/Top" unique_id=80602315]
+visible = false
 modulate = Color(0, 0.2627451, 0.14901961, 1)
 layout_mode = 1
 anchors_preset = 15
@@ -121,3 +130,26 @@ size_flags_vertical = 6
 mouse_filter = 2
 theme_override_constants/separation = 4
 alignment = 1
+
+[node name="Bottom" type="Panel" parent="VBoxContainer" unique_id=2002940049]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_mk6kk")
+
+[node name="Spoil" type="TextureRect" parent="VBoxContainer/Bottom" unique_id=1124751600]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_o6mtg")

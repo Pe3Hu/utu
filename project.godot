@@ -37,6 +37,7 @@ window/size/viewport_height=1080
 
 folder_colors={
 "res://entities/isle/atheneum/": "teal",
+"res://entities/isle/kernel/": "blue",
 "res://entities/isle/realm/": "orange"
 }
 

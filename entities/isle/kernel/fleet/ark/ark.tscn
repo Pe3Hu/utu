@@ -1,0 +1,87 @@
+[gd_scene format=3 uid="uid://calvuwftbo0tx"]
+
+[ext_resource type="Script" uid="uid://cl1x8gd60bohb" path="res://entities/isle/kernel/fleet/ark/ark.gd" id="1_o2vga"]
+[ext_resource type="Texture2D" uid="uid://bcbhtkat612er" path="res://entities/dice/images/1.png" id="2_bsmag"]
+[ext_resource type="PackedScene" uid="uid://dpvkcodr3cjop" path="res://entities/isle/kernel/volume/volume.tscn" id="3_8jqm2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lxk3t"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_agqcp"]
+resource_local_to_scene = true
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 18
+corner_radius_bottom_left = 18
+corner_detail = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kcfku"]
+resource_local_to_scene = true
+bg_color = Color(0, 0.7529412, 0.47058824, 1)
+corner_radius_top_right = 18
+corner_radius_bottom_right = 18
+corner_detail = 12
+
+[node name="Ark" type="PanelContainer" unique_id=1881962375 node_paths=PackedStringArray("volumes")]
+offset_right = 148.0
+offset_bottom = 36.0
+pivot_offset = Vector2(124, 18)
+offset_transform_enabled = true
+theme_override_styles/panel = SubResource("StyleBoxEmpty_lxk3t")
+script = ExtResource("1_o2vga")
+volumes = [NodePath("HBox/Volumes/Volume"), NodePath("HBox/Volumes/Volume2"), NodePath("HBox/Volumes/Volume3")]
+
+[node name="HBox" type="HBoxContainer" parent="." unique_id=869776058]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="Left" type="Panel" parent="HBox" unique_id=437750775]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(24, 36)
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_agqcp")
+
+[node name="Volumes" type="HBoxContainer" parent="HBox" unique_id=298680353]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = -4
+alignment = 1
+
+[node name="Volume" parent="HBox/Volumes" unique_id=468789252 instance=ExtResource("3_8jqm2")]
+visible = false
+layout_mode = 2
+
+[node name="Volume2" parent="HBox/Volumes" unique_id=816277392 instance=ExtResource("3_8jqm2")]
+visible = false
+layout_mode = 2
+
+[node name="Volume3" parent="HBox/Volumes" unique_id=2004321618 instance=ExtResource("3_8jqm2")]
+visible = false
+layout_mode = 2
+
+[node name="Right" type="Panel" parent="HBox" unique_id=1157631198]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(24, 36)
+layout_mode = 2
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_kcfku")
+
+[node name="Spoil" type="TextureRect" parent="HBox/Right" unique_id=979942573]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(-2, 0)
+texture = ExtResource("2_bsmag")

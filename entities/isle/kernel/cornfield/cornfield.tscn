@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://d3686rpnd3xtj"]
+
+[ext_resource type="Script" uid="uid://g1rwjyp20su6" path="res://entities/isle/kernel/cornfield/cornfield.gd" id="1_1d8gi"]
+
+[node name="Cornfield" type="GridContainer" unique_id=461106985]
+theme_override_constants/h_separation = -4
+theme_override_constants/v_separation = -4
+columns = 16
+script = ExtResource("1_1d8gi")
