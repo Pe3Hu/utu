@@ -102,20 +102,20 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_kwh8c")
 
 [node name="MarginContainer" type="MarginContainer" parent="HBox/CardContainer" unique_id=326275716]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/margin_left = 64
 theme_override_constants/margin_top = 128
 theme_override_constants/margin_right = 64
 theme_override_constants/margin_bottom = 64
 
-[node name="Kernel" parent="HBox/CardContainer/MarginContainer" unique_id=601409116 instance=ExtResource("5_48ffl")]
+[node name="Kernel" parent="HBox/CardContainer/MarginContainer" unique_id=601409116 node_paths=PackedStringArray("isle") instance=ExtResource("5_48ffl")]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
+isle = NodePath("../../../..")
 
 [node name="Atheneum" parent="HBox/CardContainer/MarginContainer" unique_id=1578730 node_paths=PackedStringArray("isle") instance=ExtResource("5_dd0e4")]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 8
 isle = NodePath("../../../..")
 
 [node name="RealmContainer" type="PanelContainer" parent="HBox" unique_id=1236269852]
@@ -128,5 +128,4 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_qhul4")
 isle = NodePath("../../..")
 
 [node name="Terrain" parent="HBox/RealmContainer" unique_id=1189514570 node_paths=PackedStringArray("isle") instance=ExtResource("7_kwh8c")]
-visible = false
 isle = NodePath("../../..")

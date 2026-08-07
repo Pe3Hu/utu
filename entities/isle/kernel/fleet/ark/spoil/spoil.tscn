@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://cajdw2g8yrig2"]
+
+[ext_resource type="Script" uid="uid://debpup8de3io4" path="res://entities/isle/kernel/fleet/ark/spoil/spoil.gd" id="1_8hhmw"]
+[ext_resource type="Texture2D" uid="uid://bcbhtkat612er" path="res://entities/dice/images/1.png" id="1_c8mbx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_agqcp"]
+resource_local_to_scene = true
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 18
+corner_radius_bottom_left = 18
+corner_detail = 10
+
+[node name="Spoil" type="Panel" unique_id=252518382 node_paths=PackedStringArray("button")]
+custom_minimum_size = Vector2(24, 36)
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_agqcp")
+script = ExtResource("1_8hhmw")
+button = NodePath("Button")
+
+[node name="Button" type="TextureButton" parent="." unique_id=1310100277]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(2, 0)
+texture_normal = ExtResource("1_c8mbx")
+
+[connection signal="mouse_entered" from="Button" to="." method="_on_button_mouse_entered"]
+[connection signal="mouse_exited" from="Button" to="." method="_on_button_mouse_exited"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

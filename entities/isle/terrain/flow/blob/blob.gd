@@ -27,6 +27,7 @@ func _process(delta: float) -> void:
 
 func rnd_speed() -> void:
 	orbit_speed = Helper.rng.randf_range(1.75, 2.25)
+	angle = Helper.rng.randf_range(0, PI * 2)
 
 func update_sprites() -> void:
 	%Number.frame_coords = Helper.get_coord_based_on_value(abs(data.value))

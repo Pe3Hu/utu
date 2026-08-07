@@ -13,15 +13,13 @@ var data: AtheneumData:
 @export var isle: Isle
 @export var cards: Array[Card]
 
-var current_card: Card
+var stamp_to_card: Dictionary
 
 
 #region init
-func _ready() -> void:
-	pass
-
 func init_cards() -> void:
 	cards.clear()
+	stamp_to_card.clear()
 	Helper.clear_children(%Cards)
 	
 	for stamp_data in data.tribunal.actual.stamps:
@@ -32,6 +30,7 @@ func init_cards() -> void:
 func add_card(stamp_data_: StampData) -> void:
 	var card = card_scene.instantiate()
 	%Cards.add_child(card)
+	stamp_to_card[stamp_data_] = card
 	card.atheneum = self
 	card.stamp.data = stamp_data_
 	cards.append(card)
@@ -39,9 +38,20 @@ func add_card(stamp_data_: StampData) -> void:
 func remove_card() -> void:
 	if %Cards.get_child_count() == 0: return
 	%Cards.get_children().back().destroy()
-	cards.pop_back()
+	var card = cards.pop_back()
+	stamp_to_card.erase(card.stamp)
+
+func appear_card(stamp_data_: StampData) -> void:
+	var card = stamp_to_card[stamp_data_]
+	card.appear()
+	#fleet.kernel.isle.atheneum.
+
+func disappear_card(stamp_data_: StampData) -> void:
+	var card = stamp_to_card[stamp_data_]
+	card.disappear()
 #endregion
 
+#region sort
 func shift_card(card_: Card, shift_: int) -> void:
 	var new_index = card_.get_index() + shift_
 	if new_index < 0 or new_index >= %Cards.get_child_count(): return
@@ -53,7 +63,4 @@ func sort_cards() -> void:
 	
 	for _i in cards.size():
 		%Cards.move_child(cards[_i], _i)
-
-func spoil_card(card_: Card) -> void:
-	card_.spoil()
-	data.tribunal.actual.stamps.erase(card_.stamp.data)
+#endregion

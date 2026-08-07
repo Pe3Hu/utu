@@ -83,6 +83,13 @@ enum Math {
 	MULTIPLY = 42,
 }
 
+enum Ark {
+	NONE = 0,
+	APPEAR = 43,
+	DISAPPEAR = 44,
+	ACTIVATE = 45,
+	DEACTIVATE = 46
+}
 
 enum Faction {
 	NONE = 0,
@@ -117,6 +124,7 @@ enum Type {
 	STAKE = -8,
 	GYRE = -9,
 	MATH = -10,
+	ARK = -11,
 	ACTION = -100,
 	PHASE = -200,
 }
@@ -132,6 +140,7 @@ const type_to_index = {
 	Type.BIOME: 32,
 	Type.STAKE: 35,
 	Type.MATH: 40,
+	Type.ARK: 43,
 	
 	Type.ACTION: 104,
 	Type.PHASE: 200,
@@ -147,6 +156,7 @@ const type_to_enum = {
 	Type.BIOME: Bozo.Biome,
 	Type.STAKE: Bozo.Stake,
 	Type.MATH: Bozo.Math,
+	Type.ARK: Bozo.Ark,
 	
 	Type.ACTION: Bozo.Action,
 	Type.PHASE: Bozo.Phase,

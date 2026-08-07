@@ -14,7 +14,7 @@ var scenarios: Array[ScenarioData]
 func _init(isle_: IsleData) -> void:
 	isle = isle_
 	init_origins()
-	init_scenarios()
+	preparation()
 
 func init_origins() -> void:
 	origins.clear()
@@ -33,13 +33,16 @@ func init_origins() -> void:
 		var _origin = OriginData.new(self, matter, intro, verse)
 
 func init_scenarios() -> void:
-	tribunal.refill_actual()
-	isle.kernel.fleet.stamps.append_array(tribunal.actual.stamps)
 	init_permutations()
 	#var stamp_queue = tribunal.actual.stamps.duplicate()
 	#var scenario = ScenarioData.new(self, stamp_queue)
 	#print(scenario.total_sum)
 #endregion
+
+func preparation() -> void:
+	tribunal.refill_actual()
+	isle.kernel.fleet.stamps.append_array(tribunal.actual.stamps)
+	init_scenarios()
 
 func init_permutations() -> void:
 	scenarios.clear()
@@ -59,6 +62,4 @@ func init_permutations() -> void:
 	
 	
 	scenarios.sort_custom(func (a, b): return a.total_sum > b.total_sum)
-	
-	for scenario in scenarios:
-		print([scenario.total_sum, scenario.pulses])
+	print([scenarios.front().total_sum, scenarios.front().pulses])

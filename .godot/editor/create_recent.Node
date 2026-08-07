@@ -1,3 +1,5 @@
+ColorRect
+TextureButton
 PanelContainer
 MarginContainer
 VBoxContainer
@@ -10,5 +12,3 @@ Panel
 Control
 Node2D
 Line2D
-ColorRect
-TileMapLayer

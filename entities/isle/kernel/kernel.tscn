@@ -7,7 +7,7 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2o6og"]
 bg_color = Color(0.86, 0.86, 0.86, 0.41960785)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8c6r2"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i1k51"]
 
 [node name="Kernel" type="PanelContainer" unique_id=601409116 node_paths=PackedStringArray("harvest", "granary", "fleet")]
 custom_minimum_size = Vector2(664, 0)
@@ -22,17 +22,18 @@ harvest = NodePath("Cornfields/VBox/Harvest")
 granary = NodePath("Cornfields/VBox/Granary")
 fleet = NodePath("Fleet")
 
-[node name="Fleet" parent="." unique_id=846630898 instance=ExtResource("2_8c6r2")]
+[node name="Fleet" parent="." unique_id=846630898 node_paths=PackedStringArray("kernel") instance=ExtResource("2_8c6r2")]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
+kernel = NodePath("..")
 
 [node name="Cornfields" type="PanelContainer" parent="." unique_id=1334450495]
 z_index = 3
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_8c6r2")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_i1k51")
 
 [node name="VBox" type="VBoxContainer" parent="Cornfields" unique_id=1461936640]
 custom_minimum_size = Vector2(516, 244)

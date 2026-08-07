@@ -46,3 +46,8 @@ func can_outro(pulse_: int) -> bool:
 			return true
 	
 	return false
+
+func get_spoil_weight() -> int:
+	var weight = 0
+	weight += intro_value
+	return weight

@@ -211,12 +211,9 @@ func region_coords_exchange() -> void:
 		for neighbour in region.neighbours:
 			if region.biome != neighbour.biome:
 				region.coords_exchange(neighbour)
-	
-	for region in biomes:
-		print(region.coords.size())
 
 func init_galores() -> void:
-	var noise := FastNoiseLite.new()
+	var noise = FastNoiseLite.new()
 	noise.seed = randi()
 	noise.noise_type = FastNoiseLite.TYPE_PERLIN
 	noise.frequency = 0.12
@@ -276,6 +273,8 @@ func init_flows() -> void:
 	reset()
 	
 	for bastion in bastions:
+		if bastion.faction != Bozo.Faction.GREEN:
+			continue
 		if not rampart_to_bastions.has(bastion.current_rampart):
 			rampart_to_bastions[bastion.current_rampart] = []
 		

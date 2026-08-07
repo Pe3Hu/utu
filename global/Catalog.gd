@@ -43,12 +43,6 @@ var matter_to_factor = {
 	Bozo.Matter.GAS: 2,
 }
 
-var matter_to_color = {
-	Bozo.Matter.NONE: Color.BLACK,
-	Bozo.Matter.SOLID: Color.from_hsv(30.0 / 360.0, 0.75, 0.75),
-	Bozo.Matter.LIQUID: Color.from_hsv(150.0 / 360.0, 0.75, 0.75),
-	Bozo.Matter.GAS: Color.from_hsv(270.0 / 360.0, 0.75, 0.75),
-}
 #endregion
 
 #region canto
@@ -76,12 +70,12 @@ var net_neighbors = {
 	5: [2, 3, 4]
 }
 
-var volume_values: Array = [2, 3, 4, 5, 6, 8, 9, 10, 12, 15, 18, 20, 25, 27, 30, 32]
+var volumes = [2, 3, 4, 5, 6, 8, 9, 10, 12, 15, 18, 20, 25, 27, 30, 32]
 
-var pulse_values: Array = [0, 2, 3, 4, 5, 6, 8, 9, 10, 12, 15, 18, 20, 24, 25, 27, 30, 
+var pulses = [0, 2, 3, 4, 5, 6, 8, 9, 10, 12, 15, 18, 20, 24, 25, 27, 30, 
 		32, 36, 40, 45, 50, 54, 60, 64, 75, 81, 90, 96, 100]
 
-var chorus_values: Dictionary = {
+var chorus_values = {
 	"I": [7, 11, 13, 17, 19, 23],
 	"II": [19, 23, 29, 31, 37, 41],
 	"III": [37, 41, 43, 47, 53, 59],
@@ -202,8 +196,13 @@ const regions = [
 
 
 const JOINT_SIZE = Vector2(36, 36)
-const JOINT_OFFEST = 4
-const default_stamp_indexs = [[0],[1],[2],[3],[4],[5]]
-const GYRE_ACTUAL_STAMP_SIZE = 3#4
+const JOINT_OFFEST: float = 4.0
+#const default_stamp_indexs = [[0],[1],[2],[3],[4],[5]]
+const GYRE_ACTUAL_STAMP_SIZE = 4
 
 const stakes = [Bozo.Stake.LEFT, Bozo.Stake.RIGHT]
+
+const VOLUME_SIZE = Vector2(36, 36)
+const VOLUME_BORDER: float = 4.0
+const ARK_PIVOT = Vector2(124, 18)
+const SPOIL_CORNER: int = 18

@@ -16,7 +16,7 @@ func connect_signals() -> void:
 	_on_amount_changed()
 
 func update_border() -> void:
-	var color = Catalog.matter_to_color[data.matter]
+	var color = Digest.matter_to_color[data.matter]
 	%Border.get_theme_stylebox("panel").border_color = color
 	
 	if data.matter == Bozo.Matter.LIQUID:

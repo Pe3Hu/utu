@@ -13,7 +13,6 @@ var data: StakeData:
 @export var border: Panel
 
 
-
 #region init
 func update_texture() -> void:
 	%Number.frame_coords = Helper.get_coord_based_on_value(data.value)
@@ -41,7 +40,7 @@ func update_texture() -> void:
 	update_border()
 
 func update_border() -> void:
-	var color = Catalog.matter_to_color[data.stamp.origin.matter]
+	var color = Digest.matter_to_color[data.stamp.origin.matter]
 	%Border.get_theme_stylebox("panel").border_color = color
 	
 	#match tune:

@@ -11,6 +11,9 @@ var order_to_shrines: Dictionary
 var captured_shrines: Array[BastionData]
 var available_shrines: Array[BastionData]
 
+var internals: Array[BastionData]
+var externals: Array[BastionData]
+
 
 func _init(policy_: PolicyData, type_: Bozo.Faction) -> void:
 	policy = policy_
@@ -36,8 +39,25 @@ func init_shrines() -> void:
 
 func capture_default_shrines() -> void:
 	for coord in order_to_shrines[0]:
-		captured_shrine(coord)
+		var shrine = captured_shrine(coord)
+		var allowance = shrine.fiefdom.neighbours.pick_random()
+		captured_bastion(allowance.bastion)
 
-func captured_shrine(coord_: Vector2i) -> void:
+func captured_shrine(coord_: Vector2i) -> BastionData:
 	var bastion = policy.isle.realm.coord_to_fiefdom[coord_].bastion
-	bastion.faction = type
+	captured_shrines.append(bastion)
+	captured_bastion(bastion)
+	return bastion
+
+func captured_bastion(bastion_: BastionData) -> void:
+	bastion_.faction = type
+	internals.append(bastion_)
+	update_externals(bastion_)
+
+func update_externals(bastion_: BastionData) -> void:
+	if externals.has(bastion_):
+		externals.erase(bastion_)
+	
+	for fiefdom in bastion_.fiefdom.neighbours:
+		if not externals.has(fiefdom.bastion) and not internals.has(fiefdom.bastion):
+			externals.append(fiefdom.bastion)

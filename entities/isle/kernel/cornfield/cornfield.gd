@@ -11,6 +11,7 @@ var data: CornfieldData:
 		init_straws()
 
 
+#region init
 func init_straws() -> void:
 	Helper.clear_children(self)
 	
@@ -21,3 +22,4 @@ func add_straw(straw_data_: StrawData) -> void:
 	var straw = straw_scene.instantiate()
 	add_child(straw)
 	straw.data = straw_data_
+#endregion

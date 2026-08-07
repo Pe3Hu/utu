@@ -2,6 +2,20 @@
 
 [ext_resource type="Script" uid="uid://bqxukwo0tmvf4" path="res://entities/isle/terrain/bastion/bastion.gd" id="1_7vkkh"]
 [ext_resource type="Texture2D" uid="uid://dq7y50ghm1n16" path="res://entities/dice/images/numbers.png" id="1_8je1w"]
+[ext_resource type="Shader" uid="uid://uw3w25arybcr" path="res://entities/isle/terrain/bastion/select.gdshader" id="3_dvjei"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ms72j"]
+shader = ExtResource("3_dvjei")
+shader_parameter/Line_Smoothness = 0.045
+shader_parameter/Line_Width = 0.09
+shader_parameter/Brightness = 3.0
+shader_parameter/Rotation_deg = 30.0
+shader_parameter/Distortion = 1.8
+shader_parameter/Speed = 0.7
+shader_parameter/Position = 0.0
+shader_parameter/Position_Min = 0.25
+shader_parameter/Position_Max = 0.5
+shader_parameter/Alpha = 1.0
 
 [node name="Bastion" type="Sprite2D" unique_id=1205793641]
 texture = ExtResource("1_8je1w")
@@ -10,6 +24,14 @@ hframes = 10
 vframes = 11
 frame = 101
 script = ExtResource("1_7vkkh")
+
+[node name="Select" type="ColorRect" parent="." unique_id=2058024883]
+visible = false
+show_behind_parent = true
+material = SubResource("ShaderMaterial_ms72j")
+custom_minimum_size = Vector2(48, 48)
+offset_right = 48.0
+offset_bottom = 48.0
 
 [node name="Background" type="ColorRect" parent="." unique_id=1481632867]
 unique_name_in_owner = true

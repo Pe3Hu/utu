@@ -5,18 +5,14 @@
 [node name="Terrain" type="Node2D" unique_id=256053366]
 script = ExtResource("1_p5wbm")
 
+[node name="Biomes" type="Node2D" parent="." unique_id=1523312079]
+unique_name_in_owner = true
+
 [node name="Channels" type="Node2D" parent="." unique_id=1715178092]
 unique_name_in_owner = true
-visible = false
 
 [node name="Bastions" type="Node2D" parent="." unique_id=702323791]
 unique_name_in_owner = true
-visible = false
 
 [node name="Blobs" type="Node2D" parent="." unique_id=302844123]
 unique_name_in_owner = true
-visible = false
-
-[node name="Biomes" type="Node2D" parent="." unique_id=1523312079]
-unique_name_in_owner = true
-visible = false

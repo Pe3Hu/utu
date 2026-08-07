@@ -13,9 +13,9 @@ func _init(kernel_: KernelData) -> void:
 	init_volumes()
 
 func init_volumes() -> void:
-	for volume in Catalog.volume_values:
+	for volume in Catalog.volumes:
 		volume_to_matter_to_cornfield[volume] = {}
 	
 	for matter in Catalog.matters:
-		for volume in Catalog.volume_values:
+		for volume in Catalog.volumes:
 			var _straw = StrawData.new(self, volume, matter)

@@ -104,21 +104,44 @@ const tune_to_stake = {
 const tune_to_math = {
 	Bozo.Tune.VERSE: Bozo.Math.PLUS,
 	Bozo.Tune.OUTRO: Bozo.Math.MULTIPLY,
-	
+}
+
+const ark_to_flag_to_ark = {
+	Bozo.Ark.DISAPPEAR: {
+		true: Bozo.Ark.APPEAR,
+	},
+	Bozo.Ark.APPEAR: {
+		false: Bozo.Ark.DISAPPEAR,
+		true: Bozo.Ark.ACTIVATE,
+	},
+	Bozo.Ark.DEACTIVATE: {
+		false: Bozo.Ark.DISAPPEAR,
+		true: Bozo.Ark.ACTIVATE,
+	},
+	Bozo.Ark.ACTIVATE: {
+		false: Bozo.Ark.DEACTIVATE,
+	},
 }
 
 
 #region color
+var matter_to_color = {
+	Bozo.Matter.NONE: Color.WHITE,
+	Bozo.Matter.SOLID: Color.from_hsv(30.0 / 360.0, 0.75, 0.75),
+	Bozo.Matter.LIQUID: Color.from_hsv(150.0 / 360.0, 0.75, 0.75),
+	Bozo.Matter.GAS: Color.from_hsv(270.0 / 360.0, 0.75, 0.75),
+}
+
 var regard_to_color = {
 	Bozo.Regard.ALLY: Color.from_hsv(210.0 / 360.0, 1.0, 1.0),
 	Bozo.Regard.ENEMY: Color.from_hsv(340.0 / 360.0, 1.0, 1.0),
-	Bozo.Regard.WILD: Color.from_hsv(120.0 / 360.0, 1.0, 1.0),
+	Bozo.Regard.WILD: Color.FOREST_GREEN, #Color.from_hsv(120.0 / 360.0, 1.0, 1.0),
 }
 
 var faction_to_color = {
 	Bozo.Faction.BLUE: Color.from_hsv(210.0 / 360.0, 1.0, 1.0),
 	Bozo.Faction.RED: Color.from_hsv(340.0 / 360.0, 1.0, 1.0),
-	Bozo.Faction.GREEN: Color.from_hsv(120.0 / 360.0, 1.0, 1.0),
+	Bozo.Faction.GREEN: Color.FOREST_GREEN, #Color.from_hsv(120.0 / 360.0, 1.0, 1.0),
 }
 
 var biome_to_color = {

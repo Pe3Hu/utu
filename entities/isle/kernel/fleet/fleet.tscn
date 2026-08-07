@@ -6,6 +6,7 @@
 
 [node name="Fleet" type="PanelContainer" unique_id=846630898]
 custom_minimum_size = Vector2(148, 36)
+clip_contents = true
 theme_override_styles/panel = SubResource("StyleBoxEmpty_bsmag")
 script = ExtResource("1_i1k51")
 

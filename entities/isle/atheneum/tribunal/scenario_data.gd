@@ -42,9 +42,8 @@ func calc_pulses() -> void:
 						else:
 							continue
 				
-				if Catalog.pulse_values.has(pulse) and pulse > 0:
+				if Catalog.pulses.has(pulse) and pulse > 0:
 					pulses.append(pulse)
 	
 	for pulse in pulses:
 		total_sum += pulse
-	

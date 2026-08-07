@@ -13,6 +13,7 @@ stamp = NodePath("Stamp")
 
 [node name="Stamp" parent="." unique_id=1990971153 node_paths=PackedStringArray("card") instance=ExtResource("2_y3gem")]
 layout_mode = 0
+offset_right = 144.0
 card = NodePath("..")
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
