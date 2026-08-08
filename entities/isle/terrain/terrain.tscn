@@ -10,9 +10,11 @@ unique_name_in_owner = true
 
 [node name="Channels" type="Node2D" parent="." unique_id=1715178092]
 unique_name_in_owner = true
+visible = false
 
 [node name="Bastions" type="Node2D" parent="." unique_id=702323791]
 unique_name_in_owner = true
 
 [node name="Blobs" type="Node2D" parent="." unique_id=302844123]
 unique_name_in_owner = true
+visible = false

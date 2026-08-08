@@ -2,12 +2,26 @@ class_name KernelData
 extends RefCounted
 
 
-var isle: IsleData
+var treasury: TreasuryData
 
 var harvest: CornfieldData = CornfieldData.new(self)
 var granary: CornfieldData = CornfieldData.new(self)
 var fleet: FleetData = FleetData.new(self)
 
 
-func _init(isle_: IsleData) -> void:
-	isle = isle_
+func _init(treasury_: TreasuryData) -> void:
+	treasury = treasury_
+
+func grow_harvest() -> void:
+	for bastion in treasury.faction.internals:
+		var source = bastion.region.biome.source
+		var volume = source.get_rnd_volume()
+		var straw = harvest.volume_to_matter_to_straw[volume][source.matter]
+		straw.next_amount += 1
+
+func stock_granary() -> void:
+	for harvest_straw in harvest.straws:
+		if harvest_straw.amount > 0:
+			var granary_straw = granary.volume_to_matter_to_straw[harvest_straw.volume][harvest_straw.matter]
+			granary_straw.next_amount = granary_straw.amount + harvest_straw.amount 
+			harvest_straw.next_amount = 0

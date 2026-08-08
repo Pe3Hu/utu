@@ -26,4 +26,5 @@ size_flags_vertical = 8
 offset_transform_enabled = true
 offset_transform_position = Vector2(0, -12)
 offset_transform_visual_only = false
+theme_override_constants/separation = 4
 alignment = 1

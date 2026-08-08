@@ -5,6 +5,11 @@ extends RefCounted
 var policy: PolicyData
 var type: Bozo.Faction
 
+var isle: IsleData
+var treasury: TreasuryData
+var atheneum: AtheneumData
+var odeum: OdeumData
+
 var current_order: int = 0
 
 var order_to_shrines: Dictionary
@@ -19,7 +24,12 @@ func _init(policy_: PolicyData, type_: Bozo.Faction) -> void:
 	policy = policy_
 	type = type_
 	
-	init_shrines()
+	if type != Bozo.Faction.GREEN:
+		treasury = TreasuryData.new(self)
+		odeum = OdeumData.new(self)
+		atheneum = AtheneumData.new(self)
+	
+		init_shrines()
 
 func init_shrines() -> void:
 	for order in Catalog.shrines.size():
@@ -27,8 +37,8 @@ func init_shrines() -> void:
 		
 		for shrine in Catalog.shrines[order]:
 			for corner_index in Catalog.corners.size():
-				var is_even: bool = (order + corner_index) % 2 == 0
-				var shrine_faction = Digest.flag_to_faction[is_even]
+				var is_odd: bool = (order + corner_index) % 2 == 1
+				var shrine_faction = Digest.flag_to_faction[is_odd]
 				
 				if shrine_faction == type:
 					var corner = Catalog.corners[corner_index] * Catalog.BOARD_SIZE

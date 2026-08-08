@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://bo4upv5t0rv02"]
 
-[ext_resource type="Script" uid="uid://cvrd0fvxcn4au" path="res://entities/home/home.gd" id="1_o1ld7"]
-[ext_resource type="Shader" uid="uid://bpow5b1ec5tvg" path="res://entities/home/checkerboard.gdshader" id="1_tt30a"]
-[ext_resource type="PackedScene" uid="uid://cvxj1ovefesgh" path="res://entities/home/button/button.tscn" id="2_1ey7h"]
+[ext_resource type="Script" uid="uid://cvrd0fvxcn4au" path="res://entities/world/home/home.gd" id="1_o1ld7"]
+[ext_resource type="Shader" uid="uid://bpow5b1ec5tvg" path="res://entities/world/home/checkerboard.gdshader" id="1_tt30a"]
+[ext_resource type="PackedScene" uid="uid://cvxj1ovefesgh" path="res://entities/world/home/button/button.tscn" id="2_1ey7h"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1ey7h"]
 shader = ExtResource("1_tt30a")

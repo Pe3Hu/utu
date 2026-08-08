@@ -3,7 +3,9 @@ extends RefCounted
 
 
 var kernel: KernelData
-var volume_to_matter_to_cornfield: Dictionary
+
+var volume_to_matter_to_straw: Dictionary
+var blank_straws: Array[StrawData]
 var straws: Array[StrawData]
 
 
@@ -14,7 +16,7 @@ func _init(kernel_: KernelData) -> void:
 
 func init_volumes() -> void:
 	for volume in Catalog.volumes:
-		volume_to_matter_to_cornfield[volume] = {}
+		volume_to_matter_to_straw[volume] = {}
 	
 	for matter in Catalog.matters:
 		for volume in Catalog.volumes:

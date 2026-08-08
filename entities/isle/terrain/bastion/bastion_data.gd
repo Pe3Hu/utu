@@ -5,6 +5,7 @@ extends RefCounted
 var terrain: TerrainData
 var fiefdom: DomainData
 var blob: BlobData
+var region: RegionData
 
 var neighbour_to_channel: Dictionary
 

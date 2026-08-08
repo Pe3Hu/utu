@@ -76,17 +76,17 @@ func push_ark_on_top(ark_: Ark) -> void:
 	sort_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC).set_parallel(true)
 	var y = -selected_index * ark_height
 	
-	if ark_.last_animation == Bozo.Ark.DISAPPEAR or ark_.last_animation == Bozo.Ark.ACTIVATE:
-		y *= -1
+	#if ark_.last_animation == Bozo.Ark.DISAPPEAR or ark_.last_animation == Bozo.Ark.ACTIVATE:
+	#	y *= -1
 	
 	sort_tween.tween_property(ark_, "offset_transform_position:y", y, duration)
 	
 	for _i in selected_index:
 		var ark = arks[_i]
-		y = ark.offset_transform_position.y + ark_height
+		y = -ark.offset_transform_position.y + ark_height
 		
-		if ark.last_animation == Bozo.Ark.DISAPPEAR or ark.last_animation == Bozo.Ark.ACTIVATE:
-			y *= -1
+		#if ark.last_animation == Bozo.Ark.DISAPPEAR or ark.last_animation == Bozo.Ark.ACTIVATE:
+		#	y *= -1
 		
 		sort_tween.tween_property(ark, "offset_transform_position:y", y, duration)
 	
@@ -98,11 +98,10 @@ func push_ark_on_top(ark_: Ark) -> void:
 	
 	for _i in arks.size():
 		var ark = arks[_i]
-		%Arks.move_child(ark, _i)
 		ark.offset_transform_position.y = 0.0
-		ark.apply_status(Bozo.Ark.ACTIVATE)#APPEAR DEACTIVATE DISAPPEAR ACTIVATE 
+		%Arks.move_child(ark, _i)
 	
-	#ark_.apply_animation()
+	ark_.apply_animation()
 
 func _input(event) -> void:
 	if event is InputEventKey and event.pressed and not event.echo:

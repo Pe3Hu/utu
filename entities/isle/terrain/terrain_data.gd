@@ -2,7 +2,6 @@ class_name TerrainData
 extends RefCounted
 
 
-
 var isle: IsleData
 var flows: Array[FlowData]
 var channels: Array[ChannelData]
@@ -39,7 +38,6 @@ func init_regions() -> void:
 			var region_size = Catalog.region_sizes[_i % 2]
 			var anchor = corner_anchor * Catalog.BOARD_SIZE + region_anchor
 			add_region(anchor, region_size)
-	
 
 func add_region(anchor_: Vector2i, region_size_: Vector2i) -> void:
 	var coords: Array[Vector2i]
@@ -102,7 +100,6 @@ func init_biomes() -> void:
 			if not options.is_empty():
 				var region = options.pick_random()
 				biome.add_region(region)
-	
 	
 	start_regions = type_to_regions[Bozo.Region.CENTER].duplicate()
 	biome_size = Catalog.biome_sizes[1][0]
@@ -205,12 +202,19 @@ func init_biomes() -> void:
 		return
 	
 	region_coords_exchange()
+	update_bastion_regions() 
 
 func region_coords_exchange() -> void:
 	for region in regions:
 		for neighbour in region.neighbours:
 			if region.biome != neighbour.biome:
 				region.coords_exchange(neighbour)
+
+func update_bastion_regions() -> void:
+	for region in regions:
+		for coord in region.coords:
+			var bastion = coord_to_bastion[coord]
+			bastion.region = region
 
 func init_galores() -> void:
 	var noise = FastNoiseLite.new()

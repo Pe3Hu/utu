@@ -4,6 +4,7 @@ extends RefCounted
 
 var kernel: KernelData
 var atheneum: AtheneumData
+var odeum: OdeumData
 
 var realm: RealmData
 var policy: PolicyData
@@ -17,6 +18,10 @@ func _init() -> void:
 	
 	terrain.init_galores()
 	
-	kernel = KernelData.new(self)
-	atheneum = AtheneumData.new(self)
-	pass
+	var blue_faction = policy.type_to_faction[Bozo.Faction.BLUE]
+	atheneum = blue_faction.atheneum
+	kernel = blue_faction.treasury.kernel
+	odeum = blue_faction.odeum
+	
+	for faction in policy.factions:
+		faction.isle = self

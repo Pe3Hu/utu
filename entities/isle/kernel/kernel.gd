@@ -52,3 +52,11 @@ func deactivate_volumes() -> void:
 		volume.is_active = false
 	
 	activated_volumes.clear()
+
+func test_harvest() -> void:
+	data.grow_harvest()
+	harvest.update_straw_amounts()
+	await get_tree().create_timer(1.0).timeout
+	data.stock_granary()
+	granary.update_straw_amounts()
+	harvest.update_straw_amounts()

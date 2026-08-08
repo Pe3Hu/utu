@@ -16,6 +16,7 @@ anchor_left = 0.5
 anchor_right = 0.5
 offset_bottom = 8.0
 grow_horizontal = 2
+offset_transform_enabled = true
 theme_override_styles/panel = SubResource("StyleBoxFlat_2o6og")
 script = ExtResource("1_is0h4")
 harvest = NodePath("Cornfields/VBox/Harvest")

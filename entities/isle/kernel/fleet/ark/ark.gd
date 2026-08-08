@@ -23,7 +23,6 @@ var duration = 0.8
 var last_animation: Bozo.Ark = Bozo.Ark.APPEAR
 
 
-
 #region init
 func _ready() -> void:
 	await get_tree().process_frame
@@ -36,7 +35,7 @@ func apply_status(status_: Bozo.Ark) -> void:
 	match status_:
 		Bozo.Ark.DISAPPEAR:
 			angle = -PI
-			l = -get_offset_x()
+			l = get_offset_x()
 		Bozo.Ark.APPEAR:
 			angle = 0
 			l = 0
@@ -51,7 +50,7 @@ func apply_status(status_: Bozo.Ark) -> void:
 	apply_offset_transforms(angle, l)
 
 func apply_offset_transforms(angle_: float, l_: float) -> void:
-	rotation = angle_
+	offset_transform_rotation = angle_
 	
 	for volume in volumes:
 		volume.number_node.offset_transform_rotation = -angle_
@@ -64,9 +63,11 @@ func apply_offset_transforms(angle_: float, l_: float) -> void:
 	if get_volume_count() > 0:
 		match last_animation:
 			Bozo.Ark.DISAPPEAR: 
-				pivot_offset.x = Catalog.ARK_PIVOT.x - Catalog.VOLUME_SIZE.x * get_volume_count()
+				offset_transform_pivot.x = Catalog.ARK_PIVOT.x - Catalog.VOLUME_SIZE.x * get_volume_count()
 			Bozo.Ark.ACTIVATE: 
-				pivot_offset.x = Catalog.ARK_PIVOT.x
+				offset_transform_pivot.x = Catalog.ARK_PIVOT.x
+			#Bozo.Ark.APPEAR: 
+				#offset_transform_pivot.x = Catalog.ARK_PIVOT.x
 
 func update_volumes() -> void:
 	#for _i in stamp.intro_values:
@@ -83,7 +84,7 @@ func flip(angle_: float) -> void:
 	
 	flip_tween = create_tween()
 
-	flip_tween.tween_property(self, "rotation", angle_, duration)
+	flip_tween.tween_property(self, "offset_transform_rotation", angle_, duration)
 
 	for volume in volumes:
 		flip_tween.parallel().tween_property(volume.number_node, "offset_transform_rotation", -angle_, duration)
@@ -129,7 +130,7 @@ func apply_animation(clockwise_: bool = true, is_main_: bool = true) -> void:
 				last_animation = next_animation
 				
 				if get_volume_count() > 0:
-					pivot_offset.x += Catalog.VOLUME_SIZE.x * get_volume_count()
+					offset_transform_pivot.x += Catalog.VOLUME_SIZE.x * get_volume_count()
 		Bozo.Ark.DISAPPEAR:
 			if is_main_:
 				fleet.kernel.isle.atheneum.appear_card(stamp)
@@ -137,12 +138,12 @@ func apply_animation(clockwise_: bool = true, is_main_: bool = true) -> void:
 			duration = Gear.appears[Gear.tempo]
 			
 			if get_volume_count() > 0:
-				pivot_offset.x -= Catalog.VOLUME_SIZE.x * get_volume_count()
+				offset_transform_pivot.x -= Catalog.VOLUME_SIZE.x * get_volume_count()
 			
 			var l = get_offset_x()
 			flip(-PI)
 			await flip_tween.finished
-			slide(-l)
+			slide(l)
 			await slide_tween.finished
 			last_animation = next_animation
 			%LeftSpoil.update_texture()
@@ -151,7 +152,7 @@ func apply_animation(clockwise_: bool = true, is_main_: bool = true) -> void:
 			
 			if fleet.arks.front() == self:
 				duration = Gear.activates[Gear.tempo]
-				var l = -%RightSpoil.size.x
+				var l = %RightSpoil.size.x
 				flip(PI)
 				await flip_tween.finished
 				slide(l)

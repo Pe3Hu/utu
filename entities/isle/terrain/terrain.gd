@@ -17,6 +17,8 @@ var data: TerrainData:
 		init_channels()
 		init_blobs()
 		init_biomes()
+		
+		highlight_externals()
 
 var data_to_bastion: Dictionary
 
@@ -37,6 +39,7 @@ func add_bastion(bastion_data_: BastionData) -> void:
 	var bastion = bastion_scene.instantiate()
 	%Bastions.add_child(bastion)
 	bastion.data = bastion_data_
+	data_to_bastion[bastion_data_] = bastion
 
 func init_channels() -> void:
 	Helper.clear_children(%Channels)
@@ -79,6 +82,13 @@ func apply_river_flow() -> void:
 	init_bastions()
 	init_blobs()
 	init_channels()
+
+func highlight_externals() -> void:
+	var faction = isle.data.policy.type_to_faction[Bozo.Faction.BLUE]
+	
+	for bastion_data in faction.externals:
+		var bastion = data_to_bastion[bastion_data]
+		bastion.is_external = true
 
 func _input(event) -> void:
 	if event is InputEventKey and not event.is_echo() and event.is_pressed():

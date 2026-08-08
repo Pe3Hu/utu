@@ -7,6 +7,7 @@ signal amount_changed()
 var cornfield: CornfieldData
 var volume: int
 var matter: int
+var next_amount: int = 0
 var amount: int:
 	set(value_):
 		if amount != value_:
@@ -20,9 +21,10 @@ func _init(cornfield_: CornfieldData, volume_: int, matter_: int, amount_: int =
 	matter = matter_
 	amount = amount_
 	
-	cornfield.straws.append(self)
+	cornfield.blank_straws.append(self)
 	
 	if volume % Digest.matter_to_factor[matter] == 0:
-		cornfield.volume_to_matter_to_cornfield[volume][matter] = self
+		cornfield.volume_to_matter_to_straw[volume][matter] = self
+		cornfield.straws.append(self)
 	else:
 		amount = -1

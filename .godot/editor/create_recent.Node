@@ -1,12 +1,12 @@
-ColorRect
-TextureButton
-PanelContainer
 MarginContainer
 VBoxContainer
 HBoxContainer
+ColorRect
+TextureRect
+PanelContainer
+TextureButton
 Label
 GridContainer
-TextureRect
 Sprite2D
 Panel
 Control

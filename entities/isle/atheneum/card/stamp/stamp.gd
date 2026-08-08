@@ -42,3 +42,24 @@ func update_colors() -> void:
 	%Top.get_theme_stylebox("panel").bg_color = color
 	%Bottom.get_theme_stylebox("panel").bg_color = color
 #endregion
+
+func process_click() -> void:
+	var local_mouse_pos = get_local_mouse_position()
+	var half_height = size.y * 3 / 4
+	if local_mouse_pos.y > half_height:
+		card.spoil()
+		return
+	
+	var half_width = size.x / 2
+	var shift_value = 0
+	
+	if local_mouse_pos.x < half_width:
+		shift_value = -1
+	else:
+		shift_value = 1
+	
+	card.atheneum.shift_card(card, shift_value)
+
+func _on_gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+		process_click()

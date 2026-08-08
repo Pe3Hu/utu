@@ -16,7 +16,6 @@ func _init(atheneum_: AtheneumData) -> void:
 	update_gyre_fol()
 	update_gyre_ere()
 	
-	
 	gyres = [
 		hereafter,
 		actual,
@@ -32,6 +31,10 @@ func update_gyre_ere() -> void:
 	hereafter.ere = bygone
 	actual.ere = hereafter
 	bygone.ere = actual
+
+func reset() -> void:
+	for gyre in gyres:
+		gyre.stamps.clear()
 #endregion
 
 #region refill

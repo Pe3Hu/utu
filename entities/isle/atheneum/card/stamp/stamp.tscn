@@ -43,24 +43,54 @@ corner_detail = 12
 
 [node name="Stamp" type="PanelContainer" unique_id=1990971153 node_paths=PackedStringArray("border")]
 custom_minimum_size = Vector2(144, 0)
-offset_right = 108.0
-offset_bottom = 264.0
+offset_right = 148.0
+offset_bottom = 296.0
 offset_transform_enabled = true
 offset_transform_visual_only = false
 mouse_filter = 1
 mouse_default_cursor_shape = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_j6d1l")
 script = ExtResource("1_sx3sm")
-border = NodePath("MarginContainer/Border")
+border = NodePath("BorderMargin/Border")
 
-[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1487644318]
+[node name="BGMargin" type="MarginContainer" parent="." unique_id=534604577]
+layout_mode = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="BGMargin" unique_id=1423021054]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BGMargin/VBoxContainer2" unique_id=934271515]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="LeftShiftBG" type="ColorRect" parent="BGMargin/VBoxContainer2/HBoxContainer" unique_id=1124159026]
+custom_minimum_size = Vector2(74, 210)
+layout_mode = 2
+color = Color(0.4584052, 0.45840496, 0.45840502, 1)
+
+[node name="RightShiftBG" type="ColorRect" parent="BGMargin/VBoxContainer2/HBoxContainer" unique_id=750688295]
+custom_minimum_size = Vector2(74, 210)
+layout_mode = 2
+color = Color(0.67481464, 0.67481464, 0.6748146, 1)
+
+[node name="DesappearBG" type="ColorRect" parent="BGMargin/VBoxContainer2" unique_id=376785594]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+color = Color(0.288518, 0.288518, 0.2885179, 1)
+
+[node name="BorderMargin" type="MarginContainer" parent="." unique_id=1487644318]
 layout_mode = 2
 theme_override_constants/margin_left = -4
 theme_override_constants/margin_top = -4
 theme_override_constants/margin_right = -4
 theme_override_constants/margin_bottom = -4
 
-[node name="Border" type="Panel" parent="MarginContainer" unique_id=860642714]
+[node name="Border" type="Panel" parent="BorderMargin" unique_id=860642714]
 layout_mode = 2
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_nwofj")
@@ -153,3 +183,5 @@ offset_bottom = 16.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_o6mtg")
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]

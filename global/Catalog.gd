@@ -155,7 +155,7 @@ const shrines = [
 
 #region realm
 const TIDE_AMOUNT: int = 3
-const DEFAULT_RAMPART: int = 10
+const DEFAULT_RAMPART: int = 11
 const BASTION_SIZE: Vector2 = Vector2(48, 48)
 const REALM_SIZE: Vector2i = BOARD_SIZE * 2
 

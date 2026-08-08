@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="SourceData" format=3 uid="uid://cu2j70ti6fpv2"]
+
+[ext_resource type="Script" uid="uid://dvlf3ko8pqwro" path="res://entities/isle/terrain/biome/source/source_data.gd" id="1_o1u7r"]
+
+[resource]
+script = ExtResource("1_o1u7r")
+biome = 32
+matter = 1
+pure_volumes = Array[int]([2, 4, 8, 32])
+pure_shares = Array[int]([30, 16, 14, 12])
+mix_volumes = Array[int]([6, 10, 12, 18, 20, 30])
+mix_shares = Array[int]([10, 8, 6, 4, 2, 1])
+metadata/_custom_type_script = "uid://dvlf3ko8pqwro"
