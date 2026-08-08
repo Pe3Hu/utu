@@ -39,5 +39,4 @@ func init_cantos() -> void:
 					Bozo.Tune.OUTRO:
 						if second.can_outro(pulse):
 							var _canto = CantoData.new(self, joint, first, null, second)
-
 #endregion

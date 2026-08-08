@@ -43,3 +43,14 @@ offset_top = 6.0
 offset_right = 42.0
 offset_bottom = 42.0
 color = Color(1, 0.25, 0.25, 1)
+
+[node name="PressButton" type="TextureButton" parent="." unique_id=1495354097]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(44, 44)
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 42.0
+offset_bottom = 42.0
+texture_normal = ExtResource("4_fr1ao")
+
+[connection signal="pressed" from="PressButton" to="." method="_on_press_button_pressed"]

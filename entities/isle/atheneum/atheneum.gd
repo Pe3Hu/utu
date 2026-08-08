@@ -77,6 +77,19 @@ func shift_card(card_: Card, shift_: int) -> void:
 	card_.offset_transform_position.x = 0
 	card_.z_index = 0
 	%Cards.move_child(card_, new_index)
+	cards.erase(card_)
+	cards.insert(new_index, card_)
+	
+	update_stamps()
+
+func update_stamps() -> void:
+	var stamp_datas = []
+	
+	for card in cards:
+		stamp_datas.append(card.stamp.data)
+	
+	data.tribunal.actual.stamps.sort_custom(func (a, b): return stamp_datas.find(a) < stamp_datas.find(b))
+	data.recalc_scenario()
 
 func sort_cards(with_animation_: bool = true) -> void:
 	if shift_tween and shift_tween.is_running(): return
@@ -165,7 +178,6 @@ func jalousie(card_: Card, is_inside_: bool = true) -> void:
 				l *= -1
 			
 			shift_tween.tween_property(neighbour_card, "offset_transform_position:x", l, duration)
-
 
 func get_card_shift_length(card_: Card) -> int:
 	return card_.size.x + %Cards.get("theme_override_constants/separation")

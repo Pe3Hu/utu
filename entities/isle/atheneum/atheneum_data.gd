@@ -70,6 +70,14 @@ func init_permutations() -> void:
 	if faction.type == Bozo.Faction.BLUE:
 		print([scenarios.front().total_sum, scenarios.front().pulses])
 	faction.odeum.scenario = scenarios.front()
+
+func recalc_scenario() -> void:
+	var spoils: Array[StampData]
+	var permutation = tribunal.actual.stamps.duplicate()
+	faction.odeum.scenario = ScenarioData.new(self, permutation, spoils)
+	
+	if faction.type == Bozo.Faction.BLUE:
+		print([faction.odeum.scenario.total_sum, faction.odeum.scenario.pulses])
 	
 
 func init_test() -> void:

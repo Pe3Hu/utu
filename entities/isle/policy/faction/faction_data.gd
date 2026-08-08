@@ -20,6 +20,7 @@ var internals: Array[BastionData]
 var externals: Array[BastionData]
 
 
+#region init
 func _init(policy_: PolicyData, type_: Bozo.Faction) -> void:
 	policy = policy_
 	type = type_
@@ -46,7 +47,9 @@ func init_shrines() -> void:
 					order_to_shrines[order].append(coord)
 	
 	capture_default_shrines()
+#endregion
 
+#region capture
 func capture_default_shrines() -> void:
 	for coord in order_to_shrines[0]:
 		var shrine = captured_shrine(coord)
@@ -71,3 +74,4 @@ func update_externals(bastion_: BastionData) -> void:
 	for fiefdom in bastion_.fiefdom.neighbours:
 		if not externals.has(fiefdom.bastion) and not internals.has(fiefdom.bastion):
 			externals.append(fiefdom.bastion)
+#endregion

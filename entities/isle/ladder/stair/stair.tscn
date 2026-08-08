@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://dhgdl75u1j75h"]
+
+[ext_resource type="Script" uid="uid://clmv2e7tl7rj2" path="res://entities/isle/ladder/stair/stair.gd" id="1_1kj0j"]
+[ext_resource type="Texture2D" uid="uid://c1dbbsc7army1" path="res://entities/isle/terrain/flow/blob/images/circle.png" id="2_e0yij"]
+
+[node name="Stair" type="Node2D" unique_id=1053288366]
+z_index = 11
+script = ExtResource("1_1kj0j")
+
+[node name="BG" type="Sprite2D" parent="." unique_id=1536414301]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_e0yij")
+
+[node name="Number" type="Sprite2D" parent="." unique_id=437639869]
+unique_name_in_owner = true

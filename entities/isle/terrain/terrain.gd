@@ -39,6 +39,7 @@ func add_bastion(bastion_data_: BastionData) -> void:
 	var bastion = bastion_scene.instantiate()
 	%Bastions.add_child(bastion)
 	bastion.data = bastion_data_
+	bastion.terrain = self
 	data_to_bastion[bastion_data_] = bastion
 
 func init_channels() -> void:

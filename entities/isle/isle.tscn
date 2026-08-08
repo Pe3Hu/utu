@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bjkk4jccttvwb" path="res://entities/isle/odeum/odeum.tscn" id="6_gqudx"]
 [ext_resource type="PackedScene" uid="uid://c4kju7nsoxlr5" path="res://entities/isle/realm/realm.tscn" id="6_y02by"]
 [ext_resource type="PackedScene" uid="uid://da8oif1q4gcaq" path="res://entities/isle/terrain/terrain.tscn" id="7_kwh8c"]
+[ext_resource type="PackedScene" uid="uid://cwon2bom7u1m2" path="res://entities/isle/ladder/ladder.tscn" id="8_6kinf"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_od30j"]
 shader = ExtResource("2_5o34a")
@@ -103,6 +104,7 @@ mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_kwh8c")
 
 [node name="MarginContainer" type="MarginContainer" parent="HBox/CardContainer" unique_id=326275716]
+visible = false
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 32
@@ -131,6 +133,8 @@ size_flags_vertical = 4
 [node name="Atheneum" parent="HBox/CardContainer/MarginContainer" unique_id=1578730 node_paths=PackedStringArray("isle") instance=ExtResource("5_dd0e4")]
 layout_mode = 2
 isle = NodePath("../../../..")
+
+[node name="Ladder" parent="HBox/CardContainer" unique_id=1091981830 instance=ExtResource("8_6kinf")]
 
 [node name="RealmContainer" type="PanelContainer" parent="HBox" unique_id=1236269852]
 custom_minimum_size = Vector2(960, 1080)

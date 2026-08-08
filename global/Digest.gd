@@ -123,6 +123,146 @@ const ark_to_flag_to_ark = {
 	},
 }
 
+const volume_to_matter_to_volume = {
+	2: {
+		Bozo.Matter.GAS: 4,
+		Bozo.Matter.LIQUID: 5,
+	},
+	3: {
+		Bozo.Matter.GAS: 5,
+		Bozo.Matter.LIQUID: 6,
+		Bozo.Matter.SOLID: 8,
+	},
+	4: {
+		Bozo.Matter.GAS: 6,
+		Bozo.Matter.SOLID: 9,
+	},
+	5: {
+		Bozo.Matter.LIQUID: 8,
+		Bozo.Matter.SOLID: 10,
+	},
+	6: {
+		Bozo.Matter.GAS: 8,
+		Bozo.Matter.LIQUID: 9,
+	},
+	8: {
+		Bozo.Matter.GAS: 10,
+	},
+	9: {
+		Bozo.Matter.LIQUID: 12,
+	},
+	10: {
+		Bozo.Matter.GAS: 12,
+		Bozo.Matter.SOLID: 15,
+	},
+	12: {
+		Bozo.Matter.LIQUID: 15,
+	},
+	15: {
+		Bozo.Matter.LIQUID: 18,
+		Bozo.Matter.SOLID: 20,
+	},
+	18: {
+		Bozo.Matter.GAS: 20,
+	},
+	20: {
+		Bozo.Matter.SOLID: 25,
+	},
+	25: {
+		Bozo.Matter.GAS: 27,
+		Bozo.Matter.SOLID: 30,
+	},
+	27: {
+		Bozo.Matter.LIQUID: 30,
+		Bozo.Matter.SOLID: 32,
+	},
+	30: {
+		Bozo.Matter.GAS: 32,
+	},
+	32: {
+		#Bozo.Matter.GAS: ,
+		#Bozo.Matter.LIQUID: ,
+		#Bozo.Matter.SOLID: ,
+	},
+}
+
+const volume_to_coord = {
+	2: Vector2i(2, 0),
+	3: Vector2i(2, 1),
+	4: Vector2i(4, 1),
+	5: Vector2i(0, 1),
+	6: Vector2i(3, 2),
+	8: Vector2i(1, 2),
+	9: Vector2i(4, 3),
+	10: Vector2i(0, 3),
+	12: Vector2i(2, 3),
+	15: Vector2i(1, 4),
+	18: Vector2i(3, 4),
+	20: Vector2i(2, 5),
+	25: Vector2i(2, 6),
+	27: Vector2i(3, 7),
+	30: Vector2i(1, 7),
+	32: Vector2i(2, 8)
+}
+
+var side_to_axis_to_side = {
+	0: {
+		0: 4,
+		1: 3,
+		2: 0
+	},
+	1: {
+		0: 0,
+		1: 2,
+		2: 1
+	},
+	2: {
+		0: 0,
+		1: 0,
+		2: 2
+	},
+	3: {
+		0: 1,
+		1: 5,
+		2: 3
+	},
+	4: {
+		0: 5,
+		1: 3,
+		2: 4
+	},
+	5: {
+		0: 1,
+		1: 2,
+		2: 5
+	}
+}
+
+var side_transition_table: Dictionary = {
+	# Ось X (индекс 0)
+	"0_0": 4,  # Front -> Top
+	"1_0": 0,  # Bottom -> Back 5
+	"2_0": 0,  # Left -> Front
+	"3_0": 1,  # Right -> Bottom
+	"4_0": 5,  # Top -> Back
+	"5_0": 1,  # Back -> Bottom
+
+	# Ось Y (индекс 1)
+	"0_1": 3,  # Front -> Right
+	"1_1": 2,  # Bottom -> Left
+	"2_1": 0,  # Left -> Bottom 1
+	"3_1": 5,  # Right -> Top 4
+	"4_1": 3,  # Top -> Right
+	"5_1": 2,  # Back -> Left
+
+	# Ось Z (индекс 2)
+	"0_2": 0,  # Front -> Front
+	"1_2": 1,  # Bottom -> Bottom
+	"2_2": 2,  # Left -> Left
+	"3_2": 3,  # Right -> Right
+	"4_2": 4,  # Top -> Top
+	"5_2": 5,  # Back -> Back
+}
 
 #region color
 var matter_to_color = {
@@ -155,6 +295,14 @@ var biome_to_color = {
 func _init() -> void:
 	init_shape_colors()
 	init_intros()
+	
+	for volume in volume_to_matter_to_volume:
+		for matter in volume_to_matter_to_volume[volume]:
+			var test_volume = volume + matter_to_factor[matter]
+			var original_volume = volume_to_matter_to_volume[volume][matter]
+			
+			if original_volume != test_volume:
+				pass
 
 func init_shape_colors() -> void:
 	shape_to_color.clear()

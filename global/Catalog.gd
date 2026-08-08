@@ -206,3 +206,12 @@ const VOLUME_SIZE = Vector2(36, 36)
 const VOLUME_BORDER: float = 4.0
 const ARK_PIVOT = Vector2(124, 18)
 const SPOIL_CORNER: int = 18
+
+const LADDER_SIZE = Vector2i(5, 9) 
+const STAIR_SIZE = Vector2(64, 64)
+
+var axes: Array[Vector3] = [
+	Vector3(90, 0, 0),
+	Vector3(0, 90, 0),
+	Vector3(0, 0, 90)
+]

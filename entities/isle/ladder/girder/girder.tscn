@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://b8imnf6o57n7v"]
+
+[ext_resource type="Script" uid="uid://w0clrnuq27ys" path="res://entities/isle/ladder/girder/girder.gd" id="1_mjstv"]
+[ext_resource type="Shader" uid="uid://b05l8dd6sduyf" path="res://entities/isle/ladder/girder/girder.gdshader" id="1_uwkgs"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6r0os"]
+resource_local_to_scene = true
+shader = ExtResource("1_uwkgs")
+shader_parameter/frequency = 2.0
+shader_parameter/speed = 6.0
+shader_parameter/direction = -1.0
+shader_parameter/color_even = Color(1, 1, 1, 1)
+shader_parameter/color_odd = Color(0, 0, 0, 1)
+shader_parameter/opacity = 1.0
+
+[node name="Girder" type="Line2D" unique_id=180810098]
+material = SubResource("ShaderMaterial_6r0os")
+width = 16.0
+texture_mode = 1
+script = ExtResource("1_mjstv")
