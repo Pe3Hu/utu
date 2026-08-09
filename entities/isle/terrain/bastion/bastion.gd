@@ -8,8 +8,7 @@ var data: BastionData:
 		data = value_
 		
 		position = Vector2(data.fiefdom.coords.front()) * Catalog.BASTION_SIZE
-		update_color()
-		update_rampart()
+		connect_signals()
 
 @export var terrain: Terrain
 
@@ -18,6 +17,8 @@ var is_external: bool:
 		is_external = value_
 		seed_select_shader()
 
+
+#region init
 func seed_select_shader() -> void:
 	%Select.visible = is_external
 	var speed = Helper.rng.randf_range(2.5, 4.5)
@@ -30,19 +31,59 @@ func seed_select_shader() -> void:
 	var pos = Helper.rng.randf_range(0, 1.0)
 	%Select.material.set_shader_parameter("position", pos)
 
-func update_rampart() -> void:
+func connect_signals() -> void:
+	data.rampart_changed.connect(_on_rampart_changed)
+	_on_rampart_changed()
+	data.faction_changed.connect(_on_faction_changed)
+	_on_faction_changed()
+	if data.settlement:
+		data.settlement.stepladder.volume_changed.connect(_on_volume_changed)
+		_on_volume_changed()
+
+func _on_rampart_changed() -> void:
+	if data.settlement:
+		frame_coords = Catalog.NO_RAMPART_COORD
+		_on_volume_changed()
+		return
+	
 	frame_coords = Helper.get_coord_based_on_value(data.current_rampart)
 
-func update_color() -> void:
+func _on_volume_changed() -> void:
+	%CrownBG.visible = data.settlement != null
+	%CrownPart.visible = data.settlement != null
+	var volume = data.settlement.stepladder.current_volume
+	var shape = Digest.volume_to_shape[volume]
+	var stage = Digest.volume_to_stage[volume]
+	%CrownBG.texture = load("res://entities/isle/terrain/bastion/images/crown/%d/%d.png" % [shape, shape])
+	%CrownPart.texture = load("res://entities/isle/terrain/bastion/images/crown/%d/%d %d.png" % [shape, shape, stage])
+
+func _on_faction_changed() -> void:
 	#var g = data.galore
 	#%Background.color = Color.from_hsv(1.0, 0.0, 1-g)
 	#%Background.color = Color.from_hsv(g, 1.0, 1.0)
-	%Background.color = Digest.faction_to_color[data.faction]
+	%Background.color = Digest.faction_to_color[data.faction.type]
+#endregion
 
 func _on_press_button_pressed() -> void:
+	try_capture()
+
+func try_capture() -> void:
 	if !is_external: return
-	var blue_faction = data.fiefdom.realm.isle.policy.type_to_faction[Bozo.Faction.BLUE]
-	blue_faction.captured_bastion(data)
-	update_color()
-	is_external = false
-	terrain.highlight_externals()
+	if not terrain.isle.odeum.current_canto: return
+	var canto_volume = terrain.isle.odeum.current_canto.pulse.value
+	
+	if data.current_rampart > canto_volume:
+		data.current_rampart -= canto_volume
+	else:
+		var blue_faction = data.fiefdom.realm.isle.policy.type_to_faction[Bozo.Faction.BLUE]
+		blue_faction.captured_bastion(data)
+		
+		if data.current_rampart != canto_volume:
+			data.current_rampart = floor(data.limit_rampart * 0.5)
+		else:
+			data.current_rampart = data.limit_rampart
+		
+		is_external = false
+		terrain.highlight_externals()
+	
+	terrain.isle.odeum.current_canto.voice()

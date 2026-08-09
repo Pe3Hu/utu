@@ -19,6 +19,8 @@ var available_shrines: Array[BastionData]
 var internals: Array[BastionData]
 var externals: Array[BastionData]
 
+var settlements: Array[SettlementData]
+
 
 #region init
 func _init(policy_: PolicyData, type_: Bozo.Faction) -> void:
@@ -60,14 +62,19 @@ func captured_shrine(coord_: Vector2i) -> BastionData:
 	var bastion = policy.isle.realm.coord_to_fiefdom[coord_].bastion
 	captured_shrines.append(bastion)
 	captured_bastion(bastion)
+	bastion.establish_settlement()
 	return bastion
 
 func captured_bastion(bastion_: BastionData) -> void:
-	bastion_.faction = type
+	if bastion_.faction != null:
+		pass
+	
+	bastion_.faction = self
 	internals.append(bastion_)
 	update_externals(bastion_)
 
 func update_externals(bastion_: BastionData) -> void:
+	if type == Bozo.Faction.GREEN: return
 	if externals.has(bastion_):
 		externals.erase(bastion_)
 	

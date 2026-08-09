@@ -29,7 +29,7 @@ corner_detail = 12
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qhul4"]
 
-[node name="Isle" type="Control" unique_id=1469181342 node_paths=PackedStringArray("kernel", "atheneum", "odeum", "realm", "terrain")]
+[node name="Isle" type="Control" unique_id=1469181342 node_paths=PackedStringArray("kernel", "atheneum", "odeum", "realm", "terrain", "stepladder")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -43,6 +43,7 @@ atheneum = NodePath("HBox/CardContainer/MarginContainer/Atheneum")
 odeum = NodePath("HBox/CardContainer/MarginContainer/HBoxContainer/Odeum")
 realm = NodePath("HBox/RealmContainer/Realm")
 terrain = NodePath("HBox/RealmContainer/Terrain")
+stepladder = NodePath("HBox/CardContainer/Stepladder")
 
 [node name="BG" type="ColorRect" parent="." unique_id=81403246]
 material = SubResource("ShaderMaterial_od30j")
@@ -134,7 +135,7 @@ size_flags_vertical = 4
 layout_mode = 2
 isle = NodePath("../../../..")
 
-[node name="Ladder" parent="HBox/CardContainer" unique_id=1091981830 instance=ExtResource("8_6kinf")]
+[node name="Stepladder" parent="HBox/CardContainer" unique_id=1091981830 instance=ExtResource("8_6kinf")]
 
 [node name="RealmContainer" type="PanelContainer" parent="HBox" unique_id=1236269852]
 custom_minimum_size = Vector2(960, 1080)

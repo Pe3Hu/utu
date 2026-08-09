@@ -1,16 +1,9 @@
 [gd_scene format=3 uid="uid://cwon2bom7u1m2"]
 
 [ext_resource type="Script" uid="uid://eeqtbqgfomex" path="res://entities/isle/ladder/stepladder.gd" id="1_dxj4w"]
-[ext_resource type="PackedScene" uid="uid://t1702e0u2fqx" path="res://entities/isle/ladder/fake/fake_dice.tscn" id="2_sryxx"]
 
 [node name="Stepladder" type="Node2D" unique_id=1091981830]
 script = ExtResource("1_dxj4w")
-
-[node name="FakeDice" parent="." unique_id=518126039 instance=ExtResource("2_sryxx")]
-offset_left = 533.0
-offset_top = 257.0
-offset_right = 597.0
-offset_bottom = 321.0
 
 [node name="Girders" type="Node2D" parent="." unique_id=483646083]
 unique_name_in_owner = true

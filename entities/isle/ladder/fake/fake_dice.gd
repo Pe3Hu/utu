@@ -5,8 +5,8 @@ extends PanelContainer
 @export var digit_cube: ColorRect
 @export var background_cube: ColorRect
 
-@export var roll_min_steps: int = 1
-@export var roll_max_steps: int = 1
+@export var roll_min_steps: int = 4
+@export var roll_max_steps: int = 6
 @export var step_duration: float = 0.25
 
 var digit_tween: Tween
@@ -19,10 +19,12 @@ var steps: Array = []
 
 var current_side: int = 0
 
+
 func _ready() -> void:
 	Helper.rng.randomize()
 	reset_cube()
 
+#region roll
 func start_roll() -> void:
 	if background_tween and background_tween.is_running(): return
 	
@@ -36,6 +38,7 @@ func generate_steps() -> Array:
 	var result: Array = []
 	var prev_axis: int = -1
 	
+	current_side = get_visible_face()
 	var local_side: int = current_side
 	
 	for _i in n:
@@ -148,12 +151,13 @@ func _on_roll_finished() -> void:
 	current_rotation = target_rotation
 	background_cube.material.set_shader_parameter("rotation_deg", current_rotation)
 	digit_cube.material.set_shader_parameter("rotation_deg", current_rotation)
-	var face = get_visible_face()
-	print([current_rotation, face])
+	
+	#print([current_rotation, current_side])
 	apply_normal()
-	face = get_visible_face()
-	print([current_rotation, face])
+	#print([current_rotation, current_side])
+#endregion
 
+#region normal
 func get_visible_face() -> int:
 	current_rotation.x = fmod(current_rotation.x, 360.0)
 	current_rotation.y = fmod(current_rotation.y, 360.0)
@@ -192,6 +196,7 @@ func apply_normal() -> void:
 	)
 	
 	current_rotation = end
+	current_side = get_visible_face()
 
 func get_angle_diff(a: Vector3, b: Vector3) -> float:
 	#var diff = Vector3.ZERO
@@ -233,6 +238,7 @@ func find_closest_rotation() -> Vector3:
 			best_normal = normal
 	
 	return best_normal
+#endregion
 
 func reset_cube() -> void:
 	current_rotation = Vector3.ZERO
@@ -244,13 +250,14 @@ func reset_cube() -> void:
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed and not event.echo:
 		if event.keycode == KEY_Q:
-			prev_index()
-			#start_roll()
-		if event.keycode == KEY_E:
-			next_index()
-		if event.keycode == KEY_S:
-			apply_mirror()
+			#prev_index()
+			start_roll()
+		#if event.keycode == KEY_E:
+			#next_index()
+		#if event.keycode == KEY_S:
+			#apply_mirror()
 
+#region test
 var test_index = 7
 var test_face = 2
 
@@ -289,3 +296,4 @@ func prev_index() -> void:
 		test_index = keys.size() - 1
 	
 	test_data()
+#endregion

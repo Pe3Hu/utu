@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://l33v8egpk708" path="res://entities/dice/images/3.png" id="3_ijik7"]
 [ext_resource type="Texture2D" uid="uid://bcbhtkat612er" path="res://entities/dice/images/1.png" id="4_qcfxj"]
 [ext_resource type="Texture2D" uid="uid://d01e2vnow4a64" path="res://entities/dice/images/2.png" id="5_ffrhj"]
-[ext_resource type="Texture2D" uid="uid://bcn2au2ll6o8j" path="res://entities/dice/images/7.png" id="5_i50pc"]
+[ext_resource type="Texture2D" uid="uid://bc5p2otv5ik4f" path="res://entities/dice/images/0.png" id="5_i50pc"]
 [ext_resource type="Texture2D" uid="uid://b7il2bmeaxm01" path="res://entities/dice/images/4.png" id="6_eb5lj"]
 [ext_resource type="Texture2D" uid="uid://clsqeoqwua702" path="res://entities/dice/images/5.png" id="7_hdbth"]
 

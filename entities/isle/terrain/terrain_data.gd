@@ -277,7 +277,7 @@ func init_flows() -> void:
 	reset()
 	
 	for bastion in bastions:
-		if bastion.faction != Bozo.Faction.GREEN:
+		if bastion.faction and bastion.faction.type != Bozo.Faction.GREEN:
 			continue
 		if not rampart_to_bastions.has(bastion.current_rampart):
 			rampart_to_bastions[bastion.current_rampart] = []

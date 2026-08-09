@@ -20,6 +20,12 @@ func init_factions() -> void:
 	
 	for faction in Catalog.factions:
 		add_faction(faction)
+	
+	var green_faction = type_to_faction[Bozo.Faction.GREEN]
+	
+	for bastion in isle.terrain.bastions:
+		if bastion.faction == null:
+			green_faction.captured_bastion(bastion)
 
 func add_faction(type_: Bozo.Faction) -> void:
 	var faction = FactionData.new(self, type_)

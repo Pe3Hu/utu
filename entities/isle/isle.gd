@@ -14,9 +14,15 @@ var data: IsleData:
 @export var realm: Realm
 @export var terrain: Terrain
 
+@export var stepladder: Stepladder
+
 
 func _ready() -> void:
 	data = IsleData.new()
+	
+	var faction = data.policy.type_to_faction[Bozo.Faction.BLUE]
+	var settlement = faction.settlements.front()
+	stepladder.data = settlement.stepladder
 
 func connect_datas() -> void:
 	kernel.data = data.kernel

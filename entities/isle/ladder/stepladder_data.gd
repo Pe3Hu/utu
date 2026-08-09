@@ -4,12 +4,13 @@ extends RefCounted
 
 signal volume_changed
 
-var ladder: LadderData
+var settlement: SettlementData
 
-var current_volume: int = 2:
+var current_volume: int = 3:
 	set(value_):
 		current_volume = value_
 		volume_changed.emit()
 
-func _init() -> void:
-	ladder = Helper.ladder
+
+func _init(settlement_: SettlementData) -> void:
+	settlement = settlement_

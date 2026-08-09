@@ -16,6 +16,11 @@ intro = NodePath("VBox/Tunes/IntroTune")
 verse = NodePath("VBox/Tunes/VerseTune")
 outro = NodePath("VBox/Tunes/OutroTune")
 
+[node name="Selection" type="ColorRect" parent="." unique_id=27016779]
+unique_name_in_owner = true
+layout_mode = 2
+color = Color(0.47788018, 0.47788012, 0.47788012, 1)
+
 [node name="VBox" type="HBoxContainer" parent="." unique_id=95371064]
 layout_mode = 2
 theme_override_constants/separation = 12
@@ -44,3 +49,8 @@ canto = NodePath("../../..")
 
 [node name="Pulse" parent="VBox" unique_id=30909880 instance=ExtResource("2_hbuk6")]
 layout_mode = 2
+
+[node name="Button" type="TextureButton" parent="." unique_id=1190056901]
+layout_mode = 2
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

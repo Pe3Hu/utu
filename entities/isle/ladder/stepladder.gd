@@ -1,4 +1,4 @@
-class_name Ladder
+class_name Stepladder
 extends Node2D
 
 
@@ -19,7 +19,6 @@ var volume_to_stair: Dictionary
 
 #region init
 func _ready() -> void:
-	data = StepladderData.new()
 	position = get_parent().size / 2
 	position -= Vector2(Catalog.LADDER_SIZE) * Catalog.STAIR_SIZE / 2
 
@@ -35,7 +34,7 @@ func _on_volume_changed() -> void:
 	current_stair.is_current = true
 
 func init_stairs() -> void:
-	for stair_data in data.ladder.stairs:
+	for stair_data in Helper.ladder.stairs:
 		add_stair(stair_data)
 
 func add_stair(stair_data_: StairData) -> void:
@@ -45,7 +44,7 @@ func add_stair(stair_data_: StairData) -> void:
 	volume_to_stair[stair_data_.volume] = stair
 
 func init_girders() -> void:
-	for girder_data in data.ladder.girders:
+	for girder_data in Helper.ladder.girders:
 		add_girder(girder_data)
 
 func add_girder(girder_data_: GirderData) -> void:

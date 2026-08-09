@@ -10,7 +10,7 @@ var volume_to_stair: Dictionary
 var current_volume: StairData
 
 
-
+#region init
 func _init() -> void:
 	init_stairs()
 	init_girders()
@@ -25,3 +25,4 @@ func init_girders() -> void:
 		
 		for matter in Digest.volume_to_matter_to_volume[volume]:
 			var _girder = GirderData.new(self, stair, matter)
+#endregion

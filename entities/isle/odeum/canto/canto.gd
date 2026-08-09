@@ -9,11 +9,23 @@ var data: CantoData:
 		
 		connect_datas()
 
+var odeum: Odeum
+
 @export var pulse: Pulse
 
 @export var intro: Tune
 @export var verse: Tune
 @export var outro: Tune
+
+var is_selected: bool = false:
+	set(value_):
+		is_selected = value_
+		
+		match is_selected:
+			true:
+				%Selection.color = Color.SLATE_GRAY
+			false:
+				%Selection.color = Color.LIGHT_GRAY
 
 
 func connect_datas() -> void:
@@ -31,3 +43,22 @@ func connect_datas() -> void:
 		outro.visible = true
 	else:
 		outro.visible = false
+
+func _on_button_pressed() -> void:
+	update_selection()
+
+func update_selection() -> void:
+	if odeum.current_canto == self: return
+	if odeum.current_canto:
+		odeum.current_canto.is_selected = false
+	
+	odeum.current_canto = self
+	is_selected = true
+
+func voice() -> void:
+	data.odeum.cantos.erase(data)
+	get_parent().remove_child(self)
+	queue_free()
+	
+	if odeum.current_canto:
+		odeum.current_canto = null

@@ -78,6 +78,7 @@ const sum_to_grades = {
 }
 #endregion
 
+#region realm
 const flag_to_regard = {
 	true: Bozo.Regard.ALLY,
 	false: Bozo.Regard.ENEMY
@@ -94,7 +95,9 @@ const direction_to_diagonal = {
 	Vector2i(0, 1): [Vector2i(-1, 1), Vector2i(1, 1)],
 	Vector2i(-1, 0): [Vector2i(-1, -1), Vector2i(-1, 1)],
 }
+#endregion
 
+#region canto
 const tune_to_stake = {
 	Bozo.Tune.INTRO: Bozo.Stake.RIGHT,
 	Bozo.Tune.VERSE: Bozo.Stake.LEFT,
@@ -105,7 +108,9 @@ const tune_to_math = {
 	Bozo.Tune.VERSE: Bozo.Math.PLUS,
 	Bozo.Tune.OUTRO: Bozo.Math.MULTIPLY,
 }
+#endregion
 
+#region fleet
 const ark_to_flag_to_ark = {
 	Bozo.Ark.DISAPPEAR: {
 		true: Bozo.Ark.APPEAR,
@@ -187,24 +192,67 @@ const volume_to_matter_to_volume = {
 }
 
 const volume_to_coord = {
-	2: Vector2i(2, 0),
-	3: Vector2i(2, 1),
-	4: Vector2i(4, 1),
-	5: Vector2i(0, 1),
-	6: Vector2i(3, 2),
-	8: Vector2i(1, 2),
-	9: Vector2i(4, 3),
-	10: Vector2i(0, 3),
-	12: Vector2i(2, 3),
+	2: Vector2i(2, 8),
+	3: Vector2i(2, 7),
+	4: Vector2i(4, 7),
+	5: Vector2i(0, 7),
+	6: Vector2i(3, 6),
+	8: Vector2i(1, 6),
+	9: Vector2i(4, 5),
+	10: Vector2i(0, 5),
+	12: Vector2i(2, 5),
 	15: Vector2i(1, 4),
 	18: Vector2i(3, 4),
-	20: Vector2i(2, 5),
-	25: Vector2i(2, 6),
-	27: Vector2i(3, 7),
-	30: Vector2i(1, 7),
-	32: Vector2i(2, 8)
+	20: Vector2i(2, 3),
+	25: Vector2i(2, 2),
+	27: Vector2i(3, 1),
+	30: Vector2i(1, 1),
+	32: Vector2i(2, 0)
+}
+#endregion
+
+#region ladder
+const volume_to_shape = {
+	2: 5,
+	3: 5,
+	4: 5,
+	5: 5,
+	6: 5,
+	8: 5,
+	9: 6,
+	10: 6,
+	12: 6,
+	15: 6,
+	18: 6,
+	20: 6,
+	25: 4,
+	27: 4,
+	30: 4,
+	32: 4
 }
 
+const volume_to_stage = {
+	2: 0,
+	3: 2,
+	4: 3,
+	5: 1,
+	6: 5,
+	8: 4,
+	9: 2,
+	10: 0,
+	12: 1,
+	15: 3,
+	18: 4,
+	20: 5,
+	25: 0,
+	27: 2,
+	30: 1,
+	32: 3
+	
+}
+#endregion
+
+#region fake dice
 var side_to_axis_to_side = {
 	0: {
 		0: 4,
@@ -381,7 +429,7 @@ var normal_to_mirror = {
 	Vector3(90.0, 0.0, 180.0): Vector3(90.0, 90.0, 90.0),
 	Vector3(90.0, 180.0, 0.0): Vector3(90.0, 90.0, 90.0),
 }
-
+#endregion
 
 #region color
 var matter_to_color = {

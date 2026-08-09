@@ -194,18 +194,20 @@ const regions = [
 ]
 #endregion
 
-
+#region card
 const JOINT_SIZE = Vector2(36, 36)
 const JOINT_OFFEST: float = 4.0
-#const default_stamp_indexs = [[0],[1],[2],[3],[4],[5]]
 const GYRE_ACTUAL_STAMP_SIZE = 4
 
 const stakes = [Bozo.Stake.LEFT, Bozo.Stake.RIGHT]
+#endregion
 
+#region fleet
 const VOLUME_SIZE = Vector2(36, 36)
 const VOLUME_BORDER: float = 4.0
 const ARK_PIVOT = Vector2(124, 18)
 const SPOIL_CORNER: int = 18
+#endregion
 
 const LADDER_SIZE = Vector2i(5, 9) 
 const STAIR_SIZE = Vector2(64, 64)
@@ -215,3 +217,5 @@ var axes: Array[Vector3] = [
 	Vector3(0, 90, 0),
 	Vector3(0, 0, 90)
 ]
+
+const NO_RAMPART_COORD = Vector2i(9, 10)
