@@ -5,9 +5,9 @@
 [ext_resource type="Texture2D" uid="uid://l33v8egpk708" path="res://entities/dice/images/3.png" id="3_ijik7"]
 [ext_resource type="Texture2D" uid="uid://bcbhtkat612er" path="res://entities/dice/images/1.png" id="4_qcfxj"]
 [ext_resource type="Texture2D" uid="uid://d01e2vnow4a64" path="res://entities/dice/images/2.png" id="5_ffrhj"]
+[ext_resource type="Texture2D" uid="uid://bcn2au2ll6o8j" path="res://entities/dice/images/7.png" id="5_i50pc"]
 [ext_resource type="Texture2D" uid="uid://b7il2bmeaxm01" path="res://entities/dice/images/4.png" id="6_eb5lj"]
 [ext_resource type="Texture2D" uid="uid://clsqeoqwua702" path="res://entities/dice/images/5.png" id="7_hdbth"]
-[ext_resource type="Texture2D" uid="uid://bc5p2otv5ik4f" path="res://entities/dice/images/0.png" id="8_vloy5"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lxk3t"]
 shader = ExtResource("2_i50pc")
@@ -24,13 +24,13 @@ shader_parameter/outline_width = 0.01
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_60rxr"]
 shader = ExtResource("2_i50pc")
-shader_parameter/rotation_deg = Vector3(90, 0, 90)
+shader_parameter/rotation_deg = Vector3(0, 0, 0)
 shader_parameter/position_offset = Vector2(0, 0)
 shader_parameter/cube_size = 0.51000002259506
 shader_parameter/perspective = 3.0
 shader_parameter/tex_top = ExtResource("6_eb5lj")
 shader_parameter/tex_bottom = ExtResource("4_qcfxj")
-shader_parameter/tex_front = ExtResource("8_vloy5")
+shader_parameter/tex_front = ExtResource("5_i50pc")
 shader_parameter/tex_back = ExtResource("7_hdbth")
 shader_parameter/tex_left = ExtResource("5_ffrhj")
 shader_parameter/tex_right = ExtResource("3_ijik7")

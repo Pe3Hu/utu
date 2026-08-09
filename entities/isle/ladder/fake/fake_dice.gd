@@ -6,15 +6,16 @@ extends PanelContainer
 @export var background_cube: ColorRect
 
 @export var roll_min_steps: int = 1
-@export var roll_max_steps: int = 2
+@export var roll_max_steps: int = 1
 @export var step_duration: float = 0.25
 
 var digit_tween: Tween
 var background_tween: Tween
+
 var current_rotation: Vector3 = Vector3.ZERO
 var target_rotation: Vector3 = Vector3.ZERO
+
 var steps: Array = []
-var current_face: int
 
 var current_side: int = 0
 
@@ -140,25 +141,98 @@ func animate_steps() -> void:
 		
 		current_rot = end_rotation
 	
-	digit_tween.finished.connect(_on_roll_finished)
+	await digit_tween.finished
+	_on_roll_finished()
 
 func _on_roll_finished() -> void:
 	current_rotation = target_rotation
 	background_cube.material.set_shader_parameter("rotation_deg", current_rotation)
 	digit_cube.material.set_shader_parameter("rotation_deg", current_rotation)
-	
-	current_face = get_visible_face()
-	print(current_face)
+	var face = get_visible_face()
+	print([current_rotation, face])
+	apply_normal()
+	face = get_visible_face()
+	print([current_rotation, face])
 
 func get_visible_face() -> int:
-	match current_side:
-		0: return 5  # Front -> Back
-		1: return 4  # Top -> Bottom
-		2: return 3  # Right -> Left
-		3: return 2  # Left -> Right
-		4: return 1  # Bottom -> Top
-		5: return 0  # Back -> Front
-		_: return -1
+	current_rotation.x = fmod(current_rotation.x, 360.0)
+	current_rotation.y = fmod(current_rotation.y, 360.0)
+	current_rotation.z = fmod(current_rotation.z, 360.0)
+	return Digest.rotation_to_face[current_rotation]
+
+func apply_normal() -> void:
+	if background_tween and background_tween.is_running():
+		await background_tween.finished
+	
+	background_tween = create_tween()
+	digit_tween = create_tween()
+	
+	if Digest.normal_to_mirror.has(current_rotation):
+		current_rotation = Digest.normal_to_mirror[current_rotation]
+	
+	var duration: float = step_duration
+	var start = Vector3(current_rotation)
+	var end = find_closest_rotation()
+	
+	background_tween.tween_method(
+		func(progress: float) -> void:
+			var ease_progress = 1.0 - pow(1.0 - progress, 3.0)
+			var interpolated = start.lerp(end, ease_progress)
+			background_cube.material.set_shader_parameter("rotation_deg", interpolated)
+			,
+			0.0, 1.0, duration
+	)
+	digit_tween.tween_method(
+		func(progress: float) -> void:
+			var ease_progress = 1.0 - pow(1.0 - progress, 3.0)
+			var interpolated = start.lerp(end, ease_progress)
+			digit_cube.material.set_shader_parameter("rotation_deg", interpolated)
+			,
+			0.0, 1.0, duration
+	)
+	
+	current_rotation = end
+
+func get_angle_diff(a: Vector3, b: Vector3) -> float:
+	#var diff = Vector3.ZERO
+	var total = 0.0
+	
+	for i in range(3):
+		var d = abs(a[i] - b[i])
+		d = fmod(d, 360.0)
+		if d > 180.0:
+			d = 360.0 - d
+		total += d
+	
+	return total
+
+func find_closest_rotation() -> Vector3:
+	var best_rotation = Vector3.ZERO
+	var best_diff = INF
+	var best_key = -1
+	
+	# Ищем ближайшее положение среди всех
+	for key in Digest.face_to_rotations.keys():
+		var rotations = Digest.face_to_rotations[key]
+		for rot in rotations:
+			var diff = get_angle_diff(current_rotation, rot)
+			if diff < best_diff:
+				best_diff = diff
+				best_rotation = rot
+				best_key = key
+	
+	# Теперь находим соответствующее нормализованное положение
+	var normals = Digest.face_to_normals[best_key]
+	var best_normal = normals[0]
+	var best_normal_diff = INF
+	
+	for normal in normals:
+		var diff = get_angle_diff(best_rotation, normal)
+		if diff < best_normal_diff:
+			best_normal_diff = diff
+			best_normal = normal
+	
+	return best_normal
 
 func reset_cube() -> void:
 	current_rotation = Vector3.ZERO
@@ -169,5 +243,49 @@ func reset_cube() -> void:
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed and not event.echo:
-		if event.keycode == KEY_SPACE:
-			start_roll()
+		if event.keycode == KEY_Q:
+			prev_index()
+			#start_roll()
+		if event.keycode == KEY_E:
+			next_index()
+		if event.keycode == KEY_S:
+			apply_mirror()
+
+var test_index = 7
+var test_face = 2
+
+func test_data() -> void:
+	if digit_tween and digit_tween.is_running(): return
+	var keys = Digest.face_to_rotations[test_face]
+	var key = keys[test_index]
+	current_rotation = key
+	
+	background_cube.material.set_shader_parameter("rotation_deg", current_rotation)
+	digit_cube.material.set_shader_parameter("rotation_deg", current_rotation)
+
+func apply_mirror() -> void:
+	var face = get_visible_face()
+	print([test_index, current_rotation, face])
+	apply_normal()
+	face = get_visible_face()
+	print([current_rotation, face])
+
+func next_index() -> void:
+	test_index+= 1
+	var keys = Digest.face_to_rotations[test_face]
+	
+	if keys.size() <= test_index:
+		test_face = (test_face + 1) % 6
+		test_index = 0
+	
+	test_data()
+
+func prev_index() -> void:
+	test_index -= 1
+	
+	if 0 > test_index:
+		test_face = (test_face - 1 + 6) % 6
+		var keys = Digest.face_to_rotations[test_face]
+		test_index = keys.size() - 1
+	
+	test_data()

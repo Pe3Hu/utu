@@ -2,6 +2,7 @@ extends Node
 
 
 var rng = RandomNumberGenerator.new()
+var ladder: LadderData = LadderData.new()
 
 
 func _ready():

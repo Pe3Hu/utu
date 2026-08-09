@@ -238,31 +238,150 @@ var side_to_axis_to_side = {
 	}
 }
 
-var side_transition_table: Dictionary = {
-	# Ось X (индекс 0)
-	"0_0": 4,  # Front -> Top
-	"1_0": 0,  # Bottom -> Back 5
-	"2_0": 0,  # Left -> Front
-	"3_0": 1,  # Right -> Bottom
-	"4_0": 5,  # Top -> Back
-	"5_0": 1,  # Back -> Bottom
-
-	# Ось Y (индекс 1)
-	"0_1": 3,  # Front -> Right
-	"1_1": 2,  # Bottom -> Left
-	"2_1": 0,  # Left -> Bottom 1
-	"3_1": 5,  # Right -> Top 4
-	"4_1": 3,  # Top -> Right
-	"5_1": 2,  # Back -> Left
-
-	# Ось Z (индекс 2)
-	"0_2": 0,  # Front -> Front
-	"1_2": 1,  # Bottom -> Bottom
-	"2_2": 2,  # Left -> Left
-	"3_2": 3,  # Right -> Right
-	"4_2": 4,  # Top -> Top
-	"5_2": 5,  # Back -> Back
+var rotation_to_face = {
+	Vector3(0, 0, 0): 0,
+	Vector3(0, 0, 90): 0,
+	Vector3(0, 0, 180): 0,
+	Vector3(0, 0, 270): 0,
+	Vector3(0, 90, 0): 3,
+	Vector3(0, 90, 90): 4,
+	Vector3(0, 90, 180): 2,
+	Vector3(0, 90, 270): 1,
+	Vector3(0, 180, 0): 5,
+	Vector3(0, 180, 90): 5,
+	Vector3(0, 180, 180): 5,
+	Vector3(0, 180, 270): 5,
+	Vector3(0, 270, 0): 2,
+	Vector3(0, 270, 90): 1,
+	Vector3(0, 270, 180): 3,
+	Vector3(0, 270, 270): 4,
+	Vector3(90, 0, 0): 1,
+	Vector3(90, 0, 90): 3,
+	Vector3(90, 0, 180): 4,
+	Vector3(90, 0, 270): 2,
+	Vector3(90, 90, 0): 3,
+	Vector3(90, 90, 90): 4,
+	Vector3(90, 90, 180): 2,
+	Vector3(90, 90, 270): 1,
+	Vector3(90, 180, 0): 4,
+	Vector3(90, 180, 90): 2,
+	Vector3(90, 180, 180): 1,
+	Vector3(90, 180, 270): 3,
+	Vector3(90, 270, 0): 2,
+	Vector3(90, 270, 90): 1,
+	Vector3(90, 270, 180): 3,
+	Vector3(90, 270, 270): 4,
+	Vector3(180, 0, 0): 5,
+	Vector3(180, 0, 90): 5,
+	Vector3(180, 0, 180): 5,
+	Vector3(180, 0, 270): 5,
+	Vector3(180, 90, 0): 3,
+	Vector3(180, 90, 90): 4,
+	Vector3(180, 90, 180): 2,
+	Vector3(180, 90, 270): 1,
+	Vector3(180, 180, 0): 0,
+	Vector3(180, 180, 90): 0,
+	Vector3(180, 180, 180): 0,
+	Vector3(180, 180, 270): 0,
+	Vector3(180, 270, 0): 2,
+	Vector3(180, 270, 90): 1,
+	Vector3(180, 270, 180): 3,
+	Vector3(180, 270, 270): 4,
+	Vector3(270, 0, 0): 4,
+	Vector3(270, 0, 90): 2,
+	Vector3(270, 0, 180): 1,
+	Vector3(270, 0, 270): 3,
+	Vector3(270, 90, 0): 3,
+	Vector3(270, 90, 90): 4,
+	Vector3(270, 90, 180): 2,
+	Vector3(270, 90, 270): 1,
+	Vector3(270, 180, 0): 1,
+	Vector3(270, 180, 90): 3,
+	Vector3(270, 180, 180): 4,
+	Vector3(270, 180, 270): 2,
+	Vector3(270, 270, 0): 2,
+	Vector3(270, 270, 90): 1,
+	Vector3(270, 270, 180): 3,
+	Vector3(270, 270, 270): 4,
 }
+
+var face_to_rotations = {
+	0: [
+		Vector3(0, 0, 0), Vector3(0, 0, 90), Vector3(0, 0, 180), Vector3(0, 0, 270),
+		Vector3(180, 180, 0), Vector3(180, 180, 90), Vector3(180, 180, 180), Vector3(180, 180, 270)
+	],
+	1: [
+		Vector3(0, 90, 270), Vector3(0, 270, 90), Vector3(90, 0, 0), Vector3(90, 90, 270),
+		Vector3(90, 180, 180), Vector3(90, 270, 90), Vector3(180, 90, 270), Vector3(180, 270, 90),
+		Vector3(270, 0, 180), Vector3(270, 90, 270), Vector3(270, 180, 0), Vector3(270, 270, 90)
+	],
+	2: [
+		Vector3(0, 90, 180), Vector3(0, 270, 0), Vector3(90, 0, 270), Vector3(90, 90, 180),
+		Vector3(90, 180, 90), Vector3(90, 270, 0), Vector3(180, 90, 180), Vector3(180, 270, 0),
+		Vector3(270, 0, 90), Vector3(270, 90, 180), Vector3(270, 180, 270), Vector3(270, 270, 0)
+	],
+	3: [
+		Vector3(0, 90, 0), Vector3(0, 270, 180), Vector3(90, 0, 90), Vector3(90, 90, 0),
+		Vector3(90, 180, 270), Vector3(90, 270, 180), Vector3(180, 90, 0), Vector3(180, 270, 180),
+		Vector3(270, 0, 270), Vector3(270, 90, 0), Vector3(270, 180, 90), Vector3(270, 270, 180)
+	],
+	4: [
+		Vector3(0, 90, 90), Vector3(0, 270, 270), Vector3(90, 0, 180), Vector3(90, 90, 90),
+		Vector3(90, 180, 0), Vector3(90, 270, 270), Vector3(180, 90, 90), Vector3(180, 270, 270),
+		Vector3(270, 0, 0), Vector3(270, 90, 90), Vector3(270, 180, 180), Vector3(270, 270, 270)
+	],
+	5: [
+		Vector3(0, 180, 0), Vector3(0, 180, 90), Vector3(0, 180, 180), Vector3(0, 180, 270),
+		Vector3(180, 0, 0), Vector3(180, 0, 90), Vector3(180, 0, 180), Vector3(180, 0, 270)
+	]
+}
+
+var face_to_normals = {
+	0: [
+		Vector3(0.0, 0.0, 0.0),
+		Vector3(180.0, 180.0, 180.0)
+	],
+	1: [
+		Vector3(90.0, 0.0, 0.0),
+		Vector3(90.0, 90.0, 270.0),
+		Vector3(90.0, 180.0, 180.0),
+		Vector3(90.0, 270.0, 90.0)
+	],
+	2: [
+		Vector3(0.0, 270.0, 0.0),
+		Vector3(180.0, 90.0, 180.0)
+	],
+	3: [
+		Vector3(0.0, 90.0, 0.0),
+		Vector3(180.0, 270.0, 180.0)
+	],
+	4: [
+		Vector3(270.0, 0.0, 0.0),
+		Vector3(270.0, 90.0, 90.0),
+		Vector3(270.0, 180.0, 180.0),
+		Vector3(270.0, 270.0, 270.0)
+	],
+	5: [
+		Vector3(0.0, 180.0, 0.0),
+		Vector3(180.0, 0.0, 180.0)
+	]
+}
+
+var normal_to_mirror = {
+	Vector3(270.0, 0.0, 180.0): Vector3(270.0, 90.0, 270.0),
+	Vector3(270.0, 180.0, 0.0): Vector3(270.0, 90.0, 270.0),
+	Vector3(90.0, 0.0, 270.0): Vector3(90.0, 90.0, 180.0),
+	Vector3(90.0, 180.0, 90.0): Vector3(90.0, 90.0, 180.0),
+	Vector3(270.0, 0.0, 90.0): Vector3(270.0, 90.0, 180.0),
+	Vector3(270.0, 180.0, 270.0): Vector3(270.0, 90.0, 180.0),
+	Vector3(90.0, 0.0, 90.0): Vector3(90.0, 90.0, 0.0),
+	Vector3(90.0, 180.0, 270.0): Vector3(90.0, 90.0, 0.0),
+	Vector3(270.0, 0.0, 270.0): Vector3(270.0, 270.0, 180.0),
+	Vector3(270.0, 180.0, 90.0): Vector3(270.0, 270.0, 180.0),
+	Vector3(90.0, 0.0, 180.0): Vector3(90.0, 90.0, 90.0),
+	Vector3(90.0, 180.0, 0.0): Vector3(90.0, 90.0, 90.0),
+}
+
 
 #region color
 var matter_to_color = {

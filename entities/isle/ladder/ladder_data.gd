@@ -2,11 +2,13 @@ class_name LadderData
 extends RefCounted
 
 
-
 var stairs: Array[StairData]
 var girders: Array[GirderData]
 
 var volume_to_stair: Dictionary
+
+var current_volume: StairData
+
 
 
 func _init() -> void:
