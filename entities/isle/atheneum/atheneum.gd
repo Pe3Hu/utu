@@ -8,7 +8,7 @@ var data: AtheneumData:
 	set(value_):
 		data = value_
 		
-		init_cards()
+		connect_datas()
 
 @export var isle: Isle
 @export var cards: Array[Card]
@@ -19,7 +19,13 @@ var shift_tween: Tween
 
 
 #region init
-func init_cards() -> void:
+func connect_datas() -> void:
+	data.draw_phase.connect(_on_draw_phase)
+	_on_draw_phase()
+	data.discard_phase.connect(_on_discard_phase)
+	_on_discard_phase()
+
+func _on_draw_phase() -> void:
 	cards.clear()
 	stamp_to_card.clear()
 	Helper.clear_children(%Cards)
@@ -36,6 +42,10 @@ func add_card(stamp_data_: StampData) -> void:
 	card.atheneum = self
 	card.stamp.data = stamp_data_
 	cards.append(card)
+
+func _on_discard_phase() -> void:
+	for card in cards:
+		card.last_disappear()
 
 func remove_card() -> void:
 	if %Cards.get_child_count() == 0: return
@@ -89,9 +99,10 @@ func update_stamps() -> void:
 		stamp_datas.append(card.stamp.data)
 	
 	data.tribunal.actual.stamps.sort_custom(func (a, b): return stamp_datas.find(a) < stamp_datas.find(b))
-	data.recalc_scenario()
 
 func sort_cards(with_animation_: bool = true) -> void:
+	if Arbitrator.current_phase and Arbitrator.current_phase.type != Bozo.Phase.DECISION: return
+	if data.tribunal.actual.stamps.is_empty(): return
 	if shift_tween and shift_tween.is_running(): return
 	var scenario = data.scenarios.front()
 	var hiden_cards = cards.filter(func (a): return not scenario.chains.has(a.stamp.data))
@@ -129,6 +140,7 @@ func sort_cards(with_animation_: bool = true) -> void:
 	cards.append_array(hiden_cards)
 
 func close_up_cards(card_: Card) -> void:
+	if Arbitrator.current_phase and Arbitrator.current_phase.type != Bozo.Phase.DECISION: return
 	if shift_tween and shift_tween.is_running(): return
 	jalousie(card_)
 	await shift_tween.finished
@@ -182,3 +194,12 @@ func jalousie(card_: Card, is_inside_: bool = true) -> void:
 func get_card_shift_length(card_: Card) -> int:
 	return card_.size.x + %Cards.get("theme_override_constants/separation")
 #endregion
+
+func skip_phase() -> void:
+	Arbitrator.current_phase.exit_phase()
+
+func _input(event) -> void:
+	if event is InputEventKey and event.pressed and not event.echo:
+		match event.keycode:
+			KEY_SPACE:
+				skip_phase()

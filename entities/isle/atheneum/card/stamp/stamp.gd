@@ -46,6 +46,7 @@ func update_colors() -> void:
 func process_click() -> void:
 	var local_mouse_pos = get_local_mouse_position()
 	var half_height = size.y * 3 / 4
+	
 	if local_mouse_pos.y > half_height:
 		card.spoil()
 		return
@@ -58,7 +59,9 @@ func process_click() -> void:
 	else:
 		shift_value = 1
 	
-	card.atheneum.shift_card(card, shift_value)
+	#card.atheneum.shift_card(card, shift_value)
+	var move_card = ActionMoveCard.new(data, shift_value, card.atheneum)
+	Arbitrator.current_phase.try_execute_action(move_card)
 
 func _on_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:

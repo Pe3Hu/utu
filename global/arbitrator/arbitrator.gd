@@ -1,53 +1,51 @@
 extends Node
-class_name GameManager
 
 
 signal round_started(round_number: int)
 signal phase_changed(phase: Bozo.Phase)
-signal game_round_completed
+signal round_completed
 
-var current_round: int = 0
-var current_phase_index: int = 0
+var chronicler: ChroniclerData:
+	set(value_):
+		chronicler = value_
+		start_new_round()
+
 var phases: Array[Phase] = []
+
+var current_phase_index: int = 0
 var current_phase: Phase
 
 
-func _ready():
-	# Инициализация фаз в нужном порядке
+func _ready() -> void:
 	phases = [
-		CantoPhase.new()
+		PhaseDraw.new(),
+		PhaseDecision.new(),
+		PhaseDiscard.new(),
+		#CleanupPhase.new(),
 	]
-	
-	start_new_round()
 
-func start_new_round():
-	current_round += 1
+func start_new_round() -> void:
+	chronicler.current_round += 1
 	current_phase_index = 0
-	round_started.emit(current_round)
+	round_started.emit(chronicler.current_round)
 	start_next_phase()
 
-func start_next_phase():
+func start_next_phase() -> void:
 	if current_phase_index >= phases.size():
-		# Все фазы раунда завершены
-		game_round_completed.emit()
-		start_new_round()
+		complete_round()
 		return
-	
-	if not current_phase:
-		current_phase = phases[current_phase_index]
-		current_phase.enter_phase()
-		current_phase.phase_completed.connect(_on_phase_completed)
-		phase_changed.emit(current_phase.type)
 
-func _on_phase_completed():
-	current_phase.phase_completed.disconnect(_on_phase_completed)
+	current_phase = phases[current_phase_index]
+	current_phase.phase_completed.connect(_on_phase_completed, CONNECT_ONE_SHOT)
+	phase_changed.emit(current_phase.type)
+	current_phase.enter_phase()
+
+func _on_phase_completed() -> void:
 	current_phase.exit_phase()
+	current_phase = null
 	current_phase_index += 1
 	start_next_phase()
 
-func execute_player_action(action_: Bozo.Action) -> bool:
-	if current_phase.try_execute_action(action_):
-		return true
-	else:
-		print("Действие '%s' недоступно в текущей фазе" % action_)
-		return false
+func complete_round() -> void:
+	round_completed.emit()
+	start_new_round()

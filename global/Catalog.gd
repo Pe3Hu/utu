@@ -160,6 +160,7 @@ const BASTION_SIZE: Vector2 = Vector2(48, 48)
 const REALM_SIZE: Vector2i = BOARD_SIZE * 2
 
 const factions = [Bozo.Faction.BLUE, Bozo.Faction.RED, Bozo.Faction.GREEN]
+const active_factions = [Bozo.Faction.BLUE, Bozo.Faction.RED]
 #endregion
 
 #region biome
@@ -219,3 +220,5 @@ var axes: Array[Vector3] = [
 ]
 
 const NO_RAMPART_COORD = Vector2i(9, 10)
+
+const STARTER_HARVEST_AMOUNT: int = 20

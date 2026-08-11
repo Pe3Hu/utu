@@ -29,7 +29,7 @@ func init_volumes() -> void:
 	Helper.clear_children(%Volumes)
 	
 	for volume in Catalog.volumes:
-		add_volume(volume) 
+		add_volume(volume)
 
 func add_volume(value_: int) -> void:
 	var volume = volume_scene.instantiate()

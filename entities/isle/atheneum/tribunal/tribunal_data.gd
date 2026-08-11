@@ -43,6 +43,11 @@ func refill_actual() -> void:
 		hereafter.ere.clear()
 		hereafter.stamps.shuffle()
 	
-	while actual.stamps.size() < Catalog.GYRE_ACTUAL_STAMP_SIZE:
+	var n = min(get_remaining_amount(), Catalog.GYRE_ACTUAL_STAMP_SIZE)
+	
+	while actual.stamps.size() < n:
 		hereafter.transfer_stamp()
+
+func get_remaining_amount() -> int:
+	return hereafter.stamps.size() + bygone.stamps.size()
 #endregion

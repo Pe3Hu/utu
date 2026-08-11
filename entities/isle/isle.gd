@@ -23,6 +23,8 @@ func _ready() -> void:
 	var faction = data.policy.type_to_faction[Bozo.Faction.BLUE]
 	var settlement = faction.settlements.front()
 	stepladder.data = settlement.stepladder
+	
+	Arbitrator.chronicler = faction.chronicler
 
 func connect_datas() -> void:
 	kernel.data = data.kernel
@@ -37,5 +39,3 @@ func _input(event) -> void:
 		match event.keycode:
 			KEY_ESCAPE:
 				get_tree().quit()
-			KEY_C:
-				kernel.test_harvest()

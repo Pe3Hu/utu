@@ -108,6 +108,7 @@ func slide(l_: float) -> void:
 		duration /= 2
 
 func apply_animation(clockwise_: bool = true, is_main_: bool = true) -> void:
+	if Arbitrator.current_phase.type != Bozo.Phase.DECISION: return
 	if not Digest.ark_to_flag_to_ark[last_animation].has(clockwise_): return
 	if is_animation_running(): return
 	reset_spoils_color()

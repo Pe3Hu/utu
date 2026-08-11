@@ -98,16 +98,24 @@ enum Faction {
 	GREEN = 97
 }
 
+enum Status {
+	IDLE = 0,
+	PLAYING_ANIMATION = 100,
+	WAITING_FOR_TARGET = 101,
+}
+
 enum Action {
 	NONE = 0,
-	SELECT_INTRO = 104,
-	SELECT_VERSE = 105,
-	SELECT_OUTRO = 106,
+	MOVE_CARD = 150,
+	MOVE_ARK = 151,
 }
 
 enum Phase {
 	NONE = 0,
-	CANTO = 200,
+	DRAW = 200,
+	DECISION = 201,
+	DISCARD = 202,
+	CLEANUP = 203,
 }
 
 

@@ -1,7 +1,6 @@
 extends Node
 
 
-
 var shape_to_color: Dictionary
 var sum_to_matter_to_intro: Dictionary
 
@@ -501,4 +500,3 @@ func init_intros() -> void:
 			
 			for matter in matters:
 				sum_to_matter_to_intro[sum][matter].append(dice)
-	

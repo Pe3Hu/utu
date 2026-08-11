@@ -9,6 +9,7 @@ var isle: IsleData
 var treasury: TreasuryData
 var atheneum: AtheneumData
 var odeum: OdeumData
+var chronicler: ChroniclerData
 
 var current_order: int = 0
 
@@ -31,6 +32,7 @@ func _init(policy_: PolicyData, type_: Bozo.Faction) -> void:
 		treasury = TreasuryData.new(self)
 		odeum = OdeumData.new(self)
 		atheneum = AtheneumData.new(self)
+		chronicler = ChroniclerData.new(self)
 	
 		init_shrines()
 

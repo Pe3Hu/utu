@@ -12,12 +12,23 @@ var fleet: FleetData = FleetData.new(self)
 func _init(treasury_: TreasuryData) -> void:
 	treasury = treasury_
 
-func grow_harvest() -> void:
+func apply_starter_volumes() -> void:
+	if treasury.faction.type == Bozo.Faction.GREEN: return
+	
+	for _i in Catalog.STARTER_HARVEST_AMOUNT:
+		grow_harvest(true)
+
+func grow_harvest(instant_stock_: bool = false) -> void:
 	for bastion in treasury.faction.internals:
 		var source = bastion.region.biome.source
 		var volume = source.get_rnd_volume()
-		var straw = harvest.volume_to_matter_to_straw[volume][source.matter]
-		straw.next_amount += 1
+		
+		if not instant_stock_:
+			var straw = harvest.volume_to_matter_to_straw[volume][source.matter]
+			straw.next_amount += 1
+		else:
+			var granary_straw = granary.volume_to_matter_to_straw[volume][source.matter]
+			granary_straw.amount += 1
 
 func stock_granary() -> void:
 	for harvest_straw in harvest.straws:

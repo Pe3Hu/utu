@@ -52,18 +52,3 @@ func add_girder(girder_data_: GirderData) -> void:
 	%Girders.add_child(girder)
 	girder.data = girder_data_
 #endregion
-
-func test_stair() -> void:
-	var options = Digest.volume_to_matter_to_volume[data.current_volume].keys()
-	if options.is_empty(): 
-		data.current_volume = 2
-		return
-	options.shuffle()
-	var matter = options.pick_random()
-	data.current_volume = Digest.volume_to_matter_to_volume[data.current_volume][matter]
-
-func _input(event) -> void:
-	if event is InputEventKey and event.pressed and not event.echo:
-		match event.keycode:
-			KEY_D:
-				test_stair()

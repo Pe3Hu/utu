@@ -18,6 +18,9 @@ func _init() -> void:
 	
 	terrain.init_galores()
 	
+	for faction_type in Catalog.active_factions:
+		policy.type_to_faction[faction_type].treasury.kernel.apply_starter_volumes()
+	
 	var blue_faction = policy.type_to_faction[Bozo.Faction.BLUE]
 	atheneum = blue_faction.atheneum
 	kernel = blue_faction.treasury.kernel

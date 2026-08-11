@@ -8,7 +8,7 @@ var data: FleetData:
 	set(value_):
 		data = value_
 		
-		init_arks()
+		connect_datas()
 
 @export var kernel: Kernel
 
@@ -19,7 +19,13 @@ var sort_tween: Tween
 
 
 #region init
-func init_arks() -> void:
+func connect_datas() -> void:
+	data.draw_phase.connect(_on_draw_phase)
+	_on_draw_phase()
+	data.discard_phase.connect(_on_discard_phase)
+	_on_discard_phase()
+
+func _on_draw_phase() -> void:
 	await get_tree().process_frame
 	arks.clear()
 	stamp_to_ark.clear()
@@ -37,8 +43,13 @@ func add_ark(stamp_data_: StampData) -> void:
 	stamp_to_ark[stamp_data_] = ark
 	ark.stamp = stamp_data_
 	ark.fleet = self
+
+func _on_discard_phase() -> void:
+	for ark in arks:
+		ark.visible = false
 #endregion
 
+#region animation
 func top_ark_animation(flag_: bool = true) -> void:
 	var ark = %Arks.get_child(0)
 	ark.apply_animation(flag_)
@@ -102,11 +113,4 @@ func push_ark_on_top(ark_: Ark) -> void:
 		%Arks.move_child(ark, _i)
 	
 	ark_.apply_animation()
-
-func _input(event) -> void:
-	if event is InputEventKey and event.pressed and not event.echo:
-		match event.keycode:
-			KEY_Z:
-				top_ark_animation(false)
-			KEY_X:
-				top_ark_animation()
+#endregion

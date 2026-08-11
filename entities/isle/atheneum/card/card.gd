@@ -15,6 +15,8 @@ extends Control
 	get:
 		return stamp.size.x * 1.2
 
+var duration_shift: float = 0
+
 var hover_tween: Tween
 var appear_tween: Tween
 
@@ -34,29 +36,46 @@ func _ready() -> void:
 	
 	custom_minimum_size.x = min_size_x_default
 	position.x = 0
+	first_appear()
+
+func first_appear() -> void:
+	stamp.offset_transform_position_ratio.y = 1.25
+	rng_duration_shift()
+	appear()
+	Arbitrator.current_phase.animation_tweens.append(appear_tween)
+	appear_tween.finished.connect(Arbitrator.current_phase._on_tween_finished.bind(appear_tween))
+	await appear_tween.finished
+	duration_shift = 0
+
+func rng_duration_shift() -> void:
+	duration_shift = Gear.appears[Gear.tempo] * Helper.rng.randf_range(Gear.min_appear_factor, Gear.max_appear_factor)
 
 func appear() -> void:
 	if appear_tween and appear_tween.is_running(): return
 	visible = true
-	#stamp.offset_transform_position_ratio.y = 2.0
 	#custom_minimum_size.x = min_size_x_default # Setting it directly results in snapping instead of smooth movement
-	appear_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CIRC)
+	appear_tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)
 	#appear_tween.tween_property(self, "custom_minimum_size:x", min_size_x_default, 0.25)
-	appear_tween.parallel().tween_property(stamp, "offset_transform_position_ratio:y", 0.0, Gear.appears[Gear.tempo])
+	appear_tween.parallel().tween_property(stamp, "offset_transform_position_ratio:y", 0.0, Gear.appears[Gear.tempo] + duration_shift)
+
+	await appear_tween.finished
+	mouse_filter = Control.MOUSE_FILTER_PASS
+	stamp.mouse_filter = Control.MOUSE_FILTER_PASS
 
 func disappear() -> void:
 	if appear_tween and appear_tween.is_running(): return
-		#appear_tween.kill()
-	
 	atheneum.isle.kernel.fleet.apply_ark_animation(stamp.data)
-	appear_tween = create_tween().set_ease(Tween.EASE_OUT_IN).set_trans(Tween.TRANS_CIRC)
+	appear_tween = create_tween().set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_SINE)#TRANS_CIRC
 	#appear_tween.tween_property(self, "custom_minimum_size:x", 0.0, 0.2)
-	appear_tween.parallel().tween_property(stamp, "offset_transform_position_ratio:y", 1.0, Gear.appears[Gear.tempo])
+	appear_tween.parallel().tween_property(stamp, "offset_transform_position_ratio:y", 1.25, Gear.appears[Gear.tempo])
 	await appear_tween.finished
 	atheneum.close_up_cards(self)
-	#visible = false
-	
-	#appear_tween.hover_tween_callback(queue_free)
+
+func last_disappear() -> void:
+	rng_duration_shift()
+	disappear()
+	Arbitrator.current_phase.animation_tweens.append(appear_tween)
+	appear_tween.finished.connect(Arbitrator.current_phase._on_tween_finished.bind(appear_tween))
 #endregion
 
 #region hover
