@@ -6,7 +6,7 @@ extends PanelContainer
 var data: CantoData:
 	set(value_):
 		data = value_
-		
+		connect_signals()
 		connect_datas()
 
 var odeum: Odeum
@@ -27,6 +27,10 @@ var is_selected: bool = false:
 			false:
 				%Selection.color = Color.LIGHT_GRAY
 
+
+func connect_signals() -> void:
+	data.is_critical_changed.connect(pulse._on_is_critical_changed)
+	pulse._on_is_critical_changed()
 
 func connect_datas() -> void:
 	pulse.value = data.pulse_value
@@ -56,9 +60,9 @@ func update_selection() -> void:
 	is_selected = true
 
 func voice() -> void:
-	data.odeum.cantos.erase(data)
 	get_parent().remove_child(self)
 	queue_free()
 	
 	if odeum.current_canto:
 		odeum.current_canto = null
+		odeum.update_visible_cantos()

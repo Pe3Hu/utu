@@ -20,7 +20,22 @@ var faction: FactionData:
 var limit_rampart: int
 var current_rampart: int:
 	set(value_):
+		if terrain.rampart_to_bastions.has(current_rampart):
+			if terrain.rampart_to_bastions[current_rampart].has(self):
+				terrain.rampart_to_bastions[current_rampart].erase(self)
+		
 		current_rampart = value_
+		
+		if not terrain.rampart_to_bastions.has(current_rampart):
+			terrain.rampart_to_bastions[current_rampart] = []
+		
+		terrain.rampart_to_bastions[current_rampart].append(self)
+		
+		if terrain.isle.policy:
+			var blue_faction = terrain.isle.policy.type_to_faction[Bozo.Faction.BLUE]
+			if blue_faction and blue_faction.odeum:
+				blue_faction.odeum.update_critical_cantos()
+		
 		rampart_changed.emit()
 
 var ring: int
@@ -87,3 +102,20 @@ func get_flow_neighbour() -> Variant:
 func reset() -> void:
 	blob = null
 	neighbour_to_channel.clear()
+
+func try_capture(canto_: CantoData) -> bool:
+	canto_.odeum.cantos.erase(canto_)
+	
+	if current_rampart > canto_.pulse_value:
+		current_rampart -= canto_.pulse_value
+		return false
+	else:
+		var blue_faction = terrain.isle.policy.type_to_faction[Bozo.Faction.BLUE]
+		blue_faction.captured_bastion(self)
+		
+		if current_rampart != canto_.pulse_value:
+			current_rampart = floor(limit_rampart * 0.5)
+		else:
+			current_rampart = limit_rampart
+		
+		return true

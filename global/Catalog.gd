@@ -226,3 +226,5 @@ const STARTER_HARVEST_AMOUNT: int = 20
 
 const MARK_DIGITS_MAX_LENGTH: int = 6
 const fusion_mark_lengths = [2, 3, 6]
+
+const VISIBLE_CANTO_MAX: int = 3

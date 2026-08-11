@@ -84,6 +84,11 @@ func hover() -> void:
 	z_index = 1
 	var current_x = stamp.position.x
 	
+	if atheneum.current_card and atheneum.current_card != self:
+		atheneum.current_card.unhover()
+	
+	atheneum.current_card = self
+	
 	if hover_tween and hover_tween.is_running():
 		hover_tween.kill()
 	
@@ -98,6 +103,9 @@ func hover() -> void:
 func unhover() -> void:
 	if appear_tween and appear_tween.is_running(): return
 	z_index = 0
+	
+	if atheneum.current_card == self:
+		atheneum.current_card = null
 	
 	if atheneum.shift_tween and atheneum.shift_tween.is_running():
 		z_index = 1

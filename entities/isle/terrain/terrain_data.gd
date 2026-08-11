@@ -264,6 +264,7 @@ func init_galores() -> void:
 	init_flows()
 	init_region_neighbours()
 	init_biomes()
+	update_rampart_to_bastions()
 
 func normalize_galores() -> void:
 	var min_galore = INF
@@ -291,15 +292,7 @@ func get_ring_base_value(ring_: int) -> float:
 
 func init_flows() -> void:
 	reset()
-	
-	for bastion in bastions:
-		if bastion.faction and bastion.faction.type != Bozo.Faction.GREEN:
-			continue
-		if not rampart_to_bastions.has(bastion.current_rampart):
-			rampart_to_bastions[bastion.current_rampart] = []
-		
-		rampart_to_bastions[bastion.current_rampart].append(bastion)
-	
+	update_rampart_to_bastions()
 	var ramparts = rampart_to_bastions.keys()
 	
 	while not rampart_to_bastions.keys().is_empty():
@@ -308,6 +301,16 @@ func init_flows() -> void:
 		var rampart = ramparts.back()
 		var bastion = rampart_to_bastions[rampart].pick_random()
 		start_flow(bastion)
+
+func update_rampart_to_bastions() -> void:
+	for bastion in bastions:
+		if bastion.faction and bastion.faction.type != Bozo.Faction.GREEN:
+			continue
+		if not rampart_to_bastions.has(bastion.current_rampart):
+			rampart_to_bastions[bastion.current_rampart] = []
+		
+		rampart_to_bastions[bastion.current_rampart].append(bastion)
+	
 
 func start_flow(bastion_: BastionData) -> void:
 	current_flow_coords.clear()

@@ -41,3 +41,7 @@ func init_cantos() -> void:
 						if second.can_outro(pulse):
 							var _canto = CantoData.new(self, joint, first, null, second)
 #endregion
+
+func update_critical_cantos() -> void:
+	for canto in cantos:
+		canto.update_is_critical()

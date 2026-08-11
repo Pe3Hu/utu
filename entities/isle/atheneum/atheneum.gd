@@ -13,6 +13,7 @@ var data: AtheneumData:
 @export var cards: Array[Card]
 
 var stamp_to_card: Dictionary
+var current_card: Card
 
 var shift_tween: Tween
 

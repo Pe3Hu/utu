@@ -27,3 +27,20 @@ res://entities/isle/atheneum/card/stamp/origin_data.gd
 res://entities/isle/atheneum/card/stamp/stamp_data.gd
 res://entities/isle/atheneum/atheneum_data.gd
 res://global/arbitrator/phase/phase_fusion.gd
+res://entities/isle/odeum/odeum.tscn
+res://entities/isle/odeum/odeum.gd
+res://entities/isle/odeum/canto/canto.tscn
+res://global/arbitrator/phase/phase_decision.gd
+res://entities/isle/atheneum/atheneum.tscn
+res://entities/isle/odeum/canto/canto.gd
+res://entities/isle/atheneum/card/card.tscn
+res://entities/isle/atheneum/card/card.gd
+res://entities/isle/atheneum/atheneum.gd
+res://entities/isle/odeum/canto/pulse/pulse.tscn
+res://entities/isle/odeum/canto/pulse/perfect pulse.gdshader
+res://entities/isle/odeum/canto/pulse/pulse.gd
+res://entities/isle/odeum/canto/canto_data.gd
+res://entities/isle/terrain/terrain_data.gd
+res://entities/isle/terrain/bastion/bastion.gd
+res://entities/isle/terrain/bastion/bastion_data.gd
+res://entities/isle/odeum/odeum_data.gd

@@ -37,6 +37,7 @@ func connect_signals() -> void:
 	_on_rampart_changed()
 	data.faction_changed.connect(_on_faction_changed)
 	_on_faction_changed()
+	
 	if data.settlement:
 		data.settlement.stepladder.volume_changed.connect(_on_volume_changed)
 		_on_volume_changed()
@@ -71,19 +72,9 @@ func _on_press_button_pressed() -> void:
 func try_capture() -> void:
 	if !is_external: return
 	if not terrain.isle.odeum.current_canto: return
-	var canto_volume = terrain.isle.odeum.current_canto.pulse.value
+	var is_captured = data.try_capture(terrain.isle.odeum.current_canto.data)
 	
-	if data.current_rampart > canto_volume:
-		data.current_rampart -= canto_volume
-	else:
-		var blue_faction = data.fiefdom.realm.isle.policy.type_to_faction[Bozo.Faction.BLUE]
-		blue_faction.captured_bastion(data)
-		
-		if data.current_rampart != canto_volume:
-			data.current_rampart = floor(data.limit_rampart * 0.5)
-		else:
-			data.current_rampart = data.limit_rampart
-		
+	if is_captured:
 		is_external = false
 		terrain.highlight_externals()
 	

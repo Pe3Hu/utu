@@ -26,14 +26,14 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/separation = 20
 
-[node name="NextAnvil" type="TextureButton" parent="HBox/Buttons" unique_id=1029784898]
+[node name="NextAnvil" type="TextureButton" parent="HBox/Buttons" unique_id=1762886353]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture_normal = ExtResource("3_w4a1d")
 texture_hover = ExtResource("4_u7jng")
 
-[node name="PreviousAnvil" type="TextureButton" parent="HBox/Buttons" unique_id=1762886353]
+[node name="PreviousAnvil" type="TextureButton" parent="HBox/Buttons" unique_id=1029784898]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
