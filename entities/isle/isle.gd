@@ -15,6 +15,7 @@ var data: IsleData:
 @export var terrain: Terrain
 
 @export var stepladder: Stepladder
+@export var forge: Forge
 
 
 func _ready() -> void:
@@ -33,6 +34,8 @@ func connect_datas() -> void:
 	
 	realm.data = data.realm
 	terrain.data = data.terrain
+	
+	forge.data = data.forge
 
 func _input(event) -> void:
 	if event is InputEventKey and event.pressed and not event.echo:

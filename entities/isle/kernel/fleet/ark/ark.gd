@@ -4,14 +4,12 @@ extends PanelContainer
 
 var fleet: Fleet
 
-var stamp: StampData:
+var data: ArkData:
 	set(value_):
-		stamp = value_
+		data = value_
 		
 		update_volumes()
-		
-		for spoil in spoils:
-			spoil._on_button_mouse_exited()
+		reset_spoils_color()
 
 @export var volumes: Array[Volume]
 @export var spoils: Array[Spoil]
@@ -70,11 +68,12 @@ func apply_offset_transforms(angle_: float, l_: float) -> void:
 				#offset_transform_pivot.x = Catalog.ARK_PIVOT.x
 
 func update_volumes() -> void:
-	#for _i in stamp.intro_values:
-	var value = stamp.intro_value
-	var volume = volumes.front()
-	volume.value = value
-	#volume.matter = stamp.origin.matter
+	var values = data.get_best_intro_values()
+	
+	for _i in values.size():
+		var value = values[_i]
+		var volume = volumes[_i]
+		volume.value = value
 #endregion
 
 #region animation
@@ -120,7 +119,7 @@ func apply_animation(clockwise_: bool = true, is_main_: bool = true) -> void:
 			
 			if fleet.arks.front() == self:
 				if is_main_:
-					fleet.kernel.isle.atheneum.disappear_card(stamp)
+					fleet.kernel.isle.atheneum.disappear_card(data.stamp)
 				
 				duration = Gear.appears[Gear.tempo]
 				%LeftSpoil.update_texture(false)
@@ -134,7 +133,7 @@ func apply_animation(clockwise_: bool = true, is_main_: bool = true) -> void:
 					offset_transform_pivot.x += Catalog.VOLUME_SIZE.x * get_volume_count()
 		Bozo.Ark.DISAPPEAR:
 			if is_main_:
-				fleet.kernel.isle.atheneum.appear_card(stamp)
+				fleet.kernel.isle.atheneum.appear_card(data.stamp)
 			
 			duration = Gear.appears[Gear.tempo]
 			

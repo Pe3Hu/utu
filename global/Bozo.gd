@@ -112,10 +112,12 @@ enum Action {
 
 enum Phase {
 	NONE = 0,
-	DRAW = 200,
-	DECISION = 201,
-	DISCARD = 202,
-	CLEANUP = 203,
+	GROWTH = 200,
+	DRAW = 201,
+	DECISION = 202,
+	STOCK = 203,
+	DISCARD = 204,
+	FUSION = 205,
 }
 
 

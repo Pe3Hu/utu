@@ -197,7 +197,8 @@ const regions = [
 
 #region card
 const JOINT_SIZE = Vector2(36, 36)
-const JOINT_OFFEST: float = 4.0
+const JOINT_OFFEST: float = -4.0
+const STAKE_SIGN_OFFEST: float = 4.0
 const GYRE_ACTUAL_STAMP_SIZE = 4
 
 const stakes = [Bozo.Stake.LEFT, Bozo.Stake.RIGHT]
@@ -222,3 +223,6 @@ var axes: Array[Vector3] = [
 const NO_RAMPART_COORD = Vector2i(9, 10)
 
 const STARTER_HARVEST_AMOUNT: int = 20
+
+const MARK_DIGITS_MAX_LENGTH: int = 6
+const fusion_mark_lengths = [2, 3, 6]

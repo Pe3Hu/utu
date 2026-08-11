@@ -26,6 +26,8 @@ var current_rampart: int:
 var ring: int
 var galore: float
 
+var is_halocline: bool = false
+
 
 #region init
 func _init(fiefdom_: DomainData) -> void:

@@ -251,6 +251,29 @@ const volume_to_stage = {
 }
 #endregion
 
+const tune_to_length_to_joints = {
+	Bozo.Tune.INTRO: {
+		1: [[2, 3]],
+		2: [[1, 2], [3, 4]],
+		3: [[0, 1], [2, 3], [4, 5]],
+		6: [[0], [1], [2], [3], [4], [5]]
+	},
+	Bozo.Tune.VERSE: {
+		1: [[2]],
+		2: [[2], [3]],
+		3: [[3], [4], [5]],
+		6: [[0], [1], [2], [3]]
+	},
+	Bozo.Tune.OUTRO: {
+		1: [[3]],
+		2: [[1], [4]],
+		3: [[0, 1, 2]],
+		6: [[4, 5]]
+	},
+}
+
+
+
 #region fake dice
 var side_to_axis_to_side = {
 	0: {

@@ -19,6 +19,8 @@ var type_to_regions: Dictionary
 var biomes: Array[BiomeData]
 var type_to_biomes: Dictionary
 
+var haloclines: Array[BastionData]
+
 
 
 #region init
@@ -203,6 +205,7 @@ func init_biomes() -> void:
 	
 	region_coords_exchange()
 	update_bastion_regions() 
+	init_haloclines()
 
 func region_coords_exchange() -> void:
 	for region in regions:
@@ -215,6 +218,19 @@ func update_bastion_regions() -> void:
 		for coord in region.coords:
 			var bastion = coord_to_bastion[coord]
 			bastion.region = region
+
+func init_haloclines() -> void:
+	for bastion in bastions:
+		var biome_types = [bastion.region.biome.type]
+		
+		for neighbour_fiefdom in bastion.fiefdom.neighbours:
+			var neighbour_biome_type = neighbour_fiefdom.bastion.region.biome.type
+			
+			if not biome_types.has(neighbour_biome_type):
+				biome_types.append(neighbour_biome_type)
+		
+		if Catalog.biomes.size() == biome_types.size():
+			bastion.is_halocline = true
 
 func init_galores() -> void:
 	var noise = FastNoiseLite.new()

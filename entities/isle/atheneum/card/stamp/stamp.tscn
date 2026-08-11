@@ -60,25 +60,25 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 0
 theme_override_constants/margin_bottom = 8
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="BGMargin" unique_id=1423021054]
+[node name="MouseTargetVBox" type="VBoxContainer" parent="BGMargin" unique_id=1423021054]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="BGMargin/VBoxContainer2" unique_id=934271515]
+[node name="MouseTargetHBox" type="HBoxContainer" parent="BGMargin/MouseTargetVBox" unique_id=934271515]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="LeftShiftBG" type="ColorRect" parent="BGMargin/VBoxContainer2/HBoxContainer" unique_id=1124159026]
+[node name="LeftShiftBG" type="ColorRect" parent="BGMargin/MouseTargetVBox/MouseTargetHBox" unique_id=1124159026]
 custom_minimum_size = Vector2(74, 210)
 layout_mode = 2
 color = Color(0.4584052, 0.45840496, 0.45840502, 1)
 
-[node name="RightShiftBG" type="ColorRect" parent="BGMargin/VBoxContainer2/HBoxContainer" unique_id=750688295]
+[node name="RightShiftBG" type="ColorRect" parent="BGMargin/MouseTargetVBox/MouseTargetHBox" unique_id=750688295]
 custom_minimum_size = Vector2(74, 210)
 layout_mode = 2
 color = Color(0.67481464, 0.67481464, 0.6748146, 1)
 
-[node name="DesappearBG" type="ColorRect" parent="BGMargin/VBoxContainer2" unique_id=376785594]
+[node name="DesappearBG" type="ColorRect" parent="BGMargin/MouseTargetVBox" unique_id=376785594]
 custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
 color = Color(0.288518, 0.288518, 0.2885179, 1)
@@ -106,8 +106,7 @@ layout_mode = 2
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_ifnqu")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/Top" unique_id=80602315]
-visible = false
+[node name="CardName" type="RichTextLabel" parent="VBoxContainer/Top" unique_id=80602315]
 modulate = Color(0, 0.2627451, 0.14901961, 1)
 layout_mode = 1
 anchors_preset = 15
@@ -117,7 +116,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 bbcode_enabled = true
-text = "CARD NAME"
+text = "Card Name"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
@@ -142,7 +141,7 @@ grow_vertical = 2
 size_flags_horizontal = 0
 size_flags_vertical = 6
 mouse_filter = 2
-theme_override_constants/separation = 4
+theme_override_constants/separation = -4
 alignment = 1
 
 [node name="RightStakes" type="VBoxContainer" parent="VBoxContainer/Center" unique_id=127877615]
@@ -158,7 +157,7 @@ grow_vertical = 2
 size_flags_horizontal = 8
 size_flags_vertical = 6
 mouse_filter = 2
-theme_override_constants/separation = 4
+theme_override_constants/separation = -4
 alignment = 1
 
 [node name="Bottom" type="Panel" parent="VBoxContainer" unique_id=2002940049]
@@ -167,6 +166,56 @@ custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_mk6kk")
+
+[node name="MarkLetterMargin" type="MarginContainer" parent="VBoxContainer/Bottom" unique_id=1236828721]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -18.0
+offset_right = 9.0
+grow_vertical = 0
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="CardMarkLetter" type="RichTextLabel" parent="VBoxContainer/Bottom/MarkLetterMargin" unique_id=1901924193]
+unique_name_in_owner = true
+modulate = Color(0, 0.2627451, 0.14901961, 1)
+layout_mode = 2
+mouse_filter = 2
+bbcode_enabled = true
+text = "A"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+vertical_alignment = 2
+
+[node name="MarkDigit" type="MarginContainer" parent="VBoxContainer/Bottom" unique_id=1470873740]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -46.0
+offset_top = -18.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="CardMarkDigits" type="RichTextLabel" parent="VBoxContainer/Bottom/MarkDigit" unique_id=1528663012]
+unique_name_in_owner = true
+modulate = Color(0, 0.2627451, 0.14901961, 1)
+layout_mode = 2
+mouse_filter = 2
+bbcode_enabled = true
+text = "123456"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+horizontal_alignment = 2
+vertical_alignment = 2
 
 [node name="Spoil" type="TextureRect" parent="VBoxContainer/Bottom" unique_id=1124751600]
 unique_name_in_owner = true

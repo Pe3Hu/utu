@@ -3,37 +3,48 @@ extends RefCounted
 
 
 var origin: OriginData
-var intro_value: int
-var verse_value: int
+var intro_values: Array[int]
+var verse_values: Array[int]
 var spoil_value: int = 1
 
 var type_to_stakes: Dictionary
+var tune_to_stakes: Dictionary
 var joint_to_type_to_stakes: Dictionary
 
+var mark_digits: String:
+	set(value_):
+		mark_digits = value_
+		init_stakes()
 
-func _init(origin_: OriginData, intro_value_: int, verse_value_: int) -> void:
+func _init(origin_: OriginData, intro_values_: Array[int], verse_values_: Array[int]) -> void:
 	origin = origin_
-	intro_value = intro_value_
-	verse_value = verse_value_
-	
-	origin.stamps.append(self)
-	origin.atheneum.tribunal.hereafter.stamps.append(self)
-	init_stakes()
+	intro_values = intro_values_
+	verse_values = verse_values_
 
 func init_stakes() -> void:
-	var joints: Array[int] = [2, 3]
+	type_to_stakes.clear()
+	tune_to_stakes.clear()
 	
-	for type in Catalog.stakes:
-		type_to_stakes[type] = []
-		
-		match type:
-			Bozo.Stake.RIGHT:
-				var _stake = StakeData.new(self, Bozo.Tune.INTRO, joints, intro_value)
-			Bozo.Stake.LEFT:
-				var _stake = StakeData.new(self, Bozo.Tune.VERSE, [joints.front()], verse_value)
-				
-				var outro_value = Digest.matter_to_factor[origin.matter]
-				_stake = StakeData.new(self, Bozo.Tune.OUTRO, [joints.back()], outro_value)
+	for stake_type in Catalog.stakes:
+		type_to_stakes[stake_type] = []
+	
+	for stake_tune in Catalog.tunes:
+		tune_to_stakes[stake_tune] = []
+	
+	for tune in Catalog.tunes:
+		for _i in Digest.tune_to_length_to_joints[tune][mark_digits.length()].size():
+			var joints = Digest.tune_to_length_to_joints[tune][mark_digits.length()][_i]
+			var stake_value: int
+			
+			match tune:
+				Bozo.Tune.INTRO:
+					stake_value = intro_values[_i]
+				Bozo.Tune.VERSE:
+					stake_value = verse_values[_i]
+				Bozo.Tune.OUTRO:
+					stake_value = Digest.matter_to_factor[origin.matter]
+			
+			var _stake = StakeData.new(self, tune, joints, stake_value)
 
 func get_stake(joint_: int, type_: Bozo.Stake) -> Variant:
 	if not joint_to_type_to_stakes.has(joint_): return null
@@ -48,6 +59,7 @@ func can_outro(pulse_: int) -> bool:
 	return false
 
 func get_spoil_weight() -> int:
-	var weight = 0
-	weight += intro_value
-	return weight
+	#var weight = 0
+	#weight += intro_values.size()
+	#return weight
+	return intro_values.size()

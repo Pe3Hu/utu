@@ -14,6 +14,8 @@ var tribunal: TribunalData
 var origins: Array[OriginData]
 var scenarios: Array[ScenarioData]
 
+var alphabet: Array
+
 
 #region init
 func _init(faction_: FactionData) -> void:
@@ -26,6 +28,7 @@ func _init(faction_: FactionData) -> void:
 
 func init_origins() -> void:
 	origins.clear()
+	refill_alphabet()
 	var n = 2
 	var intro_sum = 20
 	
@@ -39,6 +42,11 @@ func init_origins() -> void:
 		var _origin = OriginData.new(self, matter, intro, verse)
 	
 	tribunal.hereafter.stamps.shuffle()
+
+func refill_alphabet() -> void:
+	if not alphabet.is_empty(): return
+	var l = floori(float(origins.size()) / 26) + 1
+	alphabet = range(26).map(func(a): return char(90 - a).repeat(l))
 
 func init_scenarios() -> void:
 	init_permutations()
@@ -63,7 +71,6 @@ func init_permutations() -> void:
 			spoils = stamp_queue.filter(func (a): return not arrangement.has(a))
 			var _scenario = ScenarioData.new(self, arrangement, spoils)
 	
-	
 	scenarios.sort_custom(func (a, b): return a.total_sum > b.total_sum)
 	if faction.type == Bozo.Faction.BLUE:
 		print([scenarios.front().total_sum, scenarios.front().pulses])
@@ -77,6 +84,19 @@ func recalc_scenario() -> void:
 	#if faction.type == Bozo.Faction.BLUE:
 	#	print([faction.odeum.scenario.total_sum, faction.odeum.scenario.pulses])
 
+func discard_actual(is_phase_: bool = true) -> void:
+	var forge_stamps: Array[StampData]
+	forge_stamps.append_array(tribunal.actual.stamps)
+	forge_stamps.append_array(faction.treasury.kernel.fleet.stampss)
+	
+	faction.isle.forge.stamps.append_array(forge_stamps)
+	
+	tribunal.actual.clear()
+	faction.treasury.kernel.fleet.stamps.clear()
+	
+	if is_phase_:
+		tribunal.atheneum.discard_phase.emit()
+		faction.treasury.kernel.fleet.discard_phase.emit()
 #var test_sums = {}
 #var test_pulses = {}
 #

@@ -10,8 +10,9 @@ func _init() -> void:
 func enter_phase():
 	super.enter_phase()
 	print("enter Draw")
+	
 	Arbitrator.chronicler.tribunal.refill_actual()
-	Arbitrator.chronicler.fleet.stamps.append_array(Arbitrator.chronicler.tribunal.actual.stamps)
+	Arbitrator.chronicler.fleet.init_arks(Arbitrator.chronicler.tribunal.actual.stamps)
 	Arbitrator.chronicler.tribunal.atheneum.init_scenarios()
 	status = Bozo.Status.PLAYING_ANIMATION
 	Arbitrator.chronicler.tribunal.atheneum.draw_phase.emit()

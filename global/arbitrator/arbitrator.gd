@@ -18,9 +18,12 @@ var current_phase: Phase
 
 func _ready() -> void:
 	phases = [
+		PhaseGrowth.new(),
 		PhaseDraw.new(),
 		PhaseDecision.new(),
+		PhaseStock.new(),
 		PhaseDiscard.new(),
+		PhaseFusion.new(),
 		#CleanupPhase.new(),
 	]
 
@@ -49,3 +52,8 @@ func _on_phase_completed() -> void:
 func complete_round() -> void:
 	round_completed.emit()
 	start_new_round()
+
+func queue_an_animation(tween_: Tween) -> void:
+	if not current_phase: return
+	current_phase.animation_tweens.append(tween_)
+	tween_.finished.connect(current_phase._on_tween_finished.bind(tween_))

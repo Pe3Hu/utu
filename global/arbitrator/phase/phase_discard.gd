@@ -9,11 +9,21 @@ func _init() -> void:
 func enter_phase():
 	super.enter_phase()
 	print("enter Discard")
+	update_forge_stamps()
+	Arbitrator.chronicler.faction.odeum.scenario = null
 	Arbitrator.chronicler.tribunal.actual.clear()
-	Arbitrator.chronicler.fleet.stamps.clear()
-	status = Bozo.Status.PLAYING_ANIMATION
+	Arbitrator.chronicler.fleet.arks.clear()
 	Arbitrator.chronicler.tribunal.atheneum.discard_phase.emit()
 	Arbitrator.chronicler.fleet.discard_phase.emit()
+
+func update_forge_stamps() -> void:
+	var forge_stamps: Array[StampData]
+	#forge_stamps.append_array(Arbitrator.chronicler.tribunal.actual.stamps)
+	
+	for ark in Arbitrator.chronicler.fleet.arks:
+		forge_stamps.append(ark.stamp)
+	
+	Arbitrator.chronicler.faction.isle.forge.stamps = forge_stamps
 
 func _on_all_animations_finished() -> void:
 	super._on_all_animations_finished()

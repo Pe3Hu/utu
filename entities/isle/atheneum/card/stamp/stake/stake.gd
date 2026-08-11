@@ -21,19 +21,17 @@ func update_texture() -> void:
 	match data.type:
 		Bozo.Stake.RIGHT:
 			style.border_width_right = 0
-			%Number.position.x = Catalog.JOINT_OFFEST * 0.5
+			%Number.position.x = Catalog.STAKE_SIGN_OFFEST * 0.5
 		Bozo.Stake.LEFT:
 			style.border_width_left = 0
-			%Number.position.x = Catalog.JOINT_OFFEST
-			%Sign.position.x = -Catalog.JOINT_OFFEST * 2
+			%Number.position.x = Catalog.STAKE_SIGN_OFFEST
+			%Sign.position.x = -Catalog.STAKE_SIGN_OFFEST * 2
 			
 			if data.value >= 10:
-				%Number.position.x -= Catalog.JOINT_OFFEST * 0.5
-				%Sign.position.x -= Catalog.JOINT_OFFEST
-				
+				%Number.position.x -= Catalog.STAKE_SIGN_OFFEST * 0.5
+				%Sign.position.x -= Catalog.STAKE_SIGN_OFFEST
 			
 			%Sign.visible = true
-			
 			var tune_str = Bozo.enum_to_string(Bozo.Type.MATH, Digest.tune_to_math[data.tune])
 			%Sign.texture = load("res://entities/isle/terrain/flow/blob/images/%s.png" % tune_str)
 		

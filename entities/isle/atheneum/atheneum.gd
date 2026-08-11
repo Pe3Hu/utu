@@ -7,8 +7,7 @@ extends PanelContainer
 var data: AtheneumData:
 	set(value_):
 		data = value_
-		
-		connect_datas()
+		connect_signals()
 
 @export var isle: Isle
 @export var cards: Array[Card]
@@ -19,7 +18,7 @@ var shift_tween: Tween
 
 
 #region init
-func connect_datas() -> void:
+func connect_signals() -> void:
 	data.draw_phase.connect(_on_draw_phase)
 	_on_draw_phase()
 	data.discard_phase.connect(_on_discard_phase)

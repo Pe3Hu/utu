@@ -39,6 +39,7 @@ func update_amount(with_animation_: bool = false) -> void:
 		var duration = 1.0
 		tween_amount = create_tween()
 		tween_amount.tween_property(data, "amount", data.next_amount, duration)
+		Arbitrator.queue_an_animation(tween_amount)
 		await tween_amount.finished
 	else:
 		data.amount = data.next_amount

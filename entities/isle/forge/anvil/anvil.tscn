@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://bf50ul084wkr1"]
+
+[ext_resource type="Script" uid="uid://bijh34xnmsy0f" path="res://entities/isle/forge/anvil/anvil.gd" id="1_q2oa5"]
+[ext_resource type="PackedScene" uid="uid://cbet0tqjycopk" path="res://entities/isle/atheneum/card/stamp/stamp.tscn" id="2_xfejm"]
+[ext_resource type="Texture2D" uid="uid://31c65owf3bu7" path="res://entities/isle/forge/anvil/images/fusion 2.png" id="3_nhw1j"]
+[ext_resource type="Texture2D" uid="uid://b0vwl84c10qr8" path="res://entities/isle/forge/anvil/images/fusion 0.png" id="3_r7gt8"]
+[ext_resource type="Texture2D" uid="uid://imhhs3ipj6ry" path="res://entities/isle/forge/anvil/images/fusion 1.png" id="4_6oe1o"]
+
+[node name="Anvil" type="PanelContainer" unique_id=1554707744 node_paths=PackedStringArray("old_stamps")]
+visible = false
+custom_minimum_size = Vector2(716, 296)
+offset_right = 716.0
+offset_bottom = 296.0
+script = ExtResource("1_q2oa5")
+old_stamps = [NodePath("Stamps/OldStamps/Stamp1"), NodePath("Stamps/OldStamps/Stamp2"), NodePath("Stamps/OldStamps/Stamp3")]
+
+[node name="Stamps" type="HBoxContainer" parent="." unique_id=1501160653]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="OldStamps" type="HBoxContainer" parent="Stamps" unique_id=357159141]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Stamp1" parent="Stamps/OldStamps" unique_id=1990971153 instance=ExtResource("2_xfejm")]
+visible = false
+layout_mode = 2
+
+[node name="Stamp2" parent="Stamps/OldStamps" unique_id=795791444 instance=ExtResource("2_xfejm")]
+visible = false
+layout_mode = 2
+
+[node name="Stamp3" parent="Stamps/OldStamps" unique_id=502858873 instance=ExtResource("2_xfejm")]
+visible = false
+layout_mode = 2
+
+[node name="FusionButton" type="TextureButton" parent="Stamps" unique_id=1453759818]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("3_r7gt8")
+texture_pressed = ExtResource("4_6oe1o")
+texture_hover = ExtResource("3_nhw1j")
+
+[node name="NewStamp" parent="Stamps" unique_id=1332509346 instance=ExtResource("2_xfejm")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[connection signal="pressed" from="Stamps/FusionButton" to="." method="_on_fusion_button_pressed"]

@@ -10,6 +10,7 @@ var data: StampData:
 		
 		init_stakes()
 		update_colors()
+		update_marks()
 		%Spoil.texture = load("res://entities/dice/images/%d.png" % data.spoil_value)
 
 @export var border: Panel
@@ -21,8 +22,16 @@ var data: StampData:
 
 #region init
 func init_stakes() -> void:
-	for type in data.type_to_stakes:
-		for stake_data in data.type_to_stakes[type]:
+	for type in Catalog.stakes:
+		var stake_datas = data.type_to_stakes[type]
+		
+		match type:
+			Bozo.Stake.LEFT:
+				stake_datas.sort_custom(func (a, b): return a.joints.front() < b.joints.front())
+			Bozo.Stake.LEFT:
+				stake_datas.sort_custom(func (a, b): return a.value < b.value)
+		
+		for stake_data in stake_datas:
 			add_stake(stake_data)
 
 func add_stake(stake_data_: StakeData) -> void:
@@ -41,9 +50,14 @@ func update_colors() -> void:
 	border.get_theme_stylebox("panel").border_color = color
 	%Top.get_theme_stylebox("panel").bg_color = color
 	%Bottom.get_theme_stylebox("panel").bg_color = color
+
+func update_marks() -> void:
+	%CardMarkLetter.text = data.origin.mark_letter
+	%CardMarkDigits.text = data.mark_digits
 #endregion
 
 func process_click() -> void:
+	if Arbitrator.current_phase.type != Bozo.Phase.DECISION: return
 	var local_mouse_pos = get_local_mouse_position()
 	var half_height = size.y * 3 / 4
 	

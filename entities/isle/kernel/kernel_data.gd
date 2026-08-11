@@ -2,6 +2,11 @@ class_name KernelData
 extends RefCounted
 
 
+@warning_ignore("unused_signal")
+signal growth_phase
+@warning_ignore("unused_signal")
+signal stock_phase
+
 var treasury: TreasuryData
 
 var harvest: CornfieldData = CornfieldData.new(self)
@@ -23,12 +28,13 @@ func grow_harvest(instant_stock_: bool = false) -> void:
 		var source = bastion.region.biome.source
 		var volume = source.get_rnd_volume()
 		
-		if not instant_stock_:
-			var straw = harvest.volume_to_matter_to_straw[volume][source.matter]
-			straw.next_amount += 1
-		else:
+		if instant_stock_:
 			var granary_straw = granary.volume_to_matter_to_straw[volume][source.matter]
 			granary_straw.amount += 1
+			granary_straw.next_amount += 1
+		else:
+			var straw = harvest.volume_to_matter_to_straw[volume][source.matter]
+			straw.next_amount += 1
 
 func stock_granary() -> void:
 	for harvest_straw in harvest.straws:

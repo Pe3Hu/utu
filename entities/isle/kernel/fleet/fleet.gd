@@ -31,17 +31,17 @@ func _on_draw_phase() -> void:
 	stamp_to_ark.clear()
 	Helper.clear_children(%Arks)
 	
-	for stamp_data in data.stamps:
-		add_ark(stamp_data)
+	for ark_data in data.arks:
+		add_ark(ark_data)
 	
 	sort_arks()
 
-func add_ark(stamp_data_: StampData) -> void:
+func add_ark(ark_data_: ArkData) -> void:
 	var ark = ark_scene.instantiate()
 	%Arks.add_child(ark)
 	arks.append(ark)
-	stamp_to_ark[stamp_data_] = ark
-	ark.stamp = stamp_data_
+	stamp_to_ark[ark_data_.stamp] = ark
+	ark.data = ark_data_
 	ark.fleet = self
 
 func _on_discard_phase() -> void:
@@ -55,7 +55,7 @@ func top_ark_animation(flag_: bool = true) -> void:
 	ark.apply_animation(flag_)
 
 func sort_arks() -> void:
-	arks.sort_custom(func(a, b): return a.stamp.get_spoil_weight() > b.stamp.get_spoil_weight())
+	arks.sort_custom(func(a, b): return a.data.stamp.get_spoil_weight() > b.data.stamp.get_spoil_weight())
 	
 	for _i in arks.size():
 		var ark = arks[_i]

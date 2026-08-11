@@ -7,7 +7,6 @@ extends PanelContainer
 var data: OdeumData:
 	set(value_):
 		data = value_
-		
 		connect_signals()
 
 var current_canto: Canto
@@ -20,6 +19,7 @@ func connect_signals() -> void:
 
 func _on_scenario_changed() -> void:
 	Helper.clear_children(%Cantos)
+	%Cantos.visible = !data.cantos.is_empty()
 	
 	for canto_data in data.cantos:
 		add_canto(canto_data)

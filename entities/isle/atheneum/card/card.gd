@@ -42,8 +42,7 @@ func first_appear() -> void:
 	stamp.offset_transform_position_ratio.y = 1.25
 	rng_duration_shift()
 	appear()
-	Arbitrator.current_phase.animation_tweens.append(appear_tween)
-	appear_tween.finished.connect(Arbitrator.current_phase._on_tween_finished.bind(appear_tween))
+	Arbitrator.queue_an_animation(appear_tween)
 	await appear_tween.finished
 	duration_shift = 0
 
@@ -74,8 +73,8 @@ func disappear() -> void:
 func last_disappear() -> void:
 	rng_duration_shift()
 	disappear()
-	Arbitrator.current_phase.animation_tweens.append(appear_tween)
-	appear_tween.finished.connect(Arbitrator.current_phase._on_tween_finished.bind(appear_tween))
+	
+	Arbitrator.queue_an_animation(appear_tween)
 #endregion
 
 #region hover

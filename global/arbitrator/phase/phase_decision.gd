@@ -8,4 +8,4 @@ func _init() -> void:
 
 func enter_phase():
 	print("enter Decision")
-	
+	exit_phase()

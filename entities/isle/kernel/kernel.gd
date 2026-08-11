@@ -8,6 +8,7 @@ var data: KernelData:
 	set(value_):
 		data = value_
 		connect_datas()
+		connect_signals()
 
 @export var isle: Isle
 @export var harvest: Cornfield
@@ -35,6 +36,17 @@ func add_volume(value_: int) -> void:
 	var volume = volume_scene.instantiate()
 	%Volumes.add_child(volume)
 	volume.value = value_
+
+func connect_signals() -> void:
+	data.growth_phase.connect(_on_growth_phase)
+	data.stock_phase.connect(_on_stock_phase)
+
+func _on_growth_phase() -> void:
+	harvest.update_straw_amounts()
+
+func _on_stock_phase() -> void:
+	granary.update_straw_amounts()
+	harvest.update_straw_amounts()
 #endregion
 
 func activate_volumes(ark_: Ark) -> void:
@@ -52,11 +64,3 @@ func deactivate_volumes() -> void:
 		volume.is_active = false
 	
 	activated_volumes.clear()
-
-func test_harvest() -> void:
-	data.grow_harvest()
-	harvest.update_straw_amounts()
-	await get_tree().create_timer(1.0).timeout
-	data.stock_granary()
-	granary.update_straw_amounts()
-	harvest.update_straw_amounts()

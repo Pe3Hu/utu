@@ -69,7 +69,7 @@ func captured_shrine(coord_: Vector2i) -> BastionData:
 
 func captured_bastion(bastion_: BastionData) -> void:
 	if bastion_.faction != null:
-		pass
+		bastion_.faction.lose_bastion(bastion_)
 	
 	bastion_.faction = self
 	internals.append(bastion_)
@@ -80,7 +80,23 @@ func update_externals(bastion_: BastionData) -> void:
 	if externals.has(bastion_):
 		externals.erase(bastion_)
 	
-	for fiefdom in bastion_.fiefdom.neighbours:
-		if not externals.has(fiefdom.bastion) and not internals.has(fiefdom.bastion):
-			externals.append(fiefdom.bastion)
+	if internals.has(bastion_):
+		for fiefdom in bastion_.fiefdom.neighbours:
+			if not externals.has(fiefdom.bastion) and not internals.has(fiefdom.bastion):
+				externals.append(fiefdom.bastion)
+	else:
+		for external_fiefdom in bastion_.fiefdom.neighbours:
+			var still_external: bool = false
+			
+			for internal_fiefdom in external_fiefdom.neighbours:
+				if internals.has(internal_fiefdom.bastion):
+					still_external = true
+					break
+			
+			if not still_external:
+				externals.erase(external_fiefdom.bastion)
+
+func lose_bastion(bastion_: BastionData) -> void:
+	internals.erase(bastion_)
+	update_externals(bastion_)
 #endregion

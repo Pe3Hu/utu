@@ -21,6 +21,7 @@ func _init(faction_: FactionData) -> void:
 
 func init_cantos() -> void:
 	cantos.clear()
+	if not scenario: return
 	
 	for _i in scenario.chains.size() - 1:
 		var first = scenario.chains[_i]

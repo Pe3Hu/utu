@@ -44,7 +44,7 @@ func _on_button_mouse_entered() -> void:
 
 func _on_button_mouse_exited() -> void:
 	if ark.is_animation_running(): return
-	var color = Digest.matter_to_color[ark.stamp.origin.matter]
+	var color = Digest.matter_to_color[ark.data.stamp.origin.matter]
 	panel.bg_color = color
 
 func update_texture(is_visible_: bool = true) -> void:

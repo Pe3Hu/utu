@@ -5,6 +5,7 @@
 [ext_resource type="Shader" uid="uid://uw3w25arybcr" path="res://entities/isle/terrain/bastion/select.gdshader" id="3_dvjei"]
 [ext_resource type="Texture2D" uid="uid://dy7ypb045s8vj" path="res://entities/dice/images/-1.png" id="4_fr1ao"]
 [ext_resource type="Texture2D" uid="uid://bphq7cv1824fa" path="res://entities/isle/terrain/bastion/images/crown/4/4.png" id="5_jc515"]
+[ext_resource type="Texture2D" uid="uid://d124pvh1ndc6q" path="res://entities/isle/terrain/bastion/images/halocline.png" id="5_yjcy8"]
 [ext_resource type="Texture2D" uid="uid://bnd6mdkmp7pyf" path="res://entities/isle/terrain/bastion/images/crown/4/4 0.png" id="6_yjcy8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ms72j"]
@@ -45,6 +46,17 @@ offset_top = 6.0
 offset_right = 42.0
 offset_bottom = 42.0
 color = Color(1, 0.25, 0.25, 1)
+
+[node name="Halocline" type="TextureRect" parent="." unique_id=779078669]
+unique_name_in_owner = true
+visible = false
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 40.0
+offset_bottom = 40.0
+offset_transform_enabled = true
+texture = ExtResource("5_yjcy8")
+flip_h = true
 
 [node name="CrownBG" type="TextureRect" parent="." unique_id=111185868]
 unique_name_in_owner = true

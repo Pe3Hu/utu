@@ -116,6 +116,22 @@ func generate_arrangements(available_: Array, current_: Array, target_size_: int
 		
 		generate_arrangements(new_available, current_, target_size_, result_)
 		current_.pop_back()
+
+func generate_unique_arrangements_fixed_size(arr_: Array, size_: int) -> Array:
+	var result_: Array = []
+	generate_unique_arrangements(arr_, [], 0, size_, result_)
+	return result_
+
+func generate_unique_arrangements(available_: Array, current_: Array, start_index_: int, target_size_: int, result_: Array) -> void:
+	if current_.size() == target_size_:
+		result_.append(current_.duplicate())
+		return
+	
+	for _i in range(start_index_, available_.size()):
+		var element = available_[_i]
+		current_.append(element)
+		generate_unique_arrangements(available_, current_, _i + 1, target_size_, result_)
+		current_.pop_back()
 #endregion
 
 #region twist

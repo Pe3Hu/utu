@@ -10,11 +10,14 @@ var realm: RealmData
 var policy: PolicyData
 var terrain: TerrainData
 
+var forge: ForgeData
+
 
 func _init() -> void:
 	terrain = TerrainData.new(self)
 	realm = RealmData.new(self)
 	policy = PolicyData.new(self)
+	forge = ForgeData.new()
 	
 	terrain.init_galores()
 	

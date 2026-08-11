@@ -2,12 +2,13 @@ class_name Bastion
 extends Sprite2D
 
 
-
 var data: BastionData:
 	set(value_):
 		data = value_
 		
 		position = Vector2(data.fiefdom.coords.front()) * Catalog.BASTION_SIZE
+		#%Halocline.visible = data.is_halocline
+		#%Halocline.offset_transform_rotation = Helper.rng.randf_range(0, 360)
 		connect_signals()
 
 @export var terrain: Terrain
@@ -87,3 +88,8 @@ func try_capture() -> void:
 		terrain.highlight_externals()
 	
 	terrain.isle.odeum.current_canto.voice()
+
+func _process(delta_: float) -> void:
+	if %Halocline.visible:
+		var new_angle = %Halocline.offset_transform_rotation + delta_
+		%Halocline.offset_transform_rotation = fposmod(new_angle, 360.0)
