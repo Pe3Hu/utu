@@ -26,6 +26,7 @@ var current_anvil_index: int = 0:
 #region init
 func connect_signals() -> void:
 	data.fusion_phase.connect(_on_fusion_phase)
+	data.phase_finished.connect(_on_phase_finished)
 
 func _on_fusion_phase() -> void:
 	Helper.clear_children(%Anvils)
@@ -42,6 +43,9 @@ func add_anvil(anvil_data: AnvilData) -> void:
 	%Anvils.add_child(anvil)
 	anvil.forge = self
 	anvil.data = anvil_data
+
+func _on_phase_finished() -> void:
+	visible = false
 #endregion
 
 func _on_next_anvil_pressed() -> void:

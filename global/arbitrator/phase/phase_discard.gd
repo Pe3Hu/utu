@@ -11,8 +11,9 @@ func enter_phase():
 	print("enter Discard")
 	update_forge_stamps()
 	Arbitrator.chronicler.faction.odeum.scenario = null
+	
+	Arbitrator.chronicler.fleet.put_ark_into_actual()
 	Arbitrator.chronicler.tribunal.actual.clear()
-	Arbitrator.chronicler.fleet.arks.clear()
 	Arbitrator.chronicler.tribunal.atheneum.discard_phase.emit()
 	Arbitrator.chronicler.fleet.discard_phase.emit()
 

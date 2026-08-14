@@ -30,6 +30,7 @@ var panel: StyleBoxFlat = StyleBoxFlat.new()
 @export var button: TextureButton
 
 
+#region buttons
 func _on_button_pressed() -> void:
 	var flag = stake == Bozo.Stake.LEFT
 	
@@ -46,12 +47,13 @@ func _on_button_mouse_exited() -> void:
 	if ark.is_animation_running(): return
 	var color = Digest.matter_to_color[ark.data.stamp.origin.matter]
 	panel.bg_color = color
+#endregion
 
 func update_texture(is_visible_: bool = true) -> void:
 	var value = -1
 	
 	if is_visible_:
-		value = 1
+		value = Digest.verse_to_spoil[ark.data.stamp.origin.verse.get_sum()]
 	
 	button.texture_normal = load("res://entities/dice/images/%d.png" % value)
 

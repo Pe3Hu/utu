@@ -16,6 +16,8 @@ var mark_digits: String:
 		mark_digits = value_
 		init_stakes()
 
+
+#region init
 func _init(origin_: OriginData, intro_values_: Array[int], verse_values_: Array[int]) -> void:
 	origin = origin_
 	intro_values = intro_values_
@@ -45,7 +47,9 @@ func init_stakes() -> void:
 					stake_value = Digest.matter_to_factor[origin.matter]
 			
 			var _stake = StakeData.new(self, tune, joints, stake_value)
+#endregion
 
+#region get
 func get_stake(joint_: int, type_: Bozo.Stake) -> Variant:
 	if not joint_to_type_to_stakes.has(joint_): return null
 	if not joint_to_type_to_stakes[joint_].has(type_): return null
@@ -63,3 +67,4 @@ func get_spoil_weight() -> int:
 	#weight += intro_values.size()
 	#return weight
 	return intro_values.size()
+#endregion

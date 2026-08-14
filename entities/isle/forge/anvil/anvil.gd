@@ -21,5 +21,4 @@ func connect_datas() -> void:
 	%NewStamp.data = data.new_stamp
 
 func _on_fusion_button_pressed() -> void:
-	forge.visible = false
 	data.fusion()

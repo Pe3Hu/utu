@@ -22,18 +22,54 @@ const domaint_to_size = {
 
 #region matter
 const verse_to_matter = {
-	34: [
-		Bozo.Matter.GAS,
-		Bozo.Matter.SOLID,
-	],
 	35: [
 		Bozo.Matter.GAS,
 		Bozo.Matter.LIQUID,
+	],
+	34: [
+		Bozo.Matter.GAS,
+		Bozo.Matter.SOLID,
 	],
 	36: [
 		Bozo.Matter.LIQUID,
 		Bozo.Matter.SOLID,
 	],
+	59: [
+		Bozo.Matter.GAS,
+		Bozo.Matter.LIQUID,
+	],
+	57: [
+		Bozo.Matter.GAS,
+		Bozo.Matter.SOLID,
+	],
+	58: [
+		Bozo.Matter.LIQUID,
+		Bozo.Matter.SOLID,
+	],
+	89: [
+		Bozo.Matter.GAS,
+		Bozo.Matter.LIQUID,
+	],
+	87: [
+		Bozo.Matter.GAS,
+		Bozo.Matter.SOLID,
+	],
+	88: [
+		Bozo.Matter.LIQUID,
+		Bozo.Matter.SOLID,
+	],
+}
+
+var verse_to_spoil = {
+	34: 1,
+	35: 1,
+	36: 1,
+	57: 2,
+	58: 2,
+	59: 2,
+	87: 3,
+	88: 3,
+	89: 3
 }
 
 const matter_to_verse = {
@@ -251,6 +287,7 @@ const volume_to_stage = {
 }
 #endregion
 
+#region stamp
 const tune_to_length_to_joints = {
 	Bozo.Tune.INTRO: {
 		1: [[2, 3]],
@@ -271,6 +308,34 @@ const tune_to_length_to_joints = {
 		6: [[4, 5]]
 	},
 }
+#endregion
+
+var mount_to_matter = {
+	Bozo.Mount.GIRAFFE: Bozo.Matter.GAS,
+	Bozo.Mount.ELEPHANT: Bozo.Matter.LIQUID,
+	Bozo.Mount.RHINO: Bozo.Matter.SOLID,
+	Bozo.Mount.HORSE: Bozo.Matter.NONE,
+	Bozo.Mount.ZEBRA: Bozo.Matter.NONE,
+	Bozo.Mount.DONKEY: Bozo.Matter.NONE,
+	Bozo.Mount.HYENA: Bozo.Matter.ANY,
+}
+
+var mount_to_evaluation = {
+	Bozo.Mount.GIRAFFE: Bozo.Evaluation.BEST,
+	Bozo.Mount.ELEPHANT: Bozo.Evaluation.BEST,
+	Bozo.Mount.RHINO: Bozo.Evaluation.BEST,
+	Bozo.Mount.HORSE: Bozo.Evaluation.BEST,
+	Bozo.Mount.ZEBRA: Bozo.Evaluation.NORMAL,
+	Bozo.Mount.DONKEY: Bozo.Evaluation.WORST,
+	Bozo.Mount.HYENA: Bozo.Evaluation.WORST,
+}
+
+const matter_to_mount = {
+	Bozo.Matter.GAS: Bozo.Mount.GIRAFFE,
+	Bozo.Matter.LIQUID: Bozo.Mount.ELEPHANT,
+	Bozo.Matter.SOLID: Bozo.Mount.RHINO,
+}
+
 
 
 
@@ -456,6 +521,7 @@ var normal_to_mirror = {
 #region color
 var matter_to_color = {
 	Bozo.Matter.NONE: Color.WHITE,
+	Bozo.Matter.ANY: Color.DIM_GRAY,
 	Bozo.Matter.SOLID: Color.from_hsv(30.0 / 360.0, 0.75, 0.75),
 	Bozo.Matter.LIQUID: Color.from_hsv(150.0 / 360.0, 0.75, 0.75),
 	Bozo.Matter.GAS: Color.from_hsv(270.0 / 360.0, 0.75, 0.75),

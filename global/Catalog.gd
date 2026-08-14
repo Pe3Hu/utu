@@ -71,6 +71,7 @@ var net_neighbors = {
 }
 
 var volumes = [2, 3, 4, 5, 6, 8, 9, 10, 12, 15, 18, 20, 25, 27, 30, 32]
+var prime_volumes = [2, 3, 5]
 
 var pulses = [0, 2, 3, 4, 5, 6, 8, 9, 10, 12, 15, 18, 20, 24, 25, 27, 30, 
 		32, 36, 40, 45, 50, 54, 60, 64, 75, 81, 90, 96, 100]
@@ -193,6 +194,7 @@ const regions = [
 	Bozo.Region.SIDE,
 	Bozo.Region.CENTER
 ]
+const NO_RAMPART_COORD = Vector2i(9, 10)
 #endregion
 
 #region card
@@ -202,6 +204,9 @@ const STAKE_SIGN_OFFEST: float = 4.0
 const GYRE_ACTUAL_STAMP_SIZE = 4
 
 const stakes = [Bozo.Stake.LEFT, Bozo.Stake.RIGHT]
+
+const MARK_DIGITS_MAX_LENGTH: int = 6
+const fusion_mark_lengths = [2, 3, 6]
 #endregion
 
 #region fleet
@@ -211,20 +216,30 @@ const ARK_PIVOT = Vector2(124, 18)
 const SPOIL_CORNER: int = 18
 #endregion
 
+#region ladder
 const LADDER_SIZE = Vector2i(5, 9) 
 const STAIR_SIZE = Vector2(64, 64)
+#endregion
 
+#region dice
 var axes: Array[Vector3] = [
 	Vector3(90, 0, 0),
 	Vector3(0, 90, 0),
 	Vector3(0, 0, 90)
 ]
+#endregion
 
-const NO_RAMPART_COORD = Vector2i(9, 10)
-
-const STARTER_HARVEST_AMOUNT: int = 20
-
-const MARK_DIGITS_MAX_LENGTH: int = 6
-const fusion_mark_lengths = [2, 3, 6]
+#region odeum
 
 const VISIBLE_CANTO_MAX: int = 3
+#endregion
+
+#region kernel
+const STARTER_HARVEST_AMOUNT: int = 20
+
+const mounts = [Bozo.Mount.HORSE, Bozo.Mount.ZEBRA, Bozo.Mount.DONKEY, Bozo.Mount.GIRAFFE, Bozo.Mount.ELEPHANT, Bozo.Mount.RHINO, Bozo.Mount.HYENA]
+const volume_mounts = [Bozo.Mount.HORSE, Bozo.Mount.ZEBRA, Bozo.Mount.DONKEY]
+const matter_mounts = [Bozo.Mount.GIRAFFE, Bozo.Mount.ELEPHANT, Bozo.Mount.RHINO]
+
+const ENCLOSURE_SIZE = Vector2(48 ,48)
+#endregion

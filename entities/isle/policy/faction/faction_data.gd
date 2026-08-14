@@ -6,10 +6,11 @@ var policy: PolicyData
 var type: Bozo.Faction
 
 var isle: IsleData
-var treasury: TreasuryData
+var kernel: KernelData
 var atheneum: AtheneumData
 var odeum: OdeumData
 var chronicler: ChroniclerData
+var warlord: WarlordData
 
 var current_order: int = 0
 
@@ -29,12 +30,14 @@ func _init(policy_: PolicyData, type_: Bozo.Faction) -> void:
 	type = type_
 	
 	if type != Bozo.Faction.GREEN:
-		treasury = TreasuryData.new(self)
+		kernel = KernelData.new(self)
 		odeum = OdeumData.new(self)
+		
+		init_shrines()
+		
 		atheneum = AtheneumData.new(self)
 		chronicler = ChroniclerData.new(self)
-	
-		init_shrines()
+		warlord = WarlordData.new(self)
 
 func init_shrines() -> void:
 	for order in Catalog.shrines.size():

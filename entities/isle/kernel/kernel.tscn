@@ -3,14 +3,15 @@
 [ext_resource type="PackedScene" uid="uid://d3686rpnd3xtj" path="res://entities/isle/kernel/cornfield/cornfield.tscn" id="1_gjyk6"]
 [ext_resource type="Script" uid="uid://di4j72fl1vypv" path="res://entities/isle/kernel/kernel.gd" id="1_is0h4"]
 [ext_resource type="PackedScene" uid="uid://c48c8eef8a3vf" path="res://entities/isle/kernel/fleet/fleet.tscn" id="2_8c6r2"]
+[ext_resource type="PackedScene" uid="uid://dwc7cpm5qkxqe" path="res://entities/isle/kernel/zoo/zoo.tscn" id="4_jymj8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2o6og"]
 bg_color = Color(0.86, 0.86, 0.86, 0.41960785)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i1k51"]
 
-[node name="Kernel" type="PanelContainer" unique_id=601409116 node_paths=PackedStringArray("harvest", "granary", "fleet")]
-custom_minimum_size = Vector2(664, 0)
+[node name="Kernel" type="PanelContainer" unique_id=601409116 node_paths=PackedStringArray("harvest", "granary", "fleet", "zoo")]
+custom_minimum_size = Vector2(664, 264)
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -19,9 +20,10 @@ grow_horizontal = 2
 offset_transform_enabled = true
 theme_override_styles/panel = SubResource("StyleBoxFlat_2o6og")
 script = ExtResource("1_is0h4")
-harvest = NodePath("Cornfields/VBox/Harvest")
-granary = NodePath("Cornfields/VBox/Granary")
+harvest = NodePath("Cornfields/VBoxVolumes/Harvest")
+granary = NodePath("Cornfields/VBoxVolumes/Granary")
 fleet = NodePath("Fleet")
+zoo = NodePath("Zoo")
 
 [node name="Fleet" parent="." unique_id=846630898 node_paths=PackedStringArray("kernel") instance=ExtResource("2_8c6r2")]
 layout_mode = 2
@@ -36,21 +38,27 @@ size_flags_horizontal = 8
 size_flags_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_i1k51")
 
-[node name="VBox" type="VBoxContainer" parent="Cornfields" unique_id=1461936640]
+[node name="VBoxVolumes" type="VBoxContainer" parent="Cornfields" unique_id=1461936640]
 custom_minimum_size = Vector2(516, 244)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
 theme_override_constants/separation = -4
 
-[node name="Harvest" parent="Cornfields/VBox" unique_id=461106985 instance=ExtResource("1_gjyk6")]
+[node name="Harvest" parent="Cornfields/VBoxVolumes" unique_id=461106985 instance=ExtResource("1_gjyk6")]
 layout_mode = 2
 
-[node name="Volumes" type="HBoxContainer" parent="Cornfields/VBox" unique_id=35897380]
+[node name="Volumes" type="HBoxContainer" parent="Cornfields/VBoxVolumes" unique_id=35897380]
 unique_name_in_owner = true
 z_index = 2
 layout_mode = 2
 theme_override_constants/separation = -4
 
-[node name="Granary" parent="Cornfields/VBox" unique_id=1291636325 instance=ExtResource("1_gjyk6")]
+[node name="Granary" parent="Cornfields/VBoxVolumes" unique_id=1291636325 instance=ExtResource("1_gjyk6")]
 layout_mode = 2
+
+[node name="Zoo" parent="." unique_id=241851599 node_paths=PackedStringArray("kernel") instance=ExtResource("4_jymj8")]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+kernel = NodePath("..")

@@ -185,7 +185,6 @@ func get_direction_from_region_centers(a_: RegionData, b_: RegionData) -> Vector
 	
 	return Vector2i(direction)
 
-
 func _is_connected(coords_array: Array[Vector2i]) -> bool:
 	if coords_array.is_empty():
 		return false
@@ -205,3 +204,160 @@ func _is_connected(coords_array: Array[Vector2i]) -> bool:
 				stack.append(neighbour)
 	
 	return visited.size() == coords_array.size()
+
+func find_all_trios() -> void:
+	var aliquots_2 = [2, 4, 6, 8, 10, 12, 18, 20, 30, 32]
+	var aliquots_3 = [3, 6, 9, 12, 15, 18, 27, 30]
+	var aliquots_5 = [5, 10, 15, 20, 25, 30]
+	
+	for a in aliquots_2:
+		for b in aliquots_3:
+			for c in aliquots_5:
+				var _sum = a + b + c
+
+
+#region jugs and cups
+func find_optimal_spills(jugs: Array, cups: Array) -> Array:
+	var caps = []
+	var orig_jug_indices = []
+	var initial_full_count: int = 0
+	
+	for _i in jugs.size():
+		var cap = jugs[_i].target_volume - jugs[_i].current_volume
+		
+		if cap > 0:
+			caps.append(cap)
+			orig_jug_indices.append(_i)
+		else:
+			initial_full_count += 1
+	
+	var m = caps.size()
+	var n = cups.size()
+	
+	var items: Array
+	
+	for _i in n:
+		items.append({ "index": _i, "volume": cups[_i].volume })
+	
+	items.sort_custom(func(a, b): return a.volume > b.volume)
+	
+	var suffix_sum = []
+	suffix_sum.resize(n + 1)
+	suffix_sum[n] = 0
+	for i in range(n - 1, -1, -1):
+		suffix_sum[i] = suffix_sum[i + 1] + items[i].volume
+	
+	var greedy_sums: Array = []
+	var greedy_assign: Array = []
+	for _j in range(m):
+		greedy_sums.append(0)
+		greedy_assign.append([])
+	
+	var greedy_full_count: int = initial_full_count
+	var greedy_spill: int = 0
+	
+	for item in items:
+		var v: int = item.volume
+		var orig_idx: int = item.index
+		var best_j: int = -1
+		var best_need: int = -1
+		for j in range(m):
+			if greedy_sums[j] < caps[j]:
+				var need: int = caps[j] - greedy_sums[j]
+				if need > best_need:
+					best_need = need
+					best_j = j
+		if best_j != -1:
+			greedy_sums[best_j] += v
+			greedy_assign[best_j].append(orig_idx)
+			if greedy_sums[best_j] >= caps[best_j]:
+				greedy_full_count += 1
+				greedy_spill += greedy_sums[best_j] - caps[best_j]
+	
+	var best = {
+		"full_count": greedy_full_count,
+		"spill": greedy_spill,
+		"assignment": greedy_assign
+	}
+	
+	var sums: Array = []
+	var assign: Array = []
+	for _j in range(m):
+		sums.append(0)
+		assign.append([])
+	
+	var search_state = {
+		"caps": caps,
+		"items": items,
+		"suffix_sum": suffix_sum,
+		"sums": sums,
+		"assign": assign,
+		"best": best,
+		"m": m,
+		"n": n,
+		"initial_full_count": initial_full_count
+	}
+	
+	var dfs_result = dfs_search(0, initial_full_count, 0, search_state)
+	
+	var result: Array = []
+	for j in range(m):
+		if dfs_result.assignment[j].size() > 0:
+			result.append({
+				"jug": orig_jug_indices[j],
+				"cups": dfs_result.assignment[j]
+			})
+	return result
+
+func dfs_search(idx: int, full_count: int, spill: int, state: Dictionary) -> Dictionary:
+	var n: int = state.n
+	var m: int = state.m
+	var caps: Array = state.caps
+	var items: Array = state.items
+	var suffix_sum: Array = state.suffix_sum
+	var sums: Array = state.sums
+	var assign: Array = state.assign
+	var best: Dictionary = state.best
+	
+	if idx == n:
+		if full_count > best.full_count or (full_count == best.full_count and spill < best.spill):
+			best.full_count = full_count
+			best.spill = spill
+			best.assignment = []
+			for j in range(m):
+				best.assignment.append(assign[j].duplicate())
+		return best
+	
+	var remaining_vol: int = suffix_sum[idx]
+	var potential_full: int = 0
+	for j in range(m):
+		if sums[j] < caps[j]:
+			if sums[j] + remaining_vol >= caps[j]:
+				potential_full += 1
+	
+	if full_count + potential_full < best.full_count:
+		return best
+	if full_count + potential_full == best.full_count and spill >= best.spill:
+		return best
+	
+	var v: int = items[idx].volume
+	var orig_idx: int = items[idx].index
+	
+	dfs_search(idx + 1, full_count, spill, state)
+	
+	for j in range(m):
+		if sums[j] < caps[j]:
+			var need: int = caps[j] - sums[j]
+			var new_spill: int = spill + max(0, v - need)
+			var new_full_count: int = full_count + (1 if sums[j] + v >= caps[j] else 0)
+			
+			sums[j] += v
+			assign[j].append(orig_idx)
+			
+			dfs_search(idx + 1, new_full_count, new_spill, state)
+			
+			assign[j].pop_back()
+			sums[j] -= v
+	
+	return best
+#endregion

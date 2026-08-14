@@ -11,4 +11,4 @@ var current_round: int = 0
 func _init(faction_: FactionData) -> void:
 	faction = faction_
 	tribunal = faction.atheneum.tribunal
-	fleet = faction.treasury.kernel.fleet
+	fleet = faction.kernel.fleet

@@ -33,16 +33,31 @@ func init_stamps() -> void:
 	verse_indexs.assign(range(6))
 	intro_indexs.shuffle()
 	verse_indexs.shuffle()
-	var n = intro_indexs.size()
+	var l = 1
+	@warning_ignore("integer_division")
+	var n = intro_indexs.size() / l
 	
 	for _i in n:
-		var intro_values: Array[int] = [intro.values[intro_indexs.pop_back()]]
-		var verse_values: Array[int] = [verse.values[verse_indexs.pop_back()]]
+		var intro_values: Array[int]
+		var verse_values: Array[int] 
+		
+		for _j in l:
+			var index = intro_indexs.pop_back()
+			intro_values.append(intro.values[index])
+			index = verse_indexs.pop_back()
+			verse_values.append(intro.values[index])
+		
 		add_stamp(intro_values, verse_values)
 
 func add_stamp(intro_values_: Array[int], verse_values_: Array[int]) -> void:
 	var stamp = StampData.new(self, intro_values_, verse_values_)
 	stamps.append(stamp)
 	atheneum.tribunal.hereafter.stamps.append(stamp)
-	stamp.mark_digits = str(stamps.size())
+	var str_mark = ""
+	
+	for _i in intro_values_.size():
+		var digit = stamps.size() + _i
+		str_mark += str(digit)
+	
+	stamp.mark_digits = str_mark
 #endregion

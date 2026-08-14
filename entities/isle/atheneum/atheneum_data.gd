@@ -32,11 +32,14 @@ func init_origins() -> void:
 	var n = 2
 	var intro_sum = 20
 	
-	var matters = Catalog.matters.duplicate()
+	var matters: Array[Bozo.Matter] #Catalog.matters.duplicate()
+	for settlement in faction.settlements:
+		var matter = settlement.bastion.region.biome.source.matter
+		matters.append(matter)
 	
 	for _i in n:
 		var matter = matters[_i]
-		var intro = Digest.sum_to_matter_to_intro[intro_sum][matter][0]
+		var intro = Digest.sum_to_matter_to_intro[intro_sum][matter].pick_random()
 		var verse_index = Digest.matter_to_verse[matter].pick_random()
 		var verse = load("res://entities/dice/datas/verse/%d.tres" % verse_index)
 		var _origin = OriginData.new(self, matter, intro, verse)
@@ -58,22 +61,32 @@ func init_scenarios() -> void:
 func init_permutations() -> void:
 	scenarios.clear()
 	var stamp_queue = tribunal.actual.stamps.duplicate()
-	var permutations = Helper.generate_permutations(stamp_queue)
 	var spoils: Array[StampData]
 	
-	for permutation in permutations:
-		var _scenario = ScenarioData.new(self, permutation, spoils)
+	if not stamp_queue.is_empty():
+		var permutations = Helper.generate_permutations(stamp_queue)
+		
+		for permutation in permutations:
+			var _scenario = ScenarioData.new(self, permutation, spoils)
+		
+		for _i in range(2, stamp_queue.size() - 2, 1):
+			var arrangements = Helper.generate_arrangements_fixed_size(stamp_queue, _i)
+		
+			for arrangement in arrangements:
+				spoils = stamp_queue.filter(func (a): return not arrangement.has(a))
+				var _scenario = ScenarioData.new(self, arrangement, spoils)
+	else:
+		for ark in Arbitrator.chronicler.fleet.arks:
+			spoils.append(ark.stamp)
+		
+		var _scenario = ScenarioData.new(self, [], spoils)
 	
-	for _i in range(2, stamp_queue.size() - 2, 1):
-		var arrangements = Helper.generate_arrangements_fixed_size(stamp_queue, _i)
+	scenarios.sort_custom(func (a, b): return a.pulse_weight > b.pulse_weight)
 	
-		for arrangement in arrangements:
-			spoils = stamp_queue.filter(func (a): return not arrangement.has(a))
-			var _scenario = ScenarioData.new(self, arrangement, spoils)
-	
-	scenarios.sort_custom(func (a, b): return a.total_sum > b.total_sum)
 	if faction.type == Bozo.Faction.BLUE:
-		print([scenarios.front().total_sum, scenarios.front().pulses])
+		var scenario = scenarios.front()
+		print([scenario.pulse_weight, scenario.pulses])
+		
 	faction.odeum.scenario = scenarios.front()
 
 func recalc_scenario() -> void:

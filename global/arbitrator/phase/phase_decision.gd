@@ -8,4 +8,5 @@ func _init() -> void:
 
 func enter_phase():
 	print("enter Decision")
+	Arbitrator.chronicler.faction.warlord.init_gambits()
 	#exit_phase()

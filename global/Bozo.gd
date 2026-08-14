@@ -5,7 +5,8 @@ enum Matter {
 	NONE = 0,
 	GAS = 1,
 	LIQUID = 2,
-	SOLID = 3
+	SOLID = 3,
+	ANY = 57,
 }
 
 enum Tune {
@@ -91,6 +92,25 @@ enum Ark {
 	DEACTIVATE = 46
 }
 
+enum Mount {
+	NONE = 0,
+	HORSE = 47,
+	ZEBRA = 48,
+	DONKEY = 49,
+	GIRAFFE = 50,
+	ELEPHANT = 51,
+	RHINO = 52,
+	HYENA = 53,
+}
+
+enum Evaluation {
+	NONE = 0,
+	BEST = 54,
+	NORMAL = 55,
+	WORST = 56,
+}
+
+
 enum Faction {
 	NONE = 0,
 	BLUE = 99,
@@ -135,6 +155,8 @@ enum Type {
 	GYRE = -9,
 	MATH = -10,
 	ARK = -11,
+	MOUNT = -12,
+	EVALUATION = -13,
 	ACTION = -100,
 	PHASE = -200,
 }
@@ -151,6 +173,8 @@ const type_to_index = {
 	Type.STAKE: 35,
 	Type.MATH: 40,
 	Type.ARK: 43,
+	Type.MOUNT: 47,
+	Type.EVALUATION: 54,
 	
 	Type.ACTION: 104,
 	Type.PHASE: 200,
@@ -167,6 +191,8 @@ const type_to_enum = {
 	Type.STAKE: Bozo.Stake,
 	Type.MATH: Bozo.Math,
 	Type.ARK: Bozo.Ark,
+	Type.MOUNT: Bozo.Mount,
+	Type.EVALUATION : Bozo.Evaluation,
 	
 	Type.ACTION: Bozo.Action,
 	Type.PHASE: Bozo.Phase,

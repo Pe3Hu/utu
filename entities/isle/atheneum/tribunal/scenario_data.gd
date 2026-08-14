@@ -6,21 +6,25 @@ var atheneum: AtheneumData
 var chains: Array[StampData]
 var spoils: Array[StampData]
 
+var active_spoil: StampData
+var spoil_weight: int = 0
+
 var pulses: Array[int]
-var total_sum: int = 0
+var pulse_weight: int = 0
 
 
 func _init(atheneum_: AtheneumData, chains_: Array[StampData], spoils_: Array[StampData]) -> void:
 	atheneum = atheneum_
 	chains.append_array(chains_)
 	spoils.append_array(spoils_)
+	calc_spoil_weight()
 	
-	calc_pulses()
+	init_pulses()
 	atheneum.scenarios.append(self)
 
-func calc_pulses() -> void:
+func init_pulses() -> void:
 	pulses.clear()
-	total_sum = 0
+	pulse_weight = 0
 	
 	for _i in chains.size() - 1:
 		var first = chains[_i]
@@ -45,5 +49,11 @@ func calc_pulses() -> void:
 				if Catalog.pulses.has(pulse) and pulse > 0:
 					pulses.append(pulse)
 	
+	calc_pulse_weight()
+	
+func calc_pulse_weight() -> void:
 	for pulse in pulses:
-		total_sum += pulse
+		pulse_weight += pulse
+
+func calc_spoil_weight() -> void:
+	spoil_weight = 0

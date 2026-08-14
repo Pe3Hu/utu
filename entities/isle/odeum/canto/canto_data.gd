@@ -55,8 +55,6 @@ func update_pulse() -> void:
 		if outro:
 			print([intro.stake.value, "*", outro.stake.value, "=", pulse_value])
 
-
-
 func update_is_critical() -> void:
 	if odeum.faction.isle.terrain.rampart_to_bastions.has(pulse_value):
 		var bastions = odeum.faction.isle.terrain.rampart_to_bastions[pulse_value]

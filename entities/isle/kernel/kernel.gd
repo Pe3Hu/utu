@@ -14,8 +14,19 @@ var data: KernelData:
 @export var harvest: Cornfield
 @export var granary: Cornfield
 @export var fleet: Fleet
+@export var zoo: Zoo
 
-var activated_volumes: Array[Volume]
+var active_ark: Ark:
+	set(value_):
+		switch_volumes(false)#deactivate_volumes()
+		active_ark = value_
+		
+		if active_ark:
+			data.active_ark = active_ark.data
+		else:
+			data.active_ark = null
+		
+		switch_volumes(true)#activate_volumes()
 
 
 #region init
@@ -23,6 +34,7 @@ func connect_datas() -> void:
 	harvest.data = data.harvest
 	granary.data = data.granary
 	fleet.data = data.fleet
+	zoo.data = data.zoo
 	
 	init_volumes()
 
@@ -47,20 +59,17 @@ func _on_growth_phase() -> void:
 func _on_stock_phase() -> void:
 	granary.update_straw_amounts()
 	harvest.update_straw_amounts()
+	
+	if active_ark:
+		active_ark = null
+	
+	zoo.reset()
 #endregion
 
-func activate_volumes(ark_: Ark) -> void:
-	for ark_volume in ark_.volumes:
-		if ark_volume.visible:
-			var index = Catalog.volumes.find(ark_volume.value)
-			var active_volume = %Volumes.get_child(index)
-			activated_volumes.append(active_volume)
-			active_volume.is_active = true
-	#for stake in stamp_.type_to_stakes[Bozo.Stake.LEFT]:
-	#	var index = B
-
-func deactivate_volumes() -> void:
-	for volume in activated_volumes:
-		volume.is_active = false
-	
-	activated_volumes.clear()
+func switch_volumes(flag_: bool = true) -> void:
+	if active_ark:
+		for ark_volume in active_ark.volumes:
+			if ark_volume.visible:
+				var index = Catalog.volumes.find(ark_volume.value)
+				var active_volume = %Volumes.get_child(index)
+				active_volume.is_active = flag_

@@ -3,6 +3,8 @@ extends RefCounted
 
 
 signal fusion_phase
+@warning_ignore("unused_signal")
+signal phase_finished
 
 var anvils: Array[AnvilData]
 var stamps: Array[StampData]:

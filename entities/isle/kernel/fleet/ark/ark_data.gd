@@ -18,5 +18,6 @@ func get_best_intro_values() -> Array[int]:
 	for stake in stamp.tune_to_stakes[Bozo.Tune.INTRO]:
 		if not values.has(stake.value) and stake.value > 0:
 			values.append(stake.value)
-   
+	   
+	values.sort_custom(func (a, b): return a > b)
 	return values

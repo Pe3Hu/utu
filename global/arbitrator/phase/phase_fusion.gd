@@ -13,6 +13,10 @@ func enter_phase():
 	if Arbitrator.chronicler.faction.isle.forge.anvils.is_empty():
 		exit_phase()
 
+func exit_phase() -> void:
+	super.exit_phase()
+	Arbitrator.chronicler.faction.isle.forge.phase_finished.emit()
+
 func _on_all_animations_finished() -> void:
 	super._on_all_animations_finished()
 	status = Bozo.Status.IDLE

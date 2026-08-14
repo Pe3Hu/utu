@@ -120,6 +120,7 @@ func apply_animation(clockwise_: bool = true, is_main_: bool = true) -> void:
 			if fleet.arks.front() == self:
 				if is_main_:
 					fleet.kernel.isle.atheneum.disappear_card(data.stamp)
+					update_zoo_matter()
 				
 				duration = Gear.appears[Gear.tempo]
 				%LeftSpoil.update_texture(false)
@@ -134,6 +135,7 @@ func apply_animation(clockwise_: bool = true, is_main_: bool = true) -> void:
 		Bozo.Ark.DISAPPEAR:
 			if is_main_:
 				fleet.kernel.isle.atheneum.appear_card(data.stamp)
+				update_zoo_matter(false)
 			
 			duration = Gear.appears[Gear.tempo]
 			
@@ -151,6 +153,7 @@ func apply_animation(clockwise_: bool = true, is_main_: bool = true) -> void:
 			fleet.push_ark_on_top(self)
 			
 			if fleet.arks.front() == self:
+				update_zoo_matter(false)
 				duration = Gear.activates[Gear.tempo]
 				var l = %RightSpoil.size.x
 				flip(PI)
@@ -159,10 +162,11 @@ func apply_animation(clockwise_: bool = true, is_main_: bool = true) -> void:
 				await slide_tween.finished
 				last_animation = next_animation
 				%RightSpoil.update_texture(false)
-				fleet.kernel.activate_volumes(self)
+				fleet.kernel.active_ark = self
 		Bozo.Ark.DEACTIVATE:
 			duration = Gear.activates[Gear.tempo]
-			fleet.kernel.deactivate_volumes()
+			fleet.kernel.active_ark = null
+			update_zoo_matter()
 			slide(0)
 			await slide_tween.finished
 			flip(0)
@@ -201,14 +205,20 @@ func get_volume_count() -> int:
 
 func get_offset_x() -> float:
 	var k = get_volume_count()
-	var x: float = 0
+	var x: float = -%RightSpoil.size.x + Catalog.VOLUME_BORDER * 2
 	
 	if k == 0:
-		x -= custom_minimum_size.x - %RightSpoil.size.x
-		pass
+		x = %RightSpoil.size.x - custom_minimum_size.x
 	else:
-		x = -%RightSpoil.size.x + Catalog.VOLUME_BORDER
-		x -= k * (Catalog.VOLUME_SIZE.x - Catalog.VOLUME_BORDER)
+		x += Catalog.VOLUME_SIZE.x * ((k - 1) * 2 - 1)
 	
 	return x
 #endregion
+
+func update_zoo_matter(flag_: bool = true) -> void:
+	var _sign: int = 1
+	
+	if not flag_:
+		_sign = -1
+	
+	data.fleet.kernel.zoo.updaet_matter_enclosure(data, _sign)

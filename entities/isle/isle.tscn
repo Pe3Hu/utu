@@ -114,7 +114,7 @@ theme_override_constants/margin_top = 128
 theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 64
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HBox/CardContainer/MarginContainer" unique_id=728654570]
+[node name="HBoxContainer" type="VBoxContainer" parent="HBox/CardContainer/MarginContainer" unique_id=375377925]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0

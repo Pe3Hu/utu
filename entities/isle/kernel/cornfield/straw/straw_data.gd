@@ -25,6 +25,7 @@ func _init(cornfield_: CornfieldData, volume_: int, matter_: int, amount_: int =
 	
 	if volume % Digest.matter_to_factor[matter] == 0:
 		cornfield.volume_to_matter_to_straw[volume][matter] = self
+		cornfield.matter_to_volume_to_straw[matter][volume] = self
 		cornfield.straws.append(self)
 	else:
 		amount = -1

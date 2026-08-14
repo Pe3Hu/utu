@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://dwc7cpm5qkxqe"]
+
+[ext_resource type="Script" uid="uid://bt04vxeom0xe7" path="res://entities/isle/kernel/zoo/zoo.gd" id="1_3d0al"]
+[ext_resource type="PackedScene" uid="uid://dnej5sjo2fyhr" path="res://entities/isle/kernel/zoo/enclosure/enclosure.tscn" id="2_a7li2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3d0al"]
+
+[node name="Zoo" type="PanelContainer" unique_id=241851599 node_paths=PackedStringArray("elephant", "giraffe", "rhino", "horse", "zebra", "donkey", "hyena", "volume_enclosures")]
+custom_minimum_size = Vector2(514, 244)
+offset_right = 20.0
+offset_bottom = 20.0
+offset_transform_enabled = true
+offset_transform_position = Vector2(48, -48)
+theme_override_styles/panel = SubResource("StyleBoxEmpty_3d0al")
+script = ExtResource("1_3d0al")
+elephant = NodePath("VBox/Elephant")
+giraffe = NodePath("VBox/Giraffe")
+rhino = NodePath("VBox/Rhino")
+horse = NodePath("Horse")
+zebra = NodePath("Zebra")
+donkey = NodePath("Donkey")
+hyena = NodePath("VBox/Hyena")
+volume_enclosures = [NodePath("Horse"), NodePath("Zebra"), NodePath("Donkey")]
+
+[node name="Horse" parent="." unique_id=1608194217 instance=ExtResource("2_a7li2")]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="Zebra" parent="." unique_id=1247413946 instance=ExtResource("2_a7li2")]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="Donkey" parent="." unique_id=1589208499 instance=ExtResource("2_a7li2")]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="VBox" type="VBoxContainer" parent="." unique_id=2127291989]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, 42)
+theme_override_constants/separation = -16
+alignment = 1
+
+[node name="Giraffe" parent="VBox" unique_id=1451812727 instance=ExtResource("2_a7li2")]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="Elephant" parent="VBox" unique_id=1642929174 instance=ExtResource("2_a7li2")]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="Rhino" parent="VBox" unique_id=306276906 instance=ExtResource("2_a7li2")]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="Hyena" parent="VBox" unique_id=204415177 instance=ExtResource("2_a7li2")]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0

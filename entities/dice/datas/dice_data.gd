@@ -11,6 +11,7 @@ var result: int
 func _init() -> void:
 	pass
 
+
 func init_values() -> void:
 	pass
 #endregion
@@ -20,3 +21,11 @@ func roll_result() -> void:
 
 func get_value(index_: int) -> int:
 	return values[index_]
+
+func get_sum() -> int:
+	var sum: int = 0
+	
+	for value in values:
+		sum += value
+	
+	return sum

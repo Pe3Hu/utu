@@ -28,6 +28,7 @@ var is_selected: bool = false:
 				%Selection.color = Color.LIGHT_GRAY
 
 
+#region Новая область кода
 func connect_signals() -> void:
 	data.is_critical_changed.connect(pulse._on_is_critical_changed)
 	pulse._on_is_critical_changed()
@@ -47,6 +48,7 @@ func connect_datas() -> void:
 		outro.visible = true
 	else:
 		outro.visible = false
+#endregion
 
 func _on_button_pressed() -> void:
 	update_selection()

@@ -8,6 +8,7 @@ var stamps: Array[StampData]
 var new_stamp: StampData
 
 
+#region init
 func _init(forge_: ForgeData, stamps_: Array) -> void:
 	forge = forge_
 	stamps.append_array(stamps_)
@@ -16,11 +17,6 @@ func _init(forge_: ForgeData, stamps_: Array) -> void:
 	init_new_stamp()
 
 func init_new_stamp() -> void:
-	#var digits_length = 0
-	#
-	#for stamp in stamps:
-		#digits_length += stamp.mark_digits.length()
-	
 	var intro_values: Array[int]
 	var verse_values: Array[int]
 	var letters = []
@@ -46,7 +42,7 @@ func init_new_stamp() -> void:
 		str_mark += mark
 	
 	new_stamp.mark_digits = str_mark
-	print(str_mark)
+#endregion
 
 func fusion() -> void:
 	var origin = stamps.front().origin

@@ -30,10 +30,11 @@ func _on_draw_phase() -> void:
 	stamp_to_card.clear()
 	Helper.clear_children(%Cards)
 	
-	for stamp_data in data.tribunal.actual.stamps:
-		add_card(stamp_data)
-	
-	sort_cards(false)
+	if not data.tribunal.actual.stamps.is_empty():
+		for stamp_data in data.tribunal.actual.stamps:
+			add_card(stamp_data)
+		
+		sort_cards(false)
 
 func add_card(stamp_data_: StampData) -> void:
 	var card = card_scene.instantiate()
@@ -101,7 +102,7 @@ func update_stamps() -> void:
 	data.tribunal.actual.stamps.sort_custom(func (a, b): return stamp_datas.find(a) < stamp_datas.find(b))
 
 func sort_cards(with_animation_: bool = true) -> void:
-	if Arbitrator.current_phase and Arbitrator.current_phase.type != Bozo.Phase.DECISION: return
+	if Arbitrator.current_phase and Arbitrator.current_phase.type != Bozo.Phase.DECISION and Arbitrator.current_phase.type != Bozo.Phase.DRAW: return
 	if data.tribunal.actual.stamps.is_empty(): return
 	if shift_tween and shift_tween.is_running(): return
 	var scenario = data.scenarios.front()

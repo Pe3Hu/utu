@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://dnej5sjo2fyhr"]
+
+[ext_resource type="Script" uid="uid://bkrj43nmltkd2" path="res://entities/isle/kernel/zoo/enclosure/enclosure.gd" id="1_jewq2"]
+[ext_resource type="Texture2D" uid="uid://bc2aaniq2l5py" path="res://entities/isle/kernel/zoo/images/rhino.png" id="1_t68p4"]
+
+[node name="Enclosure" type="TextureRect" unique_id=1642929174]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -48.0
+offset_bottom = 48.0
+grow_horizontal = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+offset_transform_enabled = true
+texture = ExtResource("1_t68p4")
+script = ExtResource("1_jewq2")
+
+[node name="Amount" type="Label" parent="." unique_id=1776474372]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -5.5
+offset_top = -11.5
+offset_right = 5.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 1
+offset_transform_enabled = true
+offset_transform_position = Vector2(-6, 0)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 24
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
