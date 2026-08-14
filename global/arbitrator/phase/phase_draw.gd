@@ -9,7 +9,6 @@ func _init() -> void:
 
 func enter_phase():
 	super.enter_phase()
-	print("enter Draw")
 	
 	Arbitrator.chronicler.tribunal.refill_actual()
 	Arbitrator.chronicler.fleet.init_arks(Arbitrator.chronicler.tribunal.actual.stamps)

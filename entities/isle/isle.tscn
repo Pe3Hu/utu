@@ -110,15 +110,15 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_kwh8c")
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 32
-theme_override_constants/margin_top = 128
+theme_override_constants/margin_top = 124
 theme_override_constants/margin_right = 32
-theme_override_constants/margin_bottom = 64
+theme_override_constants/margin_bottom = 60
 
 [node name="HBoxContainer" type="VBoxContainer" parent="HBox/CardContainer/MarginContainer" unique_id=375377925]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
-theme_override_constants/separation = 8
+theme_override_constants/separation = 2
 alignment = 1
 
 [node name="Kernel" parent="HBox/CardContainer/MarginContainer/HBoxContainer" unique_id=601409116 node_paths=PackedStringArray("isle") instance=ExtResource("5_48ffl")]
@@ -128,6 +128,7 @@ size_flags_vertical = 0
 isle = NodePath("../../../../..")
 
 [node name="Odeum" parent="HBox/CardContainer/MarginContainer/HBoxContainer" unique_id=975507563 instance=ExtResource("6_gqudx")]
+z_index = 2
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4

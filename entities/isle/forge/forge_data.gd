@@ -13,9 +13,10 @@ var stamps: Array[StampData]:
 		init_anvils()
 
 
+#region init
 func init_anvils() -> void:
 	anvils.clear()
-	var sizes = [2, 3]
+	var sizes = [3, 2]
 	
 	for size in sizes:
 		var arrangements = Helper.generate_unique_arrangements_fixed_size(stamps, size)
@@ -51,3 +52,8 @@ func try_fuse_stamps(stamps_: Array) -> bool:
 			return false
 	
 	return Catalog.fusion_mark_lengths.has(digits_length)
+#endregion
+
+func simulate_anvil_choice() -> void:
+	var anvil = anvils.front()
+	anvil.fusion()

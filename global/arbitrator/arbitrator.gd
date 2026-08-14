@@ -18,17 +18,18 @@ var current_phase: Phase
 
 func _ready() -> void:
 	phases = [
+		PhaseRecruitment.new(),
 		PhaseGrowth.new(),
 		PhaseDraw.new(),
 		PhaseDecision.new(),
 		PhaseStock.new(),
 		PhaseDiscard.new(),
 		PhaseFusion.new(),
-		#CleanupPhase.new(),
 	]
 
 func start_new_round() -> void:
 	chronicler.current_round += 1
+	print("### ROUND %d ###" % chronicler.current_round)
 	current_phase_index = 0
 	round_started.emit(chronicler.current_round)
 	start_next_phase()

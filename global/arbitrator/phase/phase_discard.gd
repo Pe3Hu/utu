@@ -8,9 +8,8 @@ func _init() -> void:
 
 func enter_phase():
 	super.enter_phase()
-	print("enter Discard")
 	update_forge_stamps()
-	Arbitrator.chronicler.faction.odeum.scenario = null
+	Arbitrator.chronicler.faction.odeum.current_scenario = null
 	
 	Arbitrator.chronicler.fleet.put_ark_into_actual()
 	Arbitrator.chronicler.tribunal.actual.clear()

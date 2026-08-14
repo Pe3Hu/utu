@@ -76,7 +76,7 @@ func try_capture() -> void:
 	
 	if is_captured:
 		is_external = false
-		terrain.highlight_externals()
+		terrain.data.externals_changed.emit()
 	
 	terrain.isle.odeum.current_canto.voice()
 

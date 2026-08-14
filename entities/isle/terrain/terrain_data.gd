@@ -2,6 +2,9 @@ class_name TerrainData
 extends RefCounted
 
 
+@warning_ignore("unused_signal")
+signal externals_changed
+
 var isle: IsleData
 var flows: Array[FlowData]
 var channels: Array[ChannelData]
@@ -20,7 +23,6 @@ var biomes: Array[BiomeData]
 var type_to_biomes: Dictionary
 
 var haloclines: Array[BastionData]
-
 
 
 #region init

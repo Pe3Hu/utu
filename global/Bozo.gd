@@ -138,6 +138,7 @@ enum Phase {
 	STOCK = 203,
 	DISCARD = 204,
 	FUSION = 205,
+	RECRUITMENT = 206,
 }
 
 

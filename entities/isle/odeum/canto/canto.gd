@@ -9,7 +9,7 @@ var data: CantoData:
 		connect_signals()
 		connect_datas()
 
-var odeum: Odeum
+var hymn: Hymn
 
 @export var pulse: Pulse
 
@@ -54,17 +54,19 @@ func _on_button_pressed() -> void:
 	update_selection()
 
 func update_selection() -> void:
-	if odeum.current_canto == self: return
-	if odeum.current_canto:
-		odeum.current_canto.is_selected = false
+	if hymn.odeum.current_canto == self: return
+	if hymn.odeum.current_canto:
+		hymn.odeum.current_canto.is_selected = false
 	
-	odeum.current_canto = self
+	hymn.odeum.current_canto = self
 	is_selected = true
 
 func voice() -> void:
-	get_parent().remove_child(self)
+	data.voice()
+	hymn.get_parent().remove_child(self)
+	hymn.queue_free()
 	queue_free()
 	
-	if odeum.current_canto:
-		odeum.current_canto = null
-		odeum.update_visible_cantos()
+	if hymn.odeum.current_canto:
+		hymn.odeum.current_canto = null
+		#hymn.odeum.update_visible_cantos()

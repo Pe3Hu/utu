@@ -8,7 +8,6 @@ func _init() -> void:
 
 func enter_phase():
 	super.enter_phase()
-	print("enter Growth")
 	Arbitrator.chronicler.fleet.kernel.grow_harvest()
 	Arbitrator.chronicler.fleet.kernel.growth_phase.emit()
 	status = Bozo.Status.PLAYING_ANIMATION

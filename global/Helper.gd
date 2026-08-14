@@ -302,11 +302,14 @@ func find_optimal_spills(jugs: Array, cups: Array) -> Array:
 	
 	var result: Array = []
 	for j in range(m):
-		if dfs_result.assignment[j].size() > 0:
-			result.append({
-				"jug": orig_jug_indices[j],
-				"cups": dfs_result.assignment[j]
-			})
+		var total_assigned: int = 0
+		for cup_idx in dfs_result.assignment[j]:
+			total_assigned += cups[cup_idx].volume  # cups – исходный массив чашек
+			if total_assigned >= caps[j]:
+				result.append({
+					"jug": orig_jug_indices[j],
+					"cups": dfs_result.assignment[j]
+				})
 	return result
 
 func dfs_search(idx: int, full_count: int, spill: int, state: Dictionary) -> Dictionary:

@@ -8,7 +8,6 @@ func _init() -> void:
 
 func enter_phase():
 	super.enter_phase()
-	print("enter Stock")
 	Arbitrator.chronicler.fleet.kernel.stock_granary()
 	Arbitrator.chronicler.fleet.kernel.stock_phase.emit()
 	status = Bozo.Status.PLAYING_ANIMATION

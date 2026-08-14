@@ -54,8 +54,9 @@ func volume_ride() -> void:
 		if harvest_straw.amount > 0:
 			var granary_straw = zoo.kernel.granary.volume_to_matter_to_straw[volume][_matter]
 			
-			granary_straw.next_amount = granary_straw.amount + harvest_straw.amount 
-			harvest_straw.next_amount = 0
+			granary_straw.next_amount = granary_straw.amount + harvest_straw.amount
+			harvest_straw.raid_amounts.append(int(harvest_straw.next_amount))
+			#harvest_straw.next_amount = 0
 
 func matter_ride() -> void:
 	var surplus = int(value)
@@ -75,7 +76,8 @@ func matter_ride() -> void:
 		
 		var granary_straw = zoo.kernel.granary.matter_to_volume_to_straw[matter][harvest_straw.volume]
 		granary_straw.next_amount = granary_straw.amount + shift 
-		harvest_straw.next_amount -= shift
+		#harvest_straw.next_amount -= shift
+		harvest_straw.raid_amounts.append(shift)
 		surplus -= shift
 
 func prime_ride() -> void:
@@ -92,7 +94,6 @@ func prime_ride() -> void:
 	options.shuffle()
 	
 	while surplus > 0 and not options.is_empty():
-		
 		var harvest_straw = options.back()
 		var shift = min(surplus, harvest_straw.amount)
 		
@@ -101,7 +102,8 @@ func prime_ride() -> void:
 		
 		var granary_straw = zoo.kernel.granary.matter_to_volume_to_straw[harvest_straw.matter][harvest_straw.volume]
 		granary_straw.next_amount = granary_straw.amount + shift 
-		harvest_straw.next_amount -= shift
+		#harvest_straw.next_amount -= shift
+		harvest_straw.raid_amounts.append(shift)
 		surplus -= shift
 		
 		if harvest_straw.next_amount == 0:

@@ -8,10 +8,12 @@ func _init() -> void:
 
 func enter_phase():
 	super.enter_phase()
-	print("enter Fusion")
 	Arbitrator.chronicler.faction.isle.forge.fusion_phase.emit()
+	
 	if Arbitrator.chronicler.faction.isle.forge.anvils.is_empty():
 		exit_phase()
+	else:
+		Arbitrator.chronicler.faction.isle.forge.simulate_anvil_choice()
 
 func exit_phase() -> void:
 	super.exit_phase()

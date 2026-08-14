@@ -202,6 +202,7 @@ const JOINT_SIZE = Vector2(36, 36)
 const JOINT_OFFEST: float = -4.0
 const STAKE_SIGN_OFFEST: float = 4.0
 const GYRE_ACTUAL_STAMP_SIZE = 4
+const STAMPS_LIMIT_FOR_RECRUITMENT = GYRE_ACTUAL_STAMP_SIZE * 2
 
 const stakes = [Bozo.Stake.LEFT, Bozo.Stake.RIGHT]
 
@@ -231,7 +232,7 @@ var axes: Array[Vector3] = [
 
 #region odeum
 
-const VISIBLE_CANTO_MAX: int = 3
+const VISIBLE_HYMN_MAX: int = 3
 #endregion
 
 #region kernel

@@ -37,3 +37,22 @@ func get_total_volume_amount(volume_: int) -> int:
 		amount += straw.amount
 	
 	return amount
+
+func apply_raid_amounts() -> void:
+	for straw in straws:
+		straw.apply_raid_amounts()
+
+func wither() -> void:
+	for straw in straws:
+		straw.wither()
+
+func is_available(volume_: int, amount_: int = 1, matter_: Bozo.Matter = Bozo.Matter.ANY) -> bool:
+	if not volume_to_matter_to_straw.has(volume_): return false
+	var available_amount = 0
+	
+	for matter in volume_to_matter_to_straw[volume_]:
+		if matter_ == Bozo.Matter.ANY or matter == matter_:
+			var straw = volume_to_matter_to_straw[volume_][matter]
+			available_amount += straw.amount
+	
+	return amount_ <= available_amount

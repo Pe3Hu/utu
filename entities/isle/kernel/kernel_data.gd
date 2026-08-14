@@ -39,8 +39,11 @@ func grow_harvest(instant_stock_: bool = false) -> void:
 			granary_straw.amount += 1
 			granary_straw.next_amount += 1
 		else:
-			var straw = harvest.volume_to_matter_to_straw[volume][source.matter]
-			straw.next_amount += 1
+			var harvest_straw = harvest.volume_to_matter_to_straw[volume][source.matter]
+			harvest_straw.next_amount += 1
+	
+	for straw in harvest.straws:
+		straw.apply_expiration() 
 
 func stock_granary() -> void:
 	for mount_type in Catalog.volume_mounts:
@@ -54,6 +57,8 @@ func stock_granary() -> void:
 	var hyena_enclosure = zoo.mount_to_enclosure[Bozo.Mount.HYENA]
 	hyena_enclosure.ride()
 	zoo.reset_values()
+	harvest.apply_raid_amounts()
+	harvest.wither()
 	
 	#for harvest_straw in harvest.straws:
 		#if harvest_straw.amount > 0:

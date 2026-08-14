@@ -15,6 +15,7 @@ var origins: Array[OriginData]
 var scenarios: Array[ScenarioData]
 
 var alphabet: Array
+var recruiment_matters: Array[Bozo.Matter]
 
 
 #region init
@@ -30,21 +31,13 @@ func init_origins() -> void:
 	origins.clear()
 	refill_alphabet()
 	var n = 2
-	var intro_sum = 20
 	
-	var matters: Array[Bozo.Matter] #Catalog.matters.duplicate()
 	for settlement in faction.settlements:
 		var matter = settlement.bastion.region.biome.source.matter
-		matters.append(matter)
+		recruiment_matters.append(matter)
 	
 	for _i in n:
-		var matter = matters[_i]
-		var intro = Digest.sum_to_matter_to_intro[intro_sum][matter].pick_random()
-		var verse_index = Digest.matter_to_verse[matter].pick_random()
-		var verse = load("res://entities/dice/datas/verse/%d.tres" % verse_index)
-		var _origin = OriginData.new(self, matter, intro, verse)
-	
-	tribunal.hereafter.stamps.shuffle()
+		recruiment_phase()
 
 func refill_alphabet() -> void:
 	if not alphabet.is_empty(): return
@@ -85,17 +78,22 @@ func init_permutations() -> void:
 	
 	if faction.type == Bozo.Faction.BLUE:
 		var scenario = scenarios.front()
-		print([scenario.pulse_weight, scenario.pulses])
+		var pulses = []
 		
-	faction.odeum.scenario = scenarios.front()
+		for hymn in scenario.hymns:
+			pulses.append(hymn.get_canto_with_max_pulse().pulse_value)
+		
+		print([scenario.pulse_weight, pulses])
+		
+	faction.odeum.current_scenario = scenarios.front()
 
 func recalc_scenario() -> void:
 	var spoils: Array[StampData]
 	var permutation = tribunal.actual.stamps.duplicate()
-	faction.odeum.scenario = ScenarioData.new(self, permutation, spoils)
+	faction.odeum.current_scenario = ScenarioData.new(self, permutation, spoils)
 	
 	#if faction.type == Bozo.Faction.BLUE:
-	#	print([faction.odeum.scenario.total_sum, faction.odeum.scenario.pulses])
+	#	print([faction.odeum.current_scenario.total_sum, faction.odeum.current_scenario.pulses])
 
 func discard_actual(is_phase_: bool = true) -> void:
 	var forge_stamps: Array[StampData]
@@ -110,6 +108,22 @@ func discard_actual(is_phase_: bool = true) -> void:
 	if is_phase_:
 		tribunal.atheneum.discard_phase.emit()
 		faction.treasury.kernel.fleet.discard_phase.emit()
+
+func recruiment_phase(intro_sum_: int = 20, matter_: Variant = null) -> void:
+	if matter_ != null:
+		recruiment_matters.append(matter_)
+	
+	if recruiment_matters.is_empty():
+		recruiment_matters.append_array(Catalog.matters)
+		recruiment_matters.shuffle()
+	
+	var matter = recruiment_matters.pop_back()
+	var intro = Digest.sum_to_matter_to_intro[intro_sum_][matter].pick_random()
+	var verse_index = Digest.matter_to_verse[matter].pick_random()
+	var verse = load("res://entities/dice/datas/verse/%d.tres" % verse_index)
+	var _origin = OriginData.new(self, matter, intro, verse)
+	tribunal.hereafter.stamps.shuffle()
+
 #var test_sums = {}
 #var test_pulses = {}
 #

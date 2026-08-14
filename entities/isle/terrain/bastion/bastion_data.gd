@@ -34,7 +34,7 @@ var current_rampart: int:
 		if terrain.isle.policy:
 			var blue_faction = terrain.isle.policy.type_to_faction[Bozo.Faction.BLUE]
 			if blue_faction and blue_faction.odeum:
-				blue_faction.odeum.update_critical_cantos()
+				blue_faction.odeum.current_scenario.update_critical_cantos()
 		
 		rampart_changed.emit()
 
@@ -104,14 +104,14 @@ func reset() -> void:
 	neighbour_to_channel.clear()
 
 func try_capture(canto_: CantoData) -> bool:
-	canto_.odeum.cantos.erase(canto_)
+	canto_.hymn.scenario.hymns.erase(canto_.hymn)
 	
 	if current_rampart > canto_.pulse_value:
 		current_rampart -= canto_.pulse_value
 		return false
 	else:
 		var blue_faction = terrain.isle.policy.type_to_faction[Bozo.Faction.BLUE]
-		blue_faction.captured_bastion(self)
+		blue_faction.capture_bastion(self)
 		
 		if current_rampart != canto_.pulse_value:
 			current_rampart = floor(limit_rampart * 0.5)

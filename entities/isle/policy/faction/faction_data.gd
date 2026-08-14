@@ -59,18 +59,18 @@ func init_shrines() -> void:
 #region capture
 func capture_default_shrines() -> void:
 	for coord in order_to_shrines[0]:
-		var shrine = captured_shrine(coord)
+		var shrine = capture_shrine(coord)
 		var allowance = shrine.fiefdom.neighbours.pick_random()
-		captured_bastion(allowance.bastion)
+		capture_bastion(allowance.bastion)
 
-func captured_shrine(coord_: Vector2i) -> BastionData:
+func capture_shrine(coord_: Vector2i) -> BastionData:
 	var bastion = policy.isle.realm.coord_to_fiefdom[coord_].bastion
 	captured_shrines.append(bastion)
-	captured_bastion(bastion)
+	capture_bastion(bastion)
 	bastion.establish_settlement()
 	return bastion
 
-func captured_bastion(bastion_: BastionData) -> void:
+func capture_bastion(bastion_: BastionData) -> void:
 	if bastion_.faction != null:
 		bastion_.faction.lose_bastion(bastion_)
 	

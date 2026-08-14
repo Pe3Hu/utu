@@ -6,60 +6,55 @@ var faction: FactionData
 
 var gambits: Array[GambitData]
 var length_to_gambits: Dictionary
-var bastions_to_gambit: Dictionary
+
+var current_gambit: GambitData
 
 
 func _init(faction_: FactionData) -> void:
 	faction = faction_
 
 func init_gambits() -> void:
+	current_gambit = null
 	gambits.clear()
 	length_to_gambits.clear()
-	bastions_to_gambit.clear()
 	
-	#var scenario: ScenarioData = faction.atheneum.scenarios.front()
-	#var odeum = faction.odeum.cantos
-	
-	#var canto_to_criticals = {}
-	#var semi_criticals = []
-	#
-	#for canto in faction.odeum.cantos:
-		#if canto.is_critical:
-			#var bastions = faction.odeum.faction.isle.terrain.rampart_to_bastions[canto.pulse_value]
-			#var externals = faction.odeum.faction.externals.filter(func (a): return bastions.has(a))
-			#canto_to_criticals[canto] = externals
-		#else:
-			#semi_criticals.append(canto)
-	
-	for bastion in faction.odeum.faction.externals:
-		var _gambit = GambitData.new(self, [bastion])
-	
-	if not gambits.is_empty():
-		var l = length_to_gambits.keys().size()
-		var no_more_gambits: bool = false
-		
-		while l < 3 and not no_more_gambits:
-			no_more_gambits = true
-			
-			for old_gambit in length_to_gambits[l]:
-				for option in old_gambit.further_externals:
-					var gambit_bastions = [option]
-					gambit_bastions.append_array(old_gambit.bastions)
-					gambit_bastions.sort()
+	for foothold in faction.odeum.faction.internals:
+		for direction in foothold.fiefdom.direction_to_fiefdom:
+			if foothold.fiefdom.direction_to_fiefdom[direction].bastion.faction != faction:
+				var no_more: bool = false
+				var l = 1
+				
+				while not no_more:
+					no_more = true
+					var _gambit = GambitData.new(self, foothold, direction, l)
 					
-					if not bastions_to_gambit.has(gambit_bastions):
-						var new_gambit = GambitData.new(self, gambit_bastions)
-						
-						if new_gambit.raids.is_empty():
-							no_more_gambits = false
-			
+					if not _gambit.raids.is_empty():
+						no_more = false
+						l += 1
+
+func simulate_gambit_choice() -> void:
+	var best_gambits = length_to_gambits[length_to_gambits.keys().size()]
+	print(["$", gambits.size()])
+	best_gambits.sort_custom(func (a, b): return a.total_profit > b.total_profit)
+	var options = best_gambits.duplicate()
+	options.filter(func (a): return a.total_profit == best_gambits.front().total_profit)
+	options.sort_custom(func (a, b): return a.total_overrun < b.total_overrun)
 	
-	var gambit = gambits.back()
+	#for gambit in best_gambits:
+		#var rapmarts = []
+		#var pulses = []
+		#
+		#for raid in gambit.raids:
+			#var _pulses = []
+			#rapmarts.append(raid.bastion.current_rampart)
+			#
+			#for canto in raid.cantos:
+				#_pulses.append(canto.pulse_value)
+			#
+			#pulses.append(_pulses)
+		#
+		#print([gambit.total_profit, rapmarts, gambit.total_overrun, pulses])
 	
-	var rapmarts = []
-	
-	for raid in gambit.raids:
-		rapmarts.append(raid.bastion.current_rampart)
-	
-	print(rapmarts)
-	pass
+	current_gambit = options.front()#options.pick_random()
+	current_gambit.launch()
+	#print([best_gambit.total_profit, best_gambit.total_overrun])

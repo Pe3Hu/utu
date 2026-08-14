@@ -36,7 +36,7 @@ func update_amount(with_animation_: bool = false) -> void:
 	if data.amount == data.next_amount or data.next_amount < 0: return
 	
 	if with_animation_:
-		var duration = 1.0
+		var duration = Gear.straws[Gear.tempo]
 		tween_amount = create_tween()
 		tween_amount.tween_property(data, "amount", data.next_amount, duration)
 		Arbitrator.queue_an_animation(tween_amount)

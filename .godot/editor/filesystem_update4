@@ -9,6 +9,15 @@ res://entities/isle/ladder/girder/girder.gdshader
 res://entities/isle/ladder/fake/fake_dice.gdshader
 res://entities/isle/terrain/bastion/highlight.gdshader
 res://entities/isle/terrain/bastion/crown.gdshader
+res://entities/isle/kernel/cornfield/cornfield_data.gd
+res://entities/isle/kernel/cornfield/straw/straw_data.gd
+res://global/Digest.gd
+res://entities/isle/odeum/hymn/hymn_data.gd
+res://entities/isle/atheneum/tribunal/scenario_data.gd
+res://entities/isle/atheneum/atheneum_data.gd
 res://entities/isle/policy/faction/warlord/gambit_data.gd
-res://global/Helper.gd
-res://entities/isle/policy/faction/warlord/warlord_data.gd
+res://global/arbitrator/Arbitrator.gd
+res://entities/isle/kernel/zoo/enclosure/enclosure_data.gd
+res://entities/isle/kernel/kernel_data.gd
+res://global/Gear.gd
+res://entities/isle/odeum/canto/canto_data.gd

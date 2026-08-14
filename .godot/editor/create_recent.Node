@@ -1,7 +1,7 @@
-VBoxContainer
-Label
 HBoxContainer
 PanelContainer
+VBoxContainer
+Label
 TextureRect
 ColorRect
 TextureButton

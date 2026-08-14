@@ -60,18 +60,6 @@ const verse_to_matter = {
 	],
 }
 
-var verse_to_spoil = {
-	34: 1,
-	35: 1,
-	36: 1,
-	57: 2,
-	58: 2,
-	59: 2,
-	87: 3,
-	88: 3,
-	89: 3
-}
-
 const matter_to_verse = {
 	Bozo.Matter.NONE: [34, 35, 36],
 	Bozo.Matter.GAS: [34, 35],
@@ -96,6 +84,12 @@ const matter_to_factor = {
 	Bozo.Matter.GAS: 2,
 	Bozo.Matter.LIQUID: 3,
 	Bozo.Matter.SOLID: 5,
+}
+
+const expiration_to_factor = {
+	Bozo.Matter.GAS: 2,
+	Bozo.Matter.LIQUID: 3,
+	Bozo.Matter.SOLID: 4,
 }
 #endregion
 
@@ -142,6 +136,18 @@ const tune_to_stake = {
 const tune_to_math = {
 	Bozo.Tune.VERSE: Bozo.Math.PLUS,
 	Bozo.Tune.OUTRO: Bozo.Math.MULTIPLY,
+}
+
+var verse_to_spoil = {
+	34: 1,
+	35: 1,
+	36: 1,
+	57: 2,
+	58: 2,
+	59: 2,
+	87: 3,
+	88: 3,
+	89: 3
 }
 #endregion
 
@@ -310,6 +316,7 @@ const tune_to_length_to_joints = {
 }
 #endregion
 
+#region mount
 var mount_to_matter = {
 	Bozo.Mount.GIRAFFE: Bozo.Matter.GAS,
 	Bozo.Mount.ELEPHANT: Bozo.Matter.LIQUID,
@@ -335,6 +342,7 @@ const matter_to_mount = {
 	Bozo.Matter.LIQUID: Bozo.Mount.ELEPHANT,
 	Bozo.Matter.SOLID: Bozo.Mount.RHINO,
 }
+#endregion
 
 
 

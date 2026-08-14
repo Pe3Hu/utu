@@ -45,7 +45,7 @@ func init_stamps() -> void:
 			var index = intro_indexs.pop_back()
 			intro_values.append(intro.values[index])
 			index = verse_indexs.pop_back()
-			verse_values.append(intro.values[index])
+			verse_values.append(verse.values[index])
 		
 		add_stamp(intro_values, verse_values)
 
