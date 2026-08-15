@@ -2,6 +2,7 @@ extends Node
 
 
 var shape_to_color: Dictionary
+var faction_to_color: Dictionary
 var sum_to_matter_to_intro: Dictionary
 
 
@@ -12,11 +13,17 @@ const domain_to_vassal: Dictionary = {
 	Bozo.Domain.KINGDOM: Bozo.Domain.DUKEDOM,
 }
 
-
 const domaint_to_size = {
 	Bozo.Domain.EARLDOM: 5,
 	Bozo.Domain.DUKEDOM: 4,
 	Bozo.Domain.KINGDOM: 3
+}
+
+const region_to_shrine = {
+	Bozo.Region.CORNER: [Vector2i(1, 1), Vector2i(1, 4)],
+	Bozo.Region.SIDE: [Vector2i(4, 1), Vector2i(7, 1)],
+	Bozo.Region.DIAGONAL: [Vector2i(3, 6), Vector2i(6, 4)],
+	Bozo.Region.CENTER: [Vector2i(6, 7)]#[Vector2i(5, 7)]
 }
 #endregion
 
@@ -113,10 +120,6 @@ const flag_to_regard = {
 	false: Bozo.Regard.ENEMY
 }
 
-const flag_to_faction = {
-	true: Bozo.Faction.BLUE,
-	false: Bozo.Faction.RED
-}
 
 const direction_to_diagonal = {
 	Vector2i(0, -1): [Vector2i(-1, -1), Vector2i(1, -1)],
@@ -535,16 +538,22 @@ var matter_to_color = {
 	Bozo.Matter.GAS: Color.from_hsv(270.0 / 360.0, 0.75, 0.75),
 }
 
+var matter_to_hue = {
+	Bozo.Matter.SOLID: 0.05,
+	Bozo.Matter.LIQUID: 0.35,
+	Bozo.Matter.GAS: 0.75,
+}
+
+var matter_to_pallete = [
+	Color.from_hsv(0.0, 1.0, 0.2),
+	Color.from_hsv(0.0416, 0.6, 0.7),
+	Color.from_hsv(0.0416, 0.8, 1.0),
+]
+
 var regard_to_color = {
 	Bozo.Regard.ALLY: Color.from_hsv(210.0 / 360.0, 1.0, 1.0),
 	Bozo.Regard.ENEMY: Color.from_hsv(340.0 / 360.0, 1.0, 1.0),
 	Bozo.Regard.WILD: Color.FOREST_GREEN, #Color.from_hsv(120.0 / 360.0, 1.0, 1.0),
-}
-
-var faction_to_color = {
-	Bozo.Faction.BLUE: Color.from_hsv(210.0 / 360.0, 1.0, 1.0),
-	Bozo.Faction.RED: Color.from_hsv(340.0 / 360.0, 1.0, 1.0),
-	Bozo.Faction.GREEN: Color.FOREST_GREEN, #Color.from_hsv(120.0 / 360.0, 1.0, 1.0),
 }
 
 var biome_to_color = {
@@ -553,10 +562,28 @@ var biome_to_color = {
 	Bozo.Biome.SWAMP: Color.from_hsv(150.0 / 360.0, 1.0, 1.0),
 	Bozo.Biome.MOUNTAIN: Color.from_hsv(30.0 / 360.0, 1.0, 1.0),
 }
+
+const faction_to_pallete = {
+	1: 1,
+	2: 8,
+	3: 3,
+	4: 13,
+	5: 4, 
+	6: 6,
+	7: 7,
+	8: 9,
+	9: 12,
+	10: 11,
+	11: 14,
+	12: 5,
+	13: 2,
+	14: 10
+}
 #endregion
 
 func _init() -> void:
 	init_shape_colors()
+	init_faction_colors()
 	init_intros()
 	
 	for volume in volume_to_matter_to_volume:
@@ -576,6 +603,17 @@ func init_shape_colors() -> void:
 	for shape in Catalog.shapes:
 		shape_to_color[shape] = Color.from_hsv(h, s, v)
 		h += 1.0 / Catalog.shapes.size()
+
+func init_faction_colors() -> void:
+	faction_to_color.clear()
+	var h: float = 0.0
+	var s: float = 1.0
+	var v: float = 1.0
+	
+	for _i in Catalog.ACTIVE_FACTIONS:
+		faction_to_color[_i + 1] = Color.from_hsv(h, s, v)
+		h += 1.0 / Catalog.ACTIVE_FACTIONS
+
 
 func init_intros() -> void:
 	sum_to_matter_to_intro.clear()

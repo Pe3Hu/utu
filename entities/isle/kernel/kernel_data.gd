@@ -24,10 +24,27 @@ func _init(faction_: FactionData) -> void:
 	faction = faction_
 
 func apply_starter_volumes() -> void:
-	if faction.type == Bozo.Faction.GREEN: return
+	if not faction.is_active: return
 	
 	for _i in Catalog.STARTER_HARVEST_AMOUNT:
 		grow_harvest(true)
+	
+	var prime_matters = []
+	
+	for matter in Catalog.matters:
+		var volume = Digest.matter_to_factor[matter]
+		
+		if granary.get_total_volume_amount(volume) == 0:
+			prime_matters.append(matter)
+	
+	@warning_ignore("integer_division")
+	var prime_amount: int = Catalog.STARTER_PRIME_AMOUNT / prime_matters.size()
+	
+	for matter in prime_matters:
+		var volume = Digest.matter_to_factor[matter]
+		var granary_straw = granary.volume_to_matter_to_straw[volume][matter]
+		granary_straw.amount += prime_amount
+		granary_straw.next_amount += prime_amount
 
 func grow_harvest(instant_stock_: bool = false) -> void:
 	for bastion in faction.internals:

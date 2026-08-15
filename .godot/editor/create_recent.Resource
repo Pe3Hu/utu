@@ -1,3 +1,4 @@
+RitualData
 SourceData
 VerseDiceData
 IntroDiceData

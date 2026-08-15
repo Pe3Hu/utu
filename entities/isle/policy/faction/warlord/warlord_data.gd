@@ -9,9 +9,21 @@ var length_to_gambits: Dictionary
 
 var current_gambit: GambitData
 
+var emblem_speed: Vector2
+var emblem_rotation: float
+
 
 func _init(faction_: FactionData) -> void:
 	faction = faction_
+	
+	var angle: float = faction.index + Helper.rng.randf_range(-0.15, 0.15)
+	angle *= PI * 2 / Catalog.ACTIVE_FACTIONS
+	
+	if faction.index % 2 == 0:
+		angle *= -1
+	
+	emblem_speed = Vector2.from_angle(angle)
+	emblem_rotation = angle#Helper.rng.randf_range(-PI, PI)
 
 func init_gambits() -> void:
 	current_gambit = null

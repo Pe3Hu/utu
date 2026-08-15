@@ -51,7 +51,6 @@ func add_neighbour(neighbour_: DomainData) -> void:
 
 func update_rampart() -> void:
 	if type != Bozo.Domain.EARLDOM: return
-	
 	var galore_sum: float = 0
 	
 	for vassal in vassals:

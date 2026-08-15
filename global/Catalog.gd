@@ -145,13 +145,7 @@ const directions = [
 	Vector2i.LEFT,
 ]
 
-const shrines = [
-	[Vector2i(1, 1)],
-	[Vector2i(1, 4), Vector2i(4, 1)],
-	[Vector2i(7, 1)],
-	[Vector2i(3, 6)],
-	[Vector2i(6, 4), Vector2i(5, 7)]
-]
+
 #endregion
 
 #region realm
@@ -159,9 +153,6 @@ const TIDE_AMOUNT: int = 3
 const DEFAULT_RAMPART: int = 11
 const BASTION_SIZE: Vector2 = Vector2(48, 48)
 const REALM_SIZE: Vector2i = BOARD_SIZE * 2
-
-const factions = [Bozo.Faction.BLUE, Bozo.Faction.RED, Bozo.Faction.GREEN]
-const active_factions = [Bozo.Faction.BLUE, Bozo.Faction.RED]
 #endregion
 
 #region biome
@@ -194,7 +185,15 @@ const regions = [
 	Bozo.Region.SIDE,
 	Bozo.Region.CENTER
 ]
+
+const shrine_regions = [
+	Bozo.Region.CORNER,
+	Bozo.Region.SIDE,
+	Bozo.Region.DIAGONAL,
+]
+
 const NO_RAMPART_COORD = Vector2i(9, 10)
+const ACTIVE_FACTIONS: int = 14
 #endregion
 
 #region card
@@ -237,6 +236,7 @@ const VISIBLE_HYMN_MAX: int = 3
 
 #region kernel
 const STARTER_HARVEST_AMOUNT: int = 20
+const STARTER_PRIME_AMOUNT: int = 30
 
 const mounts = [Bozo.Mount.HORSE, Bozo.Mount.ZEBRA, Bozo.Mount.DONKEY, Bozo.Mount.GIRAFFE, Bozo.Mount.ELEPHANT, Bozo.Mount.RHINO, Bozo.Mount.HYENA]
 const volume_mounts = [Bozo.Mount.HORSE, Bozo.Mount.ZEBRA, Bozo.Mount.DONKEY]

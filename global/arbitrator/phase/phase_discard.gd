@@ -23,7 +23,7 @@ func update_forge_stamps() -> void:
 	for ark in Arbitrator.chronicler.fleet.arks:
 		forge_stamps.append(ark.stamp)
 	
-	Arbitrator.chronicler.faction.isle.forge.stamps = forge_stamps
+	Arbitrator.chronicler.faction.policy.isle.forge.stamps = forge_stamps
 
 func _on_all_animations_finished() -> void:
 	super._on_all_animations_finished()

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="RitualData" format=3 uid="uid://cpptq38eevgew"]
+
+[ext_resource type="Script" uid="uid://cl6tbaxrhlr4y" path="res://entities/isle/policy/faction/ritual/ritual_data.gd" id="1_3phxl"]
+
+[resource]
+script = ExtResource("1_3phxl")
+corods = Array[Vector2i]([Vector2i(0, 0), Vector2i(0, 0), Vector2i(0, 0), Vector2i(0, 0), Vector2i(0, 0), Vector2i(0, 0), Vector2i(0, 0), Vector2i(0, 0)])
+values = Array[int]([0, 0, 0, 0, 0, 0, 0, 0])
+metadata/_custom_type_script = "uid://cl6tbaxrhlr4y"

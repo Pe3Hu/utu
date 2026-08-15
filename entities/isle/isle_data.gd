@@ -21,13 +21,10 @@ func _init() -> void:
 	terrain.init_galores()
 	policy = PolicyData.new(self)
 	
-	for faction_type in Catalog.active_factions:
-		policy.type_to_faction[faction_type].kernel.apply_starter_volumes()
-	
-	var blue_faction = policy.type_to_faction[Bozo.Faction.BLUE]
-	atheneum = blue_faction.atheneum
-	kernel = blue_faction.kernel
-	odeum = blue_faction.odeum
-	
 	for faction in policy.factions:
-		faction.isle = self
+		if faction.is_active:
+			faction.kernel.apply_starter_volumes()
+	
+	atheneum = policy.current_faction.atheneum
+	kernel = policy.current_faction.kernel
+	odeum = policy.current_faction.odeum

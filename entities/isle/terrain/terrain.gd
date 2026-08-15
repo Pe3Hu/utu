@@ -82,7 +82,7 @@ func connect_signals() -> void:
 	_on_externals_changed()
 
 func _on_externals_changed() -> void:
-	var faction = isle.data.policy.type_to_faction[Bozo.Faction.BLUE]
+	var faction = isle.data.policy.current_faction
 	
 	for bastion_data in faction.externals:
 		var bastion = data_to_bastion[bastion_data]

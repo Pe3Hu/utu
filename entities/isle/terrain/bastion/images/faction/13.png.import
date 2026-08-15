@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://mnkiqtphackf"
-path="res://.godot/imported/tileset.png-74e5e3ac5b853b8221e19914e143fa57.ctex"
+uid="uid://clkx5x2xv5jx7"
+path="res://.godot/imported/13.png-aefe15d7751ce5bd40fd132bf26a70c2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://entities/isle/realm/tileset/tileset.png"
-dest_files=["res://.godot/imported/tileset.png-74e5e3ac5b853b8221e19914e143fa57.ctex"]
+source_file="res://entities/isle/terrain/bastion/images/faction/13.png"
+dest_files=["res://.godot/imported/13.png-aefe15d7751ce5bd40fd132bf26a70c2.ctex"]
 
 [params]
 

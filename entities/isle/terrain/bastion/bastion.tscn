@@ -2,10 +2,13 @@
 
 [ext_resource type="Script" uid="uid://bqxukwo0tmvf4" path="res://entities/isle/terrain/bastion/bastion.gd" id="1_7vkkh"]
 [ext_resource type="Texture2D" uid="uid://dq7y50ghm1n16" path="res://entities/dice/images/numbers.png" id="1_8je1w"]
-[ext_resource type="Shader" uid="uid://uw3w25arybcr" path="res://entities/isle/terrain/bastion/select.gdshader" id="3_dvjei"]
+[ext_resource type="Shader" uid="uid://uw3w25arybcr" path="res://entities/isle/terrain/bastion/shaders/select.gdshader" id="3_dvjei"]
 [ext_resource type="Texture2D" uid="uid://dy7ypb045s8vj" path="res://entities/dice/images/-1.png" id="4_fr1ao"]
+[ext_resource type="Shader" uid="uid://cm5r2l3h53hw7" path="res://entities/isle/terrain/bastion/shaders/passive faction.gdshader" id="5_eglk4"]
 [ext_resource type="Texture2D" uid="uid://bphq7cv1824fa" path="res://entities/isle/terrain/bastion/images/crown/4/4.png" id="5_jc515"]
 [ext_resource type="Texture2D" uid="uid://d124pvh1ndc6q" path="res://entities/isle/terrain/bastion/images/halocline.png" id="5_yjcy8"]
+[ext_resource type="Texture2D" uid="uid://1l5binofivsw" path="res://entities/isle/terrain/bastion/images/faction/1.png" id="6_fc2n8"]
+[ext_resource type="Shader" uid="uid://1f7k0buoyg0w" path="res://entities/isle/terrain/bastion/shaders/faction.gdshader" id="6_t3fpo"]
 [ext_resource type="Texture2D" uid="uid://bnd6mdkmp7pyf" path="res://entities/isle/terrain/bastion/images/crown/4/4 0.png" id="6_yjcy8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ms72j"]
@@ -17,6 +20,23 @@ shader_parameter/frequency = 15.0
 shader_parameter/speed = 3.0
 shader_parameter/radius = 1.0
 shader_parameter/line_thickness = 0.07999999821184
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_egsfe"]
+resource_local_to_scene = true
+shader = ExtResource("5_eglk4")
+shader_parameter/inverse_speed = 15.0
+shader_parameter/intensity = 0.5
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5bx8h"]
+resource_local_to_scene = true
+shader = ExtResource("6_t3fpo")
+shader_parameter/pattern = ExtResource("6_fc2n8")
+shader_parameter/pattern_color = Color(1, 0, 0, 1)
+shader_parameter/lighten_amount = 0.4
+shader_parameter/tiling = 33.0
+shader_parameter/speed = Vector2(0, 0)
+shader_parameter/speed_factor = 0.5
+shader_parameter/rotation = 0.0
 
 [node name="Bastion" type="Sprite2D" unique_id=1205793641]
 texture = ExtResource("1_8je1w")
@@ -38,14 +58,23 @@ offset_right = 50.0
 offset_bottom = 50.0
 texture = ExtResource("4_fr1ao")
 
-[node name="Background" type="ColorRect" parent="." unique_id=1481632867]
+[node name="PassiveFaction" type="ColorRect" parent="." unique_id=603185155]
 unique_name_in_owner = true
 show_behind_parent = true
+material = SubResource("ShaderMaterial_egsfe")
 offset_left = 6.0
 offset_top = 6.0
 offset_right = 42.0
 offset_bottom = 42.0
-color = Color(1, 0.25, 0.25, 1)
+
+[node name="ActiveFaction" type="ColorRect" parent="." unique_id=1481632867]
+unique_name_in_owner = true
+show_behind_parent = true
+material = SubResource("ShaderMaterial_5bx8h")
+offset_left = 6.0
+offset_top = 6.0
+offset_right = 42.0
+offset_bottom = 42.0
 
 [node name="Halocline" type="TextureRect" parent="." unique_id=779078669]
 unique_name_in_owner = true

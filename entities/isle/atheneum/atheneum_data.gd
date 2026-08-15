@@ -76,7 +76,7 @@ func init_permutations() -> void:
 	
 	scenarios.sort_custom(func (a, b): return a.pulse_weight > b.pulse_weight)
 	
-	if faction.type == Bozo.Faction.BLUE:
+	if faction == faction.policy.current_faction:
 		var scenario = scenarios.front()
 		var pulses = []
 		

@@ -215,6 +215,29 @@ func find_all_trios() -> void:
 			for c in aliquots_5:
 				var _sum = a + b + c
 
+func rotate_right(vec_: Vector2i) -> Vector2i:
+	return Vector2i(vec_.y, -vec_.x)
+
+func rotate_left(vec_: Vector2i) -> Vector2i:
+	return Vector2i(-vec_.y, vec_.x)
+
+func update_colors(node_, matter_: Bozo.Matter) -> void:
+	var hue = Digest.matter_to_hue[matter_]
+	var color_a: Color = Color(Digest.matter_to_pallete[0])
+	var color_b: Color = Color(Digest.matter_to_pallete[1])
+	var color_c: Color = Color(Digest.matter_to_pallete[2])
+	color_a.h += hue
+	color_b.h += hue
+	color_c.h += hue
+	
+	if matter_ == Bozo.Matter.NONE:
+		color_a.s = 0
+		color_b.s = 0
+		color_c.s = 0
+	
+	node_.material.set_shader_parameter("colorA", color_a)
+	node_.material.set_shader_parameter("colorB", color_b)
+	node_.material.set_shader_parameter("colorC", color_c)
 
 #region jugs and cups
 func find_optimal_spills(jugs: Array, cups: Array) -> Array:

@@ -63,7 +63,7 @@ func update_selection() -> void:
 
 func voice() -> void:
 	data.voice()
-	hymn.get_parent().remove_child(self)
+	hymn.get_parent().remove_child(hymn)
 	hymn.queue_free()
 	queue_free()
 	

@@ -55,6 +55,7 @@ enum Region {
 	CORNER = 29,
 	SIDE = 30,
 	CENTER = 31,
+	DIAGONAL = 69,
 }
 
 enum Biome {
@@ -110,13 +111,31 @@ enum Evaluation {
 	WORST = 56,
 }
 
-
-enum Faction {
+enum Relic {
 	NONE = 0,
-	BLUE = 99,
-	RED = 98,
-	GREEN = 97
+	BREATH = 57,
+	BLOOD = 58,
+	BONE = 59,
 }
+
+enum Temperature {
+	NONE = 0,
+	CHILL = 60,
+	HARMONY = 61,
+	HEAT = 62,
+}
+
+enum Catastrophe {
+	NONE = 0,
+	STORM = 63,
+	MIST = 64,
+	TORNADO = 65,
+	HABOOB = 66,
+	BLIZZARD = 67,
+	VOLCANO = 68,
+}
+
+#69
 
 enum Status {
 	IDLE = 0,
@@ -158,6 +177,10 @@ enum Type {
 	ARK = -11,
 	MOUNT = -12,
 	EVALUATION = -13,
+	RELIC = -14,
+	TEMPERATURE = -15,
+	CATASTROPHE = -16,
+	
 	ACTION = -100,
 	PHASE = -200,
 }
@@ -176,6 +199,9 @@ const type_to_index = {
 	Type.ARK: 43,
 	Type.MOUNT: 47,
 	Type.EVALUATION: 54,
+	Type.RELIC: 57,
+	Type.TEMPERATURE: 60,
+	Type.CATASTROPHE: 63,
 	
 	Type.ACTION: 104,
 	Type.PHASE: 200,
@@ -194,6 +220,9 @@ const type_to_enum = {
 	Type.ARK: Bozo.Ark,
 	Type.MOUNT: Bozo.Mount,
 	Type.EVALUATION : Bozo.Evaluation,
+	Type.RELIC : Bozo.Relic,
+	Type.TEMPERATURE : Bozo.Temperature,
+	Type.CATASTROPHE : Bozo.Catastrophe,
 	
 	Type.ACTION: Bozo.Action,
 	Type.PHASE: Bozo.Phase,

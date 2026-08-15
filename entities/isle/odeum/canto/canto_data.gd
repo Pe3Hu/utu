@@ -77,8 +77,8 @@ func is_affordable() -> bool:
 	return true
 
 func update_is_critical() -> void:
-	if hymn.scenario.atheneum.faction.isle.terrain.rampart_to_bastions.has(pulse_value):
-		var bastions = hymn.scenario.atheneum.faction.isle.terrain.rampart_to_bastions[pulse_value]
+	if hymn.scenario.atheneum.faction.policy.isle.terrain.rampart_to_bastions.has(pulse_value):
+		var bastions = hymn.scenario.atheneum.faction.policy.isle.terrain.rampart_to_bastions[pulse_value]
 		var externals = hymn.scenario.atheneum.faction.externals.filter(func (a): return bastions.has(a))
 		is_critical = !externals.is_empty()
 	else:

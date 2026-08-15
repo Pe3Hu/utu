@@ -283,12 +283,12 @@ func normalize_galores() -> void:
 
 func get_ring_base_value(ring_: int) -> float:
 	match ring_:
-		0, 1, 2:  # Внешние - низкие
-			return randf_range(0.0, 0.6)
+		0, 1, 2:  # Внешние - высокие
+			return randf_range(0.4, 1.0)
 		3, 4:     # Центральные - средние
 			return randf_range(0.25, 0.75)
-		5, 6, 7:  # Внутренние - высокие
-			return randf_range(0.4, 1.0)
+		5, 6, 7:  # Внутренние - низкие
+			return randf_range(0.0, 0.6)
 		_:
 			return 0.5
 
@@ -306,7 +306,7 @@ func init_flows() -> void:
 
 func update_rampart_to_bastions() -> void:
 	for bastion in bastions:
-		if bastion.faction and bastion.faction.type != Bozo.Faction.GREEN:
+		if bastion.faction and bastion.faction.is_active:
 			continue
 		if not rampart_to_bastions.has(bastion.current_rampart):
 			rampart_to_bastions[bastion.current_rampart] = []

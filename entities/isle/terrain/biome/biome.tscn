@@ -1,8 +1,23 @@
 [gd_scene format=3 uid="uid://4xkr2nw7mdl3"]
 
-[ext_resource type="TileSet" uid="uid://c2a51w2etkimm" path="res://entities/isle/realm/domain/domain.tres" id="1_g8f6h"]
+[ext_resource type="TileSet" uid="uid://b2amaavylv11f" path="res://entities/isle/terrain/biome/biome.tres" id="1_lau6r"]
 [ext_resource type="Script" uid="uid://iacr16dj38af" path="res://entities/isle/terrain/biome/biome.gd" id="2_1rpmd"]
+[ext_resource type="Shader" uid="uid://dlme56ogl6nsb" path="res://entities/isle/terrain/biome/biome.gdshader" id="3_lau6r"]
 
-[node name="Biome" type="TileMapLayer" unique_id=1547115102]
-tile_set = ExtResource("1_g8f6h")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1rpmd"]
+resource_local_to_scene = true
+shader = ExtResource("3_lau6r")
+shader_parameter/colorA = Color(0.2, 0, 0.1, 1)
+shader_parameter/colorB = Color(0.7, 0.3, 0.4, 1)
+shader_parameter/colorC = Color(1, 0.2, 0.4, 1)
+shader_parameter/discomode = false
+shader_parameter/speed = 0.2
+shader_parameter/scale = 1.0
+
+[node name="Biome" type="Polygon2D" unique_id=1892712879 node_paths=PackedStringArray("border")]
+material = SubResource("ShaderMaterial_1rpmd")
 script = ExtResource("2_1rpmd")
+border = NodePath("Border")
+
+[node name="Border" type="TileMapLayer" parent="." unique_id=1547115102]
+tile_set = ExtResource("1_lau6r")

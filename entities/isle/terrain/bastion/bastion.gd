@@ -60,10 +60,22 @@ func _on_volume_changed() -> void:
 	%CrownPart.texture = load("res://entities/isle/terrain/bastion/images/crown/%d/%d %d.png" % [shape, shape, stage])
 
 func _on_faction_changed() -> void:
-	#var g = data.galore
-	#%Background.color = Color.from_hsv(1.0, 0.0, 1-g)
-	#%Background.color = Color.from_hsv(g, 1.0, 1.0)
-	%Background.color = Digest.faction_to_color[data.faction.type]
+	%ActiveFaction.visible = data.faction.is_active
+	%PassiveFaction.visible = not data.faction.is_active
+	
+	if data.faction.is_active:
+		var pallet_index = Digest.faction_to_pallete[data.faction.index]
+		var faction_color = Digest.faction_to_color[pallet_index]
+		%ActiveFaction.material.set_shader_parameter("pattern_color", faction_color)
+		var emblem = load("res://entities/isle/terrain/bastion/images/faction/%d.png" % data.faction.index)
+		%ActiveFaction.material.set_shader_parameter("pattern", emblem)
+		%ActiveFaction.material.set_shader_parameter("speed", data.faction.warlord.emblem_speed)
+		%ActiveFaction.material.set_shader_parameter("rotation", data.faction.warlord.emblem_rotation)
+		
+		if pallet_index >= 3 and pallet_index <= 4:
+			%ActiveFaction.material.set_shader_parameter("lighten_amount", 0.8)
+		if pallet_index >= 5 and pallet_index <= 8:
+			%ActiveFaction.material.set_shader_parameter("lighten_amount", 0.6) 
 #endregion
 
 func _on_press_button_pressed() -> void:
