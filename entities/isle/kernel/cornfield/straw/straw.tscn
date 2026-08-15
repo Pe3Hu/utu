@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c7bwpx4fodib7"]
 
 [ext_resource type="Script" uid="uid://c0h1lasp3j7t7" path="res://entities/isle/kernel/cornfield/straw/straw.gd" id="1_2o6og"]
+[ext_resource type="LabelSettings" uid="uid://br1lubxromts8" path="res://shared/labels/defaul label.tres" id="2_gyrjv"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bhtm1"]
 
@@ -27,18 +28,17 @@ theme_override_constants/margin_bottom = 0
 
 [node name="Border" type="Panel" parent="MarginContainer" unique_id=1139583002]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_bhtm1")
 
 [node name="Amount" type="Label" parent="." unique_id=247741437]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 size_flags_vertical = 1
 theme_override_constants/outline_size = 8
 theme_override_font_sizes/font_size = 24
 text = "0"
+label_settings = ExtResource("2_gyrjv")
 horizontal_alignment = 1
 vertical_alignment = 1

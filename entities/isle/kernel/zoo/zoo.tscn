@@ -6,7 +6,6 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3d0al"]
 
 [node name="Zoo" type="PanelContainer" unique_id=241851599 node_paths=PackedStringArray("elephant", "giraffe", "rhino", "horse", "zebra", "donkey", "hyena", "volume_enclosures")]
-custom_minimum_size = Vector2(514, 244)
 offset_right = 20.0
 offset_bottom = 20.0
 offset_transform_enabled = true

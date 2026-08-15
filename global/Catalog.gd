@@ -229,11 +229,6 @@ var axes: Array[Vector3] = [
 ]
 #endregion
 
-#region odeum
-
-const VISIBLE_HYMN_MAX: int = 3
-#endregion
-
 #region kernel
 const STARTER_HARVEST_AMOUNT: int = 20
 const STARTER_PRIME_AMOUNT: int = 30
@@ -244,3 +239,5 @@ const matter_mounts = [Bozo.Mount.GIRAFFE, Bozo.Mount.ELEPHANT, Bozo.Mount.RHINO
 
 const ENCLOSURE_SIZE = Vector2(48 ,48)
 #endregion
+
+const DEBT_MAX_AMOUNT: int = 100

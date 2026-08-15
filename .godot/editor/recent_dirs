@@ -1,3 +1,6 @@
+res://entities/isle/odeum/hymn/button/
+res://entities/isle/kernel/usurer/dept/fine/
+res://shared/
 res://entities/isle/policy/faction/ritual/
 res://entities/isle/terrain/biome/source/
 res://entities/isle/kernel/fleet/ark/spoil/
@@ -5,6 +8,5 @@ res://global/
 res://entities/dice/datas/verse/
 res://entities/dice/datas/intro/
 res://global/arbitrator/
-res://shared/
 D:/godot/templates/blank template/assets/fonts/
 res://entities/world/

@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://b0gmh7bi4r5by"]
+
+[ext_resource type="Script" uid="uid://drub835n2u40l" path="res://entities/isle/kernel/usurer/usurer.gd" id="1_2agww"]
+[ext_resource type="PackedScene" uid="uid://byhp55ftikjdy" path="res://entities/isle/kernel/usurer/dept/debt.tscn" id="2_mbdip"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2agww"]
+
+[node name="Usurer" type="PanelContainer" unique_id=1197846844 node_paths=PackedStringArray("gas", "liquid", "solid")]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -184.0
+offset_bottom = 278.0
+grow_horizontal = 0
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_2agww")
+script = ExtResource("1_2agww")
+gas = NodePath("Debts/GasDebt")
+liquid = NodePath("Debts/LiquidDebt")
+solid = NodePath("Debts/SoildDebt")
+
+[node name="Debts" type="HBoxContainer" parent="." unique_id=1185260410]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+offset_transform_enabled = true
+offset_transform_position = Vector2(188, 132)
+theme_override_constants/separation = -4
+
+[node name="GasDebt" parent="Debts" unique_id=253648700 instance=ExtResource("2_mbdip")]
+layout_mode = 2
+
+[node name="LiquidDebt" parent="Debts" unique_id=1588436196 instance=ExtResource("2_mbdip")]
+layout_mode = 2
+
+[node name="SoildDebt" parent="Debts" unique_id=1656088467 instance=ExtResource("2_mbdip")]
+layout_mode = 2

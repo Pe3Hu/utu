@@ -13,6 +13,7 @@ var harvest: CornfieldData = CornfieldData.new(self)
 var granary: CornfieldData = CornfieldData.new(self)
 var fleet: FleetData = FleetData.new(self)
 var zoo: ZooData = ZooData.new(self)
+var usurer: UsurerData = UsurerData.new(self)
 
 var active_ark: ArkData:
 	set(value_):
@@ -36,6 +37,9 @@ func apply_starter_volumes() -> void:
 		
 		if granary.get_total_volume_amount(volume) == 0:
 			prime_matters.append(matter)
+	
+	if prime_matters.is_empty():
+		prime_matters.append_array(Catalog.matters)
 	
 	@warning_ignore("integer_division")
 	var prime_amount: int = Catalog.STARTER_PRIME_AMOUNT / prime_matters.size()

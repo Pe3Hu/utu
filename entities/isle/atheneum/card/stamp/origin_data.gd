@@ -37,6 +37,9 @@ func init_stamps() -> void:
 	@warning_ignore("integer_division")
 	var n = intro_indexs.size() / l
 	
+	intro_indexs.sort()
+	intro_indexs.reverse()
+	
 	for _i in n:
 		var intro_values: Array[int]
 		var verse_values: Array[int] 

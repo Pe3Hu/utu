@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bkrj43nmltkd2" path="res://entities/isle/kernel/zoo/enclosure/enclosure.gd" id="1_jewq2"]
 [ext_resource type="Texture2D" uid="uid://bc2aaniq2l5py" path="res://entities/isle/kernel/zoo/images/rhino.png" id="1_t68p4"]
+[ext_resource type="LabelSettings" uid="uid://br1lubxromts8" path="res://shared/labels/defaul label.tres" id="3_kn0bn"]
 
 [node name="Enclosure" type="TextureRect" unique_id=1642929174]
 anchors_preset = 1
@@ -36,5 +37,6 @@ offset_transform_position = Vector2(-6, 0)
 theme_override_constants/outline_size = 8
 theme_override_font_sizes/font_size = 24
 text = "0"
+label_settings = ExtResource("3_kn0bn")
 horizontal_alignment = 1
 vertical_alignment = 1

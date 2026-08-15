@@ -23,12 +23,12 @@ var is_selected: bool = false:
 		
 		match is_selected:
 			true:
-				%Selection.color = Color.SLATE_GRAY
-			false:
 				%Selection.color = Color.LIGHT_GRAY
+			false:
+				%Selection.color = Color.WEB_GRAY
 
 
-#region Новая область кода
+#region init
 func connect_signals() -> void:
 	data.is_critical_changed.connect(pulse._on_is_critical_changed)
 	pulse._on_is_critical_changed()

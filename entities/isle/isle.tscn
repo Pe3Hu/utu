@@ -110,7 +110,7 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_kwh8c")
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 32
-theme_override_constants/margin_top = 124
+theme_override_constants/margin_top = 108
 theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 60
 

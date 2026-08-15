@@ -32,6 +32,9 @@ func init_new_stamp() -> void:
 			if not letters.has(letter):
 				letters.append(letter)
 	
+	intro_values.sort()
+	intro_values.reverse()
+	
 	var origin = stamps.front().origin
 	new_stamp = StampData.new(origin, intro_values, verse_values)
 	

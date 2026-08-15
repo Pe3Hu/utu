@@ -1,5 +1,31 @@
-shader_type canvas_item;
+[gd_scene format=3 uid="uid://byhp55ftikjdy"]
 
+[ext_resource type="Script" uid="uid://ci6s484enhhkq" path="res://entities/isle/kernel/usurer/dept/debt.gd" id="1_foxk7"]
+[ext_resource type="Shader" uid="uid://d1cgfxb85qjh3" path="res://entities/isle/kernel/usurer/dept/debt volume.gdshader" id="1_iv8g3"]
+[ext_resource type="Texture2D" uid="uid://b7ml57hj61ysv" path="res://entities/isle/kernel/usurer/dept/images/gas outline.png" id="2_wsjvb"]
+[ext_resource type="Texture2D" uid="uid://b5kjkvfb8i465" path="res://entities/isle/kernel/usurer/dept/images/gas volume.png" id="3_wsjvb"]
+[ext_resource type="PackedScene" uid="uid://bk0314oaose1v" path="res://entities/isle/kernel/usurer/dept/fine/fine.tscn" id="5_hmusm"]
+[ext_resource type="Texture2D" uid="uid://dp7vnk5xl70wj" path="res://entities/isle/kernel/usurer/dept/fine/images/gas volume.png" id="6_v8o1i"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wsjvb"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lxk3t"]
+resource_local_to_scene = true
+shader = ExtResource("1_iv8g3")
+shader_parameter/color_1 = Color(0.2, 0.6, 0.8, 0.5)
+shader_parameter/color_2 = Color(0.1, 0.5, 0.7, 0.4)
+shader_parameter/percentage = 0.0
+shader_parameter/wave_frequency_1 = 1.0
+shader_parameter/wave_amplitude_1 = 0.0400000019
+shader_parameter/wave_frequency_2 = 1.0
+shader_parameter/wave_amplitude_2 = 0.0250000011875
+shader_parameter/wave_phase_offset = 0.0
+
+[sub_resource type="Shader" id="Shader_dkecd"]
+resource_local_to_scene = true
+code = "shader_type canvas_item;
+
+uniform sampler2D mask_texture : hint_default_white;
 uniform vec3 colorA : source_color = vec3(0.2, 0.0, 0.1);
 uniform vec3 colorB : source_color = vec3(0.7, 0.3, 0.4);
 uniform vec3 colorC : source_color = vec3(1.0, 0.2, 0.4);
@@ -99,5 +125,50 @@ void fragment() {
     
     res_color = res_color / max(max3(res_color), 0.001);
     res_color = (clamp((0.4 * pow(v, 3.0) + pow(v, 2.0) + 0.5 * v), 0.0, 1.0) * 0.9 + 0.1) * res_color;
-	COLOR = vec4(res_color, 1.0);
-}
+	
+	float mask_alpha = texture(mask_texture, UV).a;
+	COLOR = vec4(res_color, mask_alpha);
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_x4qix"]
+resource_local_to_scene = true
+shader = SubResource("Shader_dkecd")
+shader_parameter/mask_texture = ExtResource("6_v8o1i")
+shader_parameter/colorA = Color(0.2, 0, 0.1, 1)
+shader_parameter/colorB = Color(0.7, 0.3, 0.4, 1)
+shader_parameter/colorC = Color(1, 0.2, 0.4, 1)
+shader_parameter/discomode = false
+shader_parameter/speed = 0.2
+shader_parameter/scale = 1.0
+
+[node name="Debt" type="PanelContainer" unique_id=253648700 node_paths=PackedStringArray("fine")]
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxEmpty_wsjvb")
+script = ExtResource("1_foxk7")
+fine = NodePath("VBox/Fine")
+
+[node name="VBox" type="VBoxContainer" parent="." unique_id=55497949]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Volume" type="TextureRect" parent="VBox" unique_id=489272131]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_lxk3t")
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_wsjvb")
+
+[node name="Outline" type="TextureRect" parent="VBox/Volume" unique_id=1449894737]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 230.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_wsjvb")
+
+[node name="Fine" parent="VBox" unique_id=1257049765 instance=ExtResource("5_hmusm")]
+material = SubResource("ShaderMaterial_x4qix")
+layout_mode = 2

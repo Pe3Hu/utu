@@ -2,41 +2,53 @@ res://entities/isle/isle.tscn
 res://entities/isle/odeum/canto/pulse/critical pulse.gdshader
 res://entities/isle/odeum/canto/tune/tune.gdshader
 res://entities/isle/realm/domain/domain.tres
-res://entities/isle/terrain/bastion/select.gdshader
+res://entities/isle/terrain/bastion/shaders/select.gdshader
+res://entities/isle/terrain/bastion/shaders/passive faction.gdshader
+res://entities/isle/terrain/bastion/shaders/faction.gdshader
 res://entities/isle/terrain/flow/channel.gdshader
+res://entities/isle/terrain/biome/biome.tres
+res://entities/isle/terrain/biome/biome.gdshader
 res://entities/isle/ladder/stair/portal.gdshader
 res://entities/isle/ladder/girder/girder.gdshader
 res://entities/isle/ladder/fake/fake_dice.gdshader
-res://entities/isle/terrain/bastion/highlight.gdshader
-res://entities/isle/terrain/bastion/crown.gdshader
-res://global/Bozo.gd
-res://global/Catalog.gd
-res://global/Digest.gd
-res://entities/isle/policy/faction/faction_data.gd
-res://entities/isle/policy/policy_data.gd
-res://entities/isle/isle_data.gd
-res://entities/isle/kernel/kernel_data.gd
-res://entities/isle/terrain/bastion/bastion.gd
-res://entities/isle/terrain/terrain_data.gd
-res://entities/isle/terrain/terrain.gd
-res://entities/isle/isle.gd
-res://entities/isle/odeum/canto/canto_data.gd
-res://entities/isle/atheneum/atheneum_data.gd
-res://global/arbitrator/phase/phase_discard.gd
-res://global/arbitrator/phase/phase_fusion.gd
-res://entities/isle/terrain/biome/biome_polygon.tscn
-res://entities/isle/terrain/biome/biome.gdshader
-res://entities/isle/terrain/biome/biome.tscn
-res://entities/isle/terrain/biome/biome.tres
-res://entities/isle/terrain/biome/biome.gd
-res://global/Helper.gd
-res://entities/isle/realm/realm.tscn
-res://entities/isle/terrain/bastion/bastion.tscn
-res://entities/isle/terrain/bastion/faction.gdshader
-res://entities/isle/terrain/bastion/shaders/faction.gdshader
+res://entities/isle/terrain/bastion/shaders/highlight.gdshader
+res://entities/isle/terrain/bastion/shaders/crown.gdshader
 res://entities/isle/terrain/bastion/shaders/faction emblem.gdshader
-res://entities/isle/realm/domain/domain_data.gd
-res://entities/isle/terrain/bastion/shaders/passive faction.gdshader
-res://entities/isle/policy/faction/warlord/warlord_data.gd
-res://entities/isle/terrain/bastion/bastion_data.gd
+res://entities/isle/isle.gd
+res://entities/isle/policy/faction/faction_data.gd
+res://entities/isle/policy/faction/usurer_data.gd
+res://entities/isle/policy/faction/usurer/debt_data.gd
+res://entities/isle/kernel/usurer/usurer.tscn
+res://entities/isle/kernel/usurer/dept/debt.tscn
+res://entities/isle/kernel/usurer/dept/debt.gdshader
+res://entities/isle/kernel/usurer/dept/debt.gd
+res://entities/isle/kernel/usurer/dept/debt outline.gdshader
+res://entities/isle/kernel/usurer/dept/debt volume.gdshader
+res://entities/isle/kernel/usurer/usurer.gd
+res://global/Catalog.gd
+res://entities/isle/kernel/usurer/dept/debt_data.gd
+res://entities/isle/kernel/usurer/usurer_data.gd
+res://entities/isle/kernel/kernel.tscn
+res://entities/isle/kernel/kernel.gd
+res://entities/isle/kernel/kernel_data.gd
+res://entities/isle/kernel/cornfield/straw/straw.tscn
+res://shared/defaul label.tres
+res://entities/isle/kernel/zoo/enclosure/enclosure.tscn
+res://entities/isle/terrain/biome/matter.gdshader
+res://entities/isle/kernel/usurer/dept/fine/fine.tscn
+res://entities/isle/kernel/usurer/dept/fine/fine.gd
+res://entities/isle/kernel/usurer/dept/fine/fine_data.gd
+res://entities/isle/odeum/odeum.tscn
+res://entities/isle/odeum/hymn/hymn.gd
+res://entities/isle/odeum/hymn/hymn.tscn
+res://entities/isle/odeum/odeum.gd
+res://entities/isle/atheneum/card/stamp/origin_data.gd
+res://entities/isle/odeum/canto/canto.tscn
+res://shared/buttons/custom button.gd
+res://entities/isle/odeum/hymn/button/shift_canto.tscn
+res://entities/isle/odeum/hymn/button/shift_canto.gd
 res://entities/isle/odeum/canto/canto.gd
+res://entities/isle/forge/anvil/anvil_data.gd
+res://entities/isle/atheneum/atheneum.tscn
+res://entities/isle/kernel/zoo/zoo.tscn
+res://entities/isle/atheneum/card/stamp/stamp.tscn

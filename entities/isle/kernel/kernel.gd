@@ -15,6 +15,7 @@ var data: KernelData:
 @export var granary: Cornfield
 @export var fleet: Fleet
 @export var zoo: Zoo
+@export var usurer: Usurer
 
 var active_ark: Ark:
 	set(value_):
@@ -35,6 +36,7 @@ func connect_datas() -> void:
 	granary.data = data.granary
 	fleet.data = data.fleet
 	zoo.data = data.zoo
+	usurer.data = data.usurer
 	
 	init_volumes()
 

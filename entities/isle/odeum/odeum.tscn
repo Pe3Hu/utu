@@ -1,47 +1,13 @@
 [gd_scene format=3 uid="uid://bjkk4jccttvwb"]
 
 [ext_resource type="Script" uid="uid://bbe13338sggis" path="res://entities/isle/odeum/odeum.gd" id="1_btoev"]
-[ext_resource type="Texture2D" uid="uid://dnrj2l27e8lis" path="res://entities/isle/forge/anvil/images/anvil 0.png" id="2_gcvy7"]
-[ext_resource type="Texture2D" uid="uid://djsseu2etawyi" path="res://entities/isle/forge/anvil/images/anvil 2.png" id="3_y47av"]
 
 [node name="Odeum" type="PanelContainer" unique_id=975507563]
-custom_minimum_size = Vector2(432, 208)
+custom_minimum_size = Vector2(280, 208)
 script = ExtResource("1_btoev")
 
-[node name="HBox" type="HBoxContainer" parent="." unique_id=159112116]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_horizontal = 0
-alignment = 1
-
-[node name="Hymns" type="VBoxContainer" parent="HBox" unique_id=1348268798]
+[node name="Hymns" type="VBoxContainer" parent="." unique_id=1348268798]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 8
 alignment = 1
-
-[node name="Buttons" type="VBoxContainer" parent="HBox" unique_id=1357609321]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_constants/separation = 20
-
-[node name="PreviousCanto" type="TextureButton" parent="HBox/Buttons" unique_id=2144098073]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture_normal = ExtResource("2_gcvy7")
-texture_hover = ExtResource("3_y47av")
-
-[node name="NextCanto" type="TextureButton" parent="HBox/Buttons" unique_id=1626828655]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture_normal = ExtResource("2_gcvy7")
-texture_hover = ExtResource("3_y47av")
-flip_v = true
-
-[connection signal="pressed" from="HBox/Buttons/PreviousCanto" to="." method="_on_previous_canto_pressed"]
-[connection signal="pressed" from="HBox/Buttons/NextCanto" to="." method="_on_next_canto_pressed"]

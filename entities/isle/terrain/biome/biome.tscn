@@ -2,7 +2,7 @@
 
 [ext_resource type="TileSet" uid="uid://b2amaavylv11f" path="res://entities/isle/terrain/biome/biome.tres" id="1_lau6r"]
 [ext_resource type="Script" uid="uid://iacr16dj38af" path="res://entities/isle/terrain/biome/biome.gd" id="2_1rpmd"]
-[ext_resource type="Shader" uid="uid://dlme56ogl6nsb" path="res://entities/isle/terrain/biome/biome.gdshader" id="3_lau6r"]
+[ext_resource type="Shader" uid="uid://dlme56ogl6nsb" path="res://entities/isle/terrain/biome/matter.gdshader" id="3_lau6r"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1rpmd"]
 resource_local_to_scene = true

@@ -20,11 +20,10 @@ var data: IsleData:
 
 func _ready() -> void:
 	data = IsleData.new()
+	Arbitrator.chronicler = data.policy.current_faction.chronicler
 	
 	var settlement = data.policy.current_faction.settlements.front()
 	stepladder.data = settlement.stepladder
-	
-	Arbitrator.chronicler = data.policy.current_faction.chronicler
 
 func connect_datas() -> void:
 	kernel.data = data.kernel

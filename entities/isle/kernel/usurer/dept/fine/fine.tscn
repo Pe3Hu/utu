@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://bk0314oaose1v"]
+
+[ext_resource type="Shader" uid="uid://dlme56ogl6nsb" path="res://entities/isle/terrain/biome/matter.gdshader" id="1_5k15v"]
+[ext_resource type="Texture2D" uid="uid://dxdp3ytuxdikw" path="res://entities/isle/kernel/usurer/dept/fine/images/solid volume.png" id="2_t67cj"]
+[ext_resource type="LabelSettings" uid="uid://br1lubxromts8" path="res://shared/labels/defaul label.tres" id="3_t67cj"]
+[ext_resource type="Script" uid="uid://bawqj8lxqkwvh" path="res://entities/isle/kernel/usurer/dept/fine/fine.gd" id="3_vulxe"]
+[ext_resource type="Texture2D" uid="uid://01uxq8f6bfll" path="res://entities/isle/kernel/usurer/dept/fine/images/solid outline.png" id="4_ah4b4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v8o1i"]
+resource_local_to_scene = true
+shader = ExtResource("1_5k15v")
+shader_parameter/mask_texture = ExtResource("2_t67cj")
+shader_parameter/colorA = Color(0.2, 0, 0.1, 1)
+shader_parameter/colorB = Color(0.7, 0.3, 0.4, 1)
+shader_parameter/colorC = Color(1, 0.2, 0.4, 1)
+shader_parameter/discomode = false
+shader_parameter/speed = 0.2
+shader_parameter/scale = 1.0
+
+[node name="Fine" type="TextureRect" unique_id=1257049765]
+material = SubResource("ShaderMaterial_v8o1i")
+custom_minimum_size = Vector2(48, 48)
+offset_right = 48.0
+offset_bottom = 48.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_t67cj")
+script = ExtResource("3_vulxe")
+
+[node name="Outline" type="TextureRect" parent="." unique_id=929467587]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -24.0
+offset_top = -24.0
+offset_right = 24.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_ah4b4")
+
+[node name="Amount" type="Label" parent="." unique_id=1584072718]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -5.5
+offset_top = -11.5
+offset_right = 5.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "0"
+label_settings = ExtResource("3_t67cj")
+horizontal_alignment = 1
+vertical_alignment = 1
