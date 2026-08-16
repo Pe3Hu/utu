@@ -10,12 +10,12 @@ func _init() -> void:
 func enter_phase():
 	super.enter_phase()
 	
-	if Catalog.STAMPS_LIMIT_FOR_RECRUITMENT <= Arbitrator.chronicler.tribunal.get_remaining_amount():
-		Arbitrator.chronicler.tribunal.atheneum.recruiment_phase()
-	#Arbitrator.chronicler.tribunal.refill_actual()
-	#Arbitrator.chronicler.fleet.init_arks(Arbitrator.chronicler.tribunal.actual.stamps)
-	#Arbitrator.chronicler.tribunal.atheneum.init_scenarios()
+	if Catalog.STAMPS_LIMIT_FOR_RECRUITMENT <= Arbitrator.current_chronicler.tribunal.get_remaining_amount():
+		Arbitrator.current_chronicler.tribunal.atheneum.recruiment_phase()
+	#Arbitrator.current_chronicler.tribunal.refill_actual()
+	#Arbitrator.current_chronicler.fleet.init_arks(Arbitrator.current_chronicler.tribunal.actual.stamps)
+	#Arbitrator.current_chronicler.tribunal.atheneum.init_scenarios()
 	#status = Bozo.Status.PLAYING_ANIMATION
-	#Arbitrator.chronicler.tribunal.atheneum.draw_phase.emit()
-	#Arbitrator.chronicler.fleet.draw_phase.emit()
+	#Arbitrator.current_chronicler.tribunal.atheneum.draw_phase.emit()
+	#Arbitrator.current_chronicler.fleet.draw_phase.emit()
 	exit_phase()

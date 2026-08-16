@@ -9,21 +9,26 @@ func _init() -> void:
 func enter_phase():
 	super.enter_phase()
 	update_forge_stamps()
-	Arbitrator.chronicler.faction.odeum.current_scenario = null
+	Arbitrator.current_chronicler.faction.odeum.current_scenario = null
 	
-	Arbitrator.chronicler.fleet.put_ark_into_actual()
-	Arbitrator.chronicler.tribunal.actual.clear()
-	Arbitrator.chronicler.tribunal.atheneum.discard_phase.emit()
-	Arbitrator.chronicler.fleet.discard_phase.emit()
+	Arbitrator.current_chronicler.fleet.put_ark_into_actual()
+	Arbitrator.current_chronicler.tribunal.actual.clear()
+	
+	if Arbitrator.is_player():
+		Arbitrator.current_chronicler.tribunal.atheneum.discard_phase.emit()
+		Arbitrator.current_chronicler.fleet.discard_phase.emit()
+	else:
+		exit_phase()
+	
 
 func update_forge_stamps() -> void:
 	var forge_stamps: Array[StampData]
-	#forge_stamps.append_array(Arbitrator.chronicler.tribunal.actual.stamps)
+	#forge_stamps.append_array(Arbitrator.current_chronicler.tribunal.actual.stamps)
 	
-	for ark in Arbitrator.chronicler.fleet.arks:
+	for ark in Arbitrator.current_chronicler.fleet.arks:
 		forge_stamps.append(ark.stamp)
 	
-	Arbitrator.chronicler.faction.policy.isle.forge.stamps = forge_stamps
+	Arbitrator.current_chronicler.faction.policy.isle.forge.stamps = forge_stamps
 
 func _on_all_animations_finished() -> void:
 	super._on_all_animations_finished()

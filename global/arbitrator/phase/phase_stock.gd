@@ -8,9 +8,13 @@ func _init() -> void:
 
 func enter_phase():
 	super.enter_phase()
-	Arbitrator.chronicler.fleet.kernel.stock_granary()
-	Arbitrator.chronicler.fleet.kernel.stock_phase.emit()
-	status = Bozo.Status.PLAYING_ANIMATION
+	Arbitrator.current_chronicler.fleet.kernel.stock_granary()
+	
+	if Arbitrator.is_player():
+		Arbitrator.current_chronicler.fleet.kernel.stock_phase.emit()
+		status = Bozo.Status.PLAYING_ANIMATION
+	else:
+		exit_phase()
 
 func _on_all_animations_finished() -> void:
 	super._on_all_animations_finished()

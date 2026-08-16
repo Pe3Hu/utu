@@ -26,3 +26,6 @@ tile_set = SubResource("TileSet_2nbmt")
 
 [node name="Domains" type="Node2D" parent="." unique_id=445651210]
 unique_name_in_owner = true
+
+[node name="Crossroads" type="Node2D" parent="." unique_id=485145305]
+unique_name_in_owner = true

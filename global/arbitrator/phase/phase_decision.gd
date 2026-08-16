@@ -7,8 +7,8 @@ func _init() -> void:
 	type = Bozo.Phase.DECISION
 
 func enter_phase():
-	Arbitrator.chronicler.faction.warlord.init_gambits()
+	Arbitrator.current_chronicler.faction.warlord.init_gambits()
 	
 	if Gear.is_auto_play:
-		Arbitrator.chronicler.faction.warlord.simulate_gambit_choice()
+		Arbitrator.current_chronicler.faction.warlord.simulate_gambit_choice()
 		exit_phase()

@@ -28,11 +28,15 @@ func init_factions() -> void:
 	_faction = FactionData.new(self, Bozo.Region.CENTER, Catalog.corners[2], true)
 	
 	player_faction = factions[1]
+	Arbitrator.player_chronicler = player_faction.chronicler
 	current_faction = player_faction
 	var passive_faction = factions.front()
 	
 	for bastion in isle.terrain.bastions:
 		if bastion.faction == null:
 			passive_faction.capture_bastion(bastion)
-
+	
+	for faction in factions:
+		if faction.is_active:
+			Arbitrator.factions.append(faction)
 #endregion

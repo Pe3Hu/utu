@@ -41,7 +41,7 @@ layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
 offset_transform_enabled = true
-offset_transform_position = Vector2(0, 42)
+offset_transform_position = Vector2(-2, 42)
 theme_override_constants/separation = -16
 alignment = 1
 

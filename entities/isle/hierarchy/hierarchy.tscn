@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://df2rq4b4twqho"]
+
+[ext_resource type="Script" uid="uid://defkxtyib04jw" path="res://entities/isle/hierarchy/hierarchy.gd" id="1_vgqju"]
+
+[node name="Hierarchy" type="Node2D" unique_id=1420838765]
+script = ExtResource("1_vgqju")

@@ -15,6 +15,8 @@ func _init() -> void:
 	all_animations_finished.connect(_on_all_animations_finished)
 
 func enter_phase() -> void:
+	#if Arbitrator.is_player():
+	#	print(Bozo.enum_to_string(Bozo.Type.PHASE, type))
 	pass
 
 func exit_phase() -> void:

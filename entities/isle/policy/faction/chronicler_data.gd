@@ -6,7 +6,6 @@ var faction: FactionData
 var tribunal: TribunalData
 var fleet: FleetData
 
-var current_round: int = 0
 
 func _init(faction_: FactionData) -> void:
 	faction = faction_

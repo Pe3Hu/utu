@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://72g3d2d8xtui"]
+
+[ext_resource type="Script" uid="uid://b6meccc4aohpr" path="res://entities/isle/hierarchy/league/league.gd" id="1_nvu8f"]
+[ext_resource type="Texture2D" uid="uid://dwl4ldtwiiwub" path="res://entities/isle/hierarchy/league/league.png" id="2_tllqb"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pfmkw"]
+texture = ExtResource("2_tllqb")
+0:0/0 = 0
+0:0/0/terrain_set = 0
+0:0/0/terrain = 0
+1:0/0 = 0
+1:0/0/terrain_set = 0
+1:0/0/terrain = 0
+1:0/0/terrains_peering_bit/right_side = 0
+2:0/0 = 0
+2:0/0/terrain_set = 0
+2:0/0/terrain = 0
+2:0/0/terrains_peering_bit/right_side = 0
+2:0/0/terrains_peering_bit/left_side = 0
+3:0/0 = 0
+3:0/0/terrain_set = 0
+3:0/0/terrain = 0
+3:0/0/terrains_peering_bit/left_side = 0
+
+[sub_resource type="TileSet" id="TileSet_lxk3t"]
+terrain_set_0/mode = 0
+terrain_set_0/terrain_0/name = "border"
+terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
+sources/0 = SubResource("TileSetAtlasSource_pfmkw")
+
+[node name="League" type="Node2D" unique_id=737187482]
+script = ExtResource("1_nvu8f")
+
+[node name="Emblem" type="Polygon2D" parent="." unique_id=344042761]
+unique_name_in_owner = true
+
+[node name="Borders" type="TileMapLayer" parent="." unique_id=833948776]
+unique_name_in_owner = true
+tile_set = SubResource("TileSet_lxk3t")

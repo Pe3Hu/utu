@@ -11,6 +11,7 @@ var policy: PolicyData
 var terrain: TerrainData
 
 var forge: ForgeData
+var hierarchy: HierarchyData
 
 
 func _init() -> void:
@@ -20,6 +21,7 @@ func _init() -> void:
 	
 	terrain.init_galores()
 	policy = PolicyData.new(self)
+	hierarchy = HierarchyData.new(self)
 	
 	for faction in policy.factions:
 		if faction.is_active:

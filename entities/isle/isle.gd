@@ -16,11 +16,12 @@ var data: IsleData:
 
 @export var stepladder: Stepladder
 @export var forge: Forge
+@export var hierarchy: Hierarchy
 
 
 func _ready() -> void:
 	data = IsleData.new()
-	Arbitrator.chronicler = data.policy.current_faction.chronicler
+	Arbitrator.start_new_round()
 	
 	var settlement = data.policy.current_faction.settlements.front()
 	stepladder.data = settlement.stepladder
@@ -34,11 +35,13 @@ func connect_datas() -> void:
 	terrain.data = data.terrain
 	
 	forge.data = data.forge
+	hierarchy.data = data.hierarchy
 
 func _input(event) -> void:
 	if event is InputEventKey and event.pressed and not event.echo:
 		match event.keycode:
 			KEY_S:
-				Gear.is_auto_play = !Gear.is_auto_play
+				Gear.is_pause = !Gear.is_pause
+				Arbitrator.start_next_phase()
 			KEY_ESCAPE:
 				get_tree().quit()

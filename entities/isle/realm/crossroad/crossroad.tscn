@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://bo3b1skq20ak8"]
+
+[ext_resource type="Script" uid="uid://c2kh8hb6ujwll" path="res://entities/isle/realm/crossroad/crossroad.gd" id="1_2lfix"]
+[ext_resource type="Texture2D" uid="uid://lt5vsp7ovv07" path="res://entities/isle/realm/crossroad/crossroad.png" id="1_rwf1o"]
+
+[node name="Crossroad" type="Sprite2D" unique_id=501271027]
+self_modulate = Color(0.44, 0.44, 0.44, 1)
+texture = ExtResource("1_rwf1o")
+script = ExtResource("1_2lfix")

@@ -241,3 +241,6 @@ const ENCLOSURE_SIZE = Vector2(48 ,48)
 #endregion
 
 const DEBT_MAX_AMOUNT: int = 100
+
+const LEAGUE_SIZE: Vector2 = Vector2(8, 8)
+const LEAGUE_BORDER: int = 4

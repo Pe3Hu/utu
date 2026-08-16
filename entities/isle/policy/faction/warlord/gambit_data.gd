@@ -76,8 +76,6 @@ func is_it_possible() -> bool:
 	if result.size() < depth:
 		return false
 	
-	
-	
 	return true
 
 func calc_totals() -> void:
@@ -98,4 +96,4 @@ func launch() -> void:
 	for raid in raids:
 		raid.launch()
 	
-	warlord.faction.isle.terrain.externals_changed.emit()
+	warlord.faction.policy.isle.terrain.externals_changed.emit()

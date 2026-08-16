@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://c4kju7nsoxlr5" path="res://entities/isle/realm/realm.tscn" id="6_y02by"]
 [ext_resource type="PackedScene" uid="uid://da8oif1q4gcaq" path="res://entities/isle/terrain/terrain.tscn" id="7_kwh8c"]
 [ext_resource type="PackedScene" uid="uid://cwon2bom7u1m2" path="res://entities/isle/ladder/stepladder.tscn" id="8_6kinf"]
+[ext_resource type="PackedScene" uid="uid://df2rq4b4twqho" path="res://entities/isle/hierarchy/hierarchy.tscn" id="9_nhhp3"]
 [ext_resource type="PackedScene" uid="uid://twlrx2igq4x" path="res://entities/isle/forge/forge.tscn" id="11_egsfe"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_od30j"]
@@ -30,7 +31,7 @@ corner_detail = 12
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qhul4"]
 
-[node name="Isle" type="Control" unique_id=1469181342 node_paths=PackedStringArray("kernel", "atheneum", "odeum", "realm", "terrain", "stepladder", "forge")]
+[node name="Isle" type="Control" unique_id=1469181342 node_paths=PackedStringArray("kernel", "atheneum", "odeum", "realm", "terrain", "stepladder", "forge", "hierarchy")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -46,6 +47,7 @@ realm = NodePath("HBox/RealmContainer/Realm")
 terrain = NodePath("HBox/RealmContainer/Terrain")
 stepladder = NodePath("HBox/CardContainer/Stepladder")
 forge = NodePath("HBox/RealmContainer/Forge")
+hierarchy = NodePath("HBox/CardContainer/Hierarchy")
 
 [node name="BG" type="ColorRect" parent="." unique_id=81403246]
 material = SubResource("ShaderMaterial_od30j")
@@ -70,6 +72,7 @@ script = ExtResource("4_yl3e5")
 metadata/_custom_type_script = "uid://gmp1wxiwy1n8"
 
 [node name="Title" type="RichTextLabel" parent="." unique_id=882534284]
+visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -140,6 +143,9 @@ isle = NodePath("../../../..")
 [node name="Stepladder" parent="HBox/CardContainer" unique_id=1091981830 instance=ExtResource("8_6kinf")]
 visible = false
 
+[node name="Hierarchy" parent="HBox/CardContainer" unique_id=1420838765 instance=ExtResource("9_nhhp3")]
+visible = false
+
 [node name="RealmContainer" type="PanelContainer" parent="HBox" unique_id=1236269852]
 custom_minimum_size = Vector2(960, 1080)
 layout_mode = 2
@@ -150,6 +156,7 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_qhul4")
 isle = NodePath("../../..")
 
 [node name="Terrain" parent="HBox/RealmContainer" unique_id=1189514570 node_paths=PackedStringArray("isle") instance=ExtResource("7_kwh8c")]
+visible = false
 isle = NodePath("../../..")
 
 [node name="Forge" parent="HBox/RealmContainer" unique_id=1978344045 instance=ExtResource("11_egsfe")]

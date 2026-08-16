@@ -76,7 +76,7 @@ func init_permutations() -> void:
 	
 	scenarios.sort_custom(func (a, b): return a.pulse_weight > b.pulse_weight)
 	
-	if faction == faction.policy.current_faction:
+	if faction == faction.policy.player_faction:
 		var scenario = scenarios.front()
 		var pulses = []
 		
@@ -91,9 +91,6 @@ func recalc_scenario() -> void:
 	var spoils: Array[StampData]
 	var permutation = tribunal.actual.stamps.duplicate()
 	faction.odeum.current_scenario = ScenarioData.new(self, permutation, spoils)
-	
-	#if faction.type == Bozo.Faction.BLUE:
-	#	print([faction.odeum.current_scenario.total_sum, faction.odeum.current_scenario.pulses])
 
 func discard_actual(is_phase_: bool = true) -> void:
 	var forge_stamps: Array[StampData]

@@ -15,6 +15,7 @@ var direction_to_fiefdom: Dictionary
 var bastion: BastionData
 
 var rampart: int
+var shape: Bozo.Shape
 
 
 #region init

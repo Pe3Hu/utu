@@ -44,7 +44,7 @@ func apply_raid_amounts() -> void:
 	while not raid_amounts.is_empty():
 		var raid_amount = raid_amounts.pop_back()
 		
-		while raid_amount > 0:
+		while raid_amount > 0 and not expiration_to_amount.keys().is_empty():
 			var expiration_duration = expiration_to_amount.keys().min()
 			var expiration_amount = expiration_to_amount[expiration_duration]
 			var shift_value = min(raid_amount, expiration_amount)

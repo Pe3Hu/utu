@@ -45,8 +45,15 @@ func init_gambits() -> void:
 						l += 1
 
 func simulate_gambit_choice() -> void:
+	if length_to_gambits.keys().is_empty(): 
+		print("not gambits")
+		return
+	
 	var best_gambits = length_to_gambits[length_to_gambits.keys().size()]
-	print(["$", gambits.size()])
+	
+	if faction == faction.policy.player_faction:
+		print(["$", gambits.size()])
+	
 	best_gambits.sort_custom(func (a, b): return a.total_profit > b.total_profit)
 	var options = best_gambits.duplicate()
 	options.filter(func (a): return a.total_profit == best_gambits.front().total_profit)

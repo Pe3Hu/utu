@@ -13,10 +13,17 @@ const domain_to_vassal: Dictionary = {
 	Bozo.Domain.KINGDOM: Bozo.Domain.DUKEDOM,
 }
 
-const domaint_to_size = {
+const domain_to_size = {
 	Bozo.Domain.EARLDOM: 5,
 	Bozo.Domain.DUKEDOM: 4,
-	Bozo.Domain.KINGDOM: 3
+	Bozo.Domain.KINGDOM: 3,
+}
+
+const domain_to_anchor = {
+	Bozo.Domain.FIEFDOM: 0,
+	Bozo.Domain.EARLDOM: 1,
+	Bozo.Domain.DUKEDOM: 2,
+	Bozo.Domain.KINGDOM: 3,
 }
 
 const region_to_shrine = {

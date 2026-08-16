@@ -1,3 +1,7 @@
+Sprite2D
+Node2D
+TileMapLayer
+Polygon2D
 HBoxContainer
 CustomButton
 TextureRect
@@ -5,10 +9,7 @@ Label
 PanelContainer
 VBoxContainer
 TextureProgressBar
-Polygon2D
 ColorRect
 TextureButton
 MarginContainer
 Button
-Sprite2D
-Node2D

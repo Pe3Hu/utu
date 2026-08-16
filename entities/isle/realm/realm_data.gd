@@ -12,12 +12,20 @@ var kingdoms: Array[DomainData] = []
 
 var coord_to_fiefdom: Dictionary = {}
 
+var crossroads: Array[CrossroadData]
+
+var enclaves: Array[EnclaveData]
+var shape_to_shape_to_enclave: Dictionary
+var current_enclave: EnclaveData
+
 
 func _init(isle_: IsleData) -> void:
 	isle = isle_
 	
 	load_compositions()
 	init_domains()
+	init_crossroads()
+	init_enclaves()
 
 func load_compositions() -> void:
 	var loader = CompositionLoader.new()
@@ -61,6 +69,7 @@ func init_earldoms() -> void:
 func add_earldom(allocation_: AllocationData) -> void:
 	var earldom = DomainData.new(self, Bozo.Domain.EARLDOM, allocation_.coords)
 	earldoms.append(earldom)
+	earldom.shape = allocation_.orientation.shape.type
 	
 	for _coord in allocation_.coords:
 		var fiefdom = DomainData.new(self, Bozo.Domain.FIEFDOM, [_coord])
@@ -91,7 +100,7 @@ func init_neighbours(type_: Bozo.Domain) -> void:
 func init_groups(type_: Bozo.Domain) -> void:
 	var solver = PartitionSolver.new()
 	var vassals = get_domains(Digest.domain_to_vassal[type_])
-	var groups = solver.solve(vassals, Digest.domaint_to_size[type_])
+	var groups = solver.solve(vassals, Digest.domain_to_size[type_])
 	create_domains(groups, type_)
 	init_neighbours(type_)
 
@@ -124,4 +133,69 @@ func validate() -> void:
 		assert(d.vassals.size() == 4)
 	for k in kingdoms:
 		assert(k.vassals.size() == 3)
+
+func init_crossroads() -> void:
+	for _y in Catalog.BOARD_SIZE.y * 2 - 2:
+		for _x in Catalog.BOARD_SIZE.x * 2 - 2:
+			var unique_earldoms: Array
+			var bastions: Array[BastionData]
+			
+			for corner in Catalog.corners:
+				var coord = Vector2i(_x, _y) + corner
+				
+				if not coord_to_fiefdom.has(coord):
+					break
+				
+				var fiefdom = coord_to_fiefdom[coord]
+				bastions.append(fiefdom.bastion)
+				
+				if not unique_earldoms.has(fiefdom.suzerain):
+					unique_earldoms.append(fiefdom.suzerain)
+				else:
+					break
+			
+			if unique_earldoms.size() == Catalog.corners.size():
+				var _crossroad = CrossroadData.new(self, bastions)
+
+func init_enclaves() -> void:
+	enclaves.clear()
+	shape_to_shape_to_enclave.clear()
+	
+	for _i in Catalog.shapes.size():
+		for _j in range(_i, Catalog.shapes.size(), 1):
+			var shapes = [Catalog.shapes[_i], Catalog.shapes[_j]]
+			var _enclave = EnclaveData.new(self, shapes)
+	
+	for mother_earldom in earldoms:
+		for father_earldom in mother_earldom.neighbours:
+			var enclave = shape_to_shape_to_enclave[mother_earldom.shape][father_earldom.shape]
+			
+			if not enclave.mothers.has(father_earldom):
+				enclave.mothers.append(mother_earldom)
+				enclave.fathers.append(father_earldom)
+	
+	for _i in range(enclaves.size()-1, -1, -1):
+		var enclave = enclaves[_i]
+		
+		if enclave.mothers.is_empty():
+			shape_to_shape_to_enclave[enclave.shapes[0]].erase(enclave.shapes[1])
+			shape_to_shape_to_enclave[enclave.shapes[1]].erase(enclave.shapes[0])
+			enclaves.erase(enclave) 
+	
+	enclaves.sort_custom(func (a, b): return a.mothers.size() < b.mothers.size())
+	
+	var length_to_size = {}
+	
+	for enclave in enclaves:
+		var l = enclave.mothers.size()
+		
+		if not length_to_size.has(l):
+			length_to_size[l] = 0
+		
+		length_to_size[l] += 1
+	
+	for l in length_to_size:
+		print([l, length_to_size[l]])
+	
+	current_enclave = enclaves.back()
 #endregion

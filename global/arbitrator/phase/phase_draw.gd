@@ -10,12 +10,16 @@ func _init() -> void:
 func enter_phase():
 	super.enter_phase()
 	
-	Arbitrator.chronicler.tribunal.refill_actual()
-	Arbitrator.chronicler.fleet.init_arks(Arbitrator.chronicler.tribunal.actual.stamps)
-	Arbitrator.chronicler.tribunal.atheneum.init_scenarios()
-	status = Bozo.Status.PLAYING_ANIMATION
-	Arbitrator.chronicler.tribunal.atheneum.draw_phase.emit()
-	Arbitrator.chronicler.fleet.draw_phase.emit()
+	Arbitrator.current_chronicler.tribunal.refill_actual()
+	Arbitrator.current_chronicler.fleet.init_arks(Arbitrator.current_chronicler.tribunal.actual.stamps)
+	Arbitrator.current_chronicler.tribunal.atheneum.init_scenarios()
+	
+	if Arbitrator.is_player():
+		status = Bozo.Status.PLAYING_ANIMATION
+		Arbitrator.current_chronicler.tribunal.atheneum.draw_phase.emit()
+		Arbitrator.current_chronicler.fleet.draw_phase.emit()
+	else:
+		exit_phase()
 
 func _on_all_animations_finished() -> void:
 	super._on_all_animations_finished()
